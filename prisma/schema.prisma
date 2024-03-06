@@ -9,3 +9,48 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  price       Int
+  description String
+  photo       String
+
+  quantity    Int
+
+  bag            Bag?      @relation(fields: [bagId], references: [id])
+  bagId          String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+ 
+}
+
+
+
+model Bag {
+  id          String     @id @default(uuid())
+  totalAmount Int
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  products    Product[]  
+
+  order       Order?     // Define a relation to an order
+}
+
+model Order {
+  id             String    @id @default(uuid())
+  clientName     String
+  clientSurname  String
+  email          String 
+  phone          Int
+
+  bag            Bag?      @relation(fields: [bagId], references: [id])
+  bagId          String?   @unique
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
