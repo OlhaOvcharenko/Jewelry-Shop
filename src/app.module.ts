@@ -11,10 +11,17 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { PrismaModule } from './prisma/prisma.module';
 import { ProductsModule } from './products/products.module';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
-  imports: [ PrismaModule, ConfigModule.forRoot({ load: [configuration], isGlobal: true }), ProductsModule ],
+  imports: [ PrismaModule, 
+    ConfigModule.forRoot({ load: [configuration], isGlobal: true }), 
+    ProductsModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      serveRoot: '/public',
+  }), ],
   controllers: [AppController],
   providers: [AppService],
 })
