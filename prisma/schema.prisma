@@ -15,6 +15,7 @@ model Product {
   name        String
   price       Int
   description String
+  collection  String
   photo       String
 
   quantity    Int
