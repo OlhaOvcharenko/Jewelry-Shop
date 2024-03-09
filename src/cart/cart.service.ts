@@ -7,6 +7,14 @@ import { addToCartDTO } from './dto/add-to-cart.dto';
 export class CartService {
   constructor(private prismaService: PrismaService){}
 
+  public async getAllCartItems() {
+    return this.prismaService.cart.findMany({
+      include: {
+        product: true,
+      },
+    });
+  }
+
   public async addToCart(cartProduct: addToCartDTO): Promise<boolean> {
 
     const { productId, quantity, ...otherData } = cartProduct;
@@ -45,4 +53,5 @@ export class CartService {
     } 
     return true;
   }
+
 }
