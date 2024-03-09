@@ -3,10 +3,18 @@ import {
     IsString,
     IsUUID,
     IsInt,
-    Min
+    Min,
+    IsOptional
 } from 'class-validator';
-  
-export class addToCartDTO {
+
+
+export class EditCartItem {
+
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID()
+    cartItemId: string;
+
     @IsNotEmpty()
     @IsString()
     @IsUUID()
@@ -16,4 +24,9 @@ export class addToCartDTO {
     @IsInt()
     @Min(0)
     quantity: number;
+
+    
+    @IsOptional()
+    @IsString()
+    comment?: string;
 }

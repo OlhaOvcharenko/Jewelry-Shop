@@ -4,12 +4,15 @@ import { Get, Post, Body } from '@nestjs/common';
 import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { Param } from '@nestjs/common';
 import { ParseUUIDPipe } from '@nestjs/common';
+import { addItemToCartDTO } from '../cart/dto/addItemToCard.dto';
+import { CartService } from 'src/cart/cart.service';
 
 
 
 @Controller()
 export class ProductsController {
-  constructor(private productsService: ProductsService) {}
+  constructor(private productsService: ProductsService,
+    private cartService: CartService) {}
 
   @Get('/products')
   async getAll() {
@@ -21,5 +24,11 @@ export class ProductsController {
     if (!prod) throw new NotFoundException('Product not found');
     return prod;
   }
+
+  @Post('products/:id')
+  async addToCart(@Body() addedProductData: addItemToCartDTO) {
+    await this.cartService.addItemToCart(addedProductData);
+  }
+
 
 }

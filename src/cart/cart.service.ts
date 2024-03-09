@@ -1,55 +1,86 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { NotFoundException } from '@nestjs/common';
-import { addToCartDTO } from './dto/add-to-cart.dto';
-import { Cart } from '@prisma/client';
+
+import { EditCartItem } from './dto/editCartItem.dto';
+import { BadRequestException } from '@nestjs/common';
+import { addItemToCartDTO } from './dto/addItemToCard.dto';
+import { CartItem } from '@prisma/client';
+import shortid from 'shortid';
+
 
 @Injectable()
 export class CartService {
   constructor(private prismaService: PrismaService){}
 
   public async getAllCartItems() {
-    return this.prismaService.cart.findMany({
+    return this.prismaService.cartItem.findMany({
         include: {
-            product: {
-                select: {
-                    id: true,
-                    name: true,
-                    price: true,
-                    photo: true,
-                    createdAt: true,
-                    updatedAt: true,
-                },
+          product: {
+            select: {
+              id: true,
+              name: true,
+              price: true,
+              photo: true,
+              createdAt: true,
+              updatedAt: true,
             },
+          },
         },
     });
   }
 
-  public async addToCart( cartProduct: Omit<Cart, 'id' | 'createdAt' | 'updatedAt' | 'totalAmount' >,): Promise<Cart> {
+  public async updateItemInCart(updateCartItemDto: EditCartItem) {
+    const { cartItemId, quantity, comment } = updateCartItemDto;
 
-    const { productId, quantity, ...otherData } = cartProduct;
+    // Fetch the cart item
+    const cartItem = await this.prismaService.cartItem.findUnique({
+      where: { id: cartItemId },
+      include: { product: true },
+    });
+
+    // Throw error if cart item not found
+    if (!cartItem) {
+      throw new BadRequestException(`Cart item with ID ${cartItemId} not found`);
+    }
+
+    // Update the cart item
+    const updatedCartItem = await this.prismaService.cartItem.update({
+      where: { id: cartItemId },
+      data: {
+        quantity,
+        comment,
+        subTotal: cartItem.product.price * quantity, 
+      },
+    });
+
+    return updatedCartItem;
+  }
+
+  public async addItemToCart( cartItem: addItemToCartDTO,): Promise<CartItem> {
+
+    const { productId, quantity, cartItemId, ...otherData } = cartItem;
 
     const product = await this.prismaService.product.findUnique({
-      where: { id: productId },
+        where: { id: productId },
     });
 
     if (!product) {
       throw new NotFoundException('Product not found');
     }
-
-    // Calculate totalAmount based on the product's price and quantity
-    const totalAmount = product.price * quantity;
-
-    // Create the cart item with the calculated totalAmount
-    return this.prismaService.cart.create({
+    const subTotal = product.price * quantity;
+  
+    return this.prismaService.cartItem.create({
       data: {
         ...otherData,
         quantity,
-        totalAmount,
-        product: {
-          connect: { id: productId },
-        },
+        subTotal,
+        product: { connect: { id: productId } },
       },
     });
   }
+
+  
 }
+
+

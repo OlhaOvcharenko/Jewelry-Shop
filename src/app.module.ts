@@ -17,15 +17,15 @@ import { OrdersModule } from './orders/orders.module';
 import { CartModule } from './cart/cart.module';
 
 @Module({
-  imports: [ PrismaModule, 
-    ConfigModule.forRoot({ load: [configuration], isGlobal: true }), 
+  imports: [ PrismaModule,  
     ProductsModule,
+    OrdersModule,
+    CartModule, 
+    ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
       serveRoot: '/public',
-  }),
-    OrdersModule,
-    CartModule, ],
+  })],
   controllers: [AppController],
   providers: [AppService],
 })

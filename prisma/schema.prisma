@@ -23,19 +23,33 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  carts        Cart[]    
+  cartItems   CartItem[]  
+}
+
+model CartItem {
+  id        String   @id @default(uuid())
+  quantity  Int
+  comment   String?
+  subTotal  Int
+
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String 
+
+  carts      Cart[]   
 }
 
 model Cart {
-  id          String   @id @default(uuid())
-  product     Product  @relation(fields: [productId], references: [id])
-  productId   String
-  quantity    Int
-  totalAmount Int
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 
+  cartItem    CartItem @relation(fields: [cartItemId], references: [id])
+  cartItemId  String
 
-  order       Order?
+  order       Order?        
 }
+
+
 
 model Order {
   id             String    @id @default(uuid())
@@ -43,10 +57,11 @@ model Order {
   clientSurname  String
   email          String 
   phone          Int
+  address        String
   finalAmount    Int
   
   cart           Cart?     @relation(fields: [cartId], references: [id])
-  cartId       String?     @unique
+  cartId         String?   @unique
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt

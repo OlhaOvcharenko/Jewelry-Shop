@@ -1,9 +1,10 @@
 import { Controller } from '@nestjs/common';
 import { CartService } from './cart.service';
-import { Post, Get } from '@nestjs/common';
+import { Get, Put } from '@nestjs/common';
 
 import { Body } from '@nestjs/common';
-import { addToCartDTO} from './dto/add-to-cart.dto';
+
+import { EditCartItem } from './dto/editCartItem.dto';
 
 @Controller()
 export class CartController {
@@ -14,8 +15,8 @@ export class CartController {
     return this.cartService.getAllCartItems();
   }
 
-  @Post('products/:id/add-to-cart')
-  async addToCart(@Body() addedProductData: addToCartDTO) {
-    await this.cartService.addToCart(addedProductData);
+  @Put('/cart')
+  async updateCartItem(@Body() updateCartItemDto: EditCartItem) {
+    return this.cartService.updateItemInCart(updateCartItemDto);
   }
 }
