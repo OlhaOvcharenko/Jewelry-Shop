@@ -14,7 +14,7 @@ import { ProductsModule } from './products/products.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { OrdersModule } from './orders/orders.module';
-import { BasketModule } from './basket/basket.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [ PrismaModule, 
@@ -25,7 +25,7 @@ import { BasketModule } from './basket/basket.module';
       serveRoot: '/public',
   }),
     OrdersModule,
-    BasketModule, ],
+    CartModule, ],
   controllers: [AppController],
   providers: [AppService],
 })

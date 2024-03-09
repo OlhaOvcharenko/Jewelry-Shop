@@ -9,6 +9,7 @@ function getProducts() {
       price: 2000,
       description: 'Elegant diamond ring, perfect for special occasions',
       collection: 'Jewelry',
+      category: 'rings',
       photo: 'images/diamond-ring.jpg',
       quantity: 0
     },
@@ -18,6 +19,7 @@ function getProducts() {
       price: 5000,
       description: 'Exquisite pearl necklace, timeless beauty',
       collection: 'Jewelry',
+      category: 'necklaces',
       photo: 'images/pearl-necklace.jpg',
       quantity: 0
     },
@@ -27,6 +29,7 @@ function getProducts() {
       price: 3000,
       description: 'Stunning sapphire earrings, adds a pop of color to any outfit',
       collection: 'Jewelry',
+      category: 'earrings',
       photo: 'images/sapphire-earrings.jpg',
       quantity: 0
     },
@@ -36,6 +39,7 @@ function getProducts() {
       price: 2000,
       description: 'Luxurious gold bracelet, a timeless classic',
       collection: 'Jewelry',
+      category: 'bracelets',
       photo: 'images/gold-bracelet.jpg',
       quantity: 0
     },
@@ -45,6 +49,7 @@ function getProducts() {
       price: 5000,
       description: 'Exquisite ruby pendant, adds elegance and charm',
       collection: 'Jewelry',
+      category: 'pendants',
       photo: 'images/ruby-pendant.jpg',
       quantity: 0
     },
