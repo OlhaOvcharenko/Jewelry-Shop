@@ -20,27 +20,13 @@ model Product {
 
   quantity    Int
 
-  bag            Bag?      @relation(fields: [bagId], references: [id])
-  bagId          String?
-
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  orders Order[]
  
 }
 
-
-
-model Bag {
-  id          String     @id @default(uuid())
-  totalAmount Int
-
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-
-  products    Product[]  
-
-  order       Order?     // Define a relation to an order
-}
 
 model Order {
   id             String    @id @default(uuid())
@@ -48,9 +34,11 @@ model Order {
   clientSurname  String
   email          String 
   phone          Int
+  
+  total          Int
 
-  bag            Bag?      @relation(fields: [bagId], references: [id])
-  bagId          String?   @unique
+  products       Product?      @relation(fields: [productId], references: [id])
+  productId      String?   @unique
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
