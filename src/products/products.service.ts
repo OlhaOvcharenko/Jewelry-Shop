@@ -18,41 +18,4 @@ export class ProductsService {
   }
 
 
-  public async addToOrder(productId: string, orderId: string): Promise <Order | null> {
-    try {
-      // Retrieve the product based on productId
-      const product = await this.prismaService.product.findUnique({
-        where: { id: productId },
-      });
-
-      if (!product) {
-        throw new Error('Product not found');
-      }
-
-      // Retrieve the order based on orderId
-      let order = await this.prismaService.order.findUnique({
-        where: { id: orderId },
-      });
-
-      if (!order) {
-        throw new Error('Order not found');
-      }
-
-      // Add the product to the order
-      order = await this.prismaService.order.update({
-        where: { id: orderId },
-        data: {
-          products: {
-            create: [product],
-          },
-        },
-      });
-
-      return order;
-    } catch (error) {
-      console.error('Error adding product to order:', error);
-      throw new Error('Failed to add product to order');
-    }
-  }
-
 }
