@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home/Home';
 import NotFound from './components/pages/Not Found/NotFound';
-;
 
 
 const App = () => {
