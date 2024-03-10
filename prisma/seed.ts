@@ -132,6 +132,45 @@ function getProducts() {
       gallery: "amethyst-necklace.jpg,methyst-necklace_2.jpg", 
       status: "top-seller",
       quantity: 1
+    },
+    {
+      id: "d4dfb2cf-54e0-4c34-bda6-30b8c88b4986",
+      name: "Necklace",
+      size: "S,M,L", 
+      price: 3200,
+      description: "The Perfect Jewelry to get everyone.",
+      collection: "New Collection 2024",
+      category: "necklaces",
+      photo: "promo2.jpg", 
+      gallery: "promo2.jpg", 
+      status: "promo",
+      quantity: 1
+    },
+    {
+      id: "ec85e342-2547-4d9a-bb6f-746be1623567",
+      name: "Earrings",
+      size: "S,M,L", 
+      price: 3000,
+      description: "The Perfect Jewelry to get everyone.",
+      collection: "New Collection 2024",
+      category: "earrings",
+      photo: "promo1.jpg", 
+      gallery: "promo1.jpg", 
+      status: "promo",
+      quantity: 1
+    },
+    {
+      id: "3b2150c1-09e5-4abf-8397-ba10f87df663",
+      name: "Jewelry",
+      size: "S,M,L", 
+      price: 3000,
+      description: "The Perfect Jewelry to get everyone.",
+      collection: "New Collection 2024",
+      category: "pendants",
+      photo: "promo3.jpg", 
+      gallery: "promo3.jpg", 
+      status: "promo",
+      quantity: 1
     }
   ];
 }
