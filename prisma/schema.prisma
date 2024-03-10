@@ -23,7 +23,8 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  cartItems   CartItem[]  
+  cartItems   CartItem[] 
+  orders      Order[] 
 }
 
 model CartItem {
@@ -44,15 +45,12 @@ model Cart {
   updatedAt   DateTime    @updatedAt
 
   cartItem    CartItem @relation(fields: [cartItemId], references: [id])
-  cartItemId  String
-
-  order       Order?        
+  cartItemId  String      
 }
 
 
-
 model Order {
-  id             String    @id @default(uuid())
+  id             String  @id @default(uuid())
   clientName     String
   clientSurname  String
   email          String 
@@ -60,8 +58,8 @@ model Order {
   address        String
   finalAmount    Int
   
-  cart           Cart?     @relation(fields: [cartId], references: [id])
-  cartId         String?   @unique
+  product        Product  @relation(fields: [productId], references: [id])
+  productId      String   @unique
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt

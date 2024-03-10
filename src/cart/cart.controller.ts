@@ -6,17 +6,17 @@ import { Body } from '@nestjs/common';
 
 import { EditCartItem } from './dto/editCartItem.dto';
 
-@Controller()
+@Controller('cart')
 export class CartController {
   constructor(private cartService: CartService) {}
    
-  @Get('/cart')
+  @Get('/')
   async getCart() {
     return this.cartService.getAllCartItems();
   }
-
-  @Put('/cart')
+  
+  /*@Put('/')
   async updateCartItem(@Body() updateCartItemDto: EditCartItem) {
     return this.cartService.updateItemInCart(updateCartItemDto);
-  }
+  }*/
 }

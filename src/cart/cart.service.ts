@@ -4,7 +4,7 @@ import { NotFoundException } from '@nestjs/common';
 
 import { EditCartItem } from './dto/editCartItem.dto';
 import { BadRequestException } from '@nestjs/common';
-import { addItemToCartDTO } from './dto/addItemToCard.dto';
+import { addItemToCartDTO } from './dto/addItemToCart.dto';
 import { CartItem } from '@prisma/client';
 import shortid from 'shortid';
 
@@ -30,7 +30,49 @@ export class CartService {
     });
   }
 
-  public async updateItemInCart(updateCartItemDto: EditCartItem) {
+  public async addItemToCart(cartItem: addItemToCartDTO): Promise<CartItem> {
+    const { productId, quantity, cartItemId, ...otherData } = cartItem;
+
+
+    const product = await this.prismaService.product.findUnique({
+      where: { id: productId },
+    });
+
+    if (!product) {
+      throw new NotFoundException('Product not found');
+    }
+
+    let existingCartItem = await this.prismaService.cartItem.findUnique({
+      where: { id: cartItemId },
+    });
+
+    if (!existingCartItem) {
+
+      const subTotal = product.price * quantity;
+
+      return this.prismaService.cartItem.create({
+          data: {
+            ...otherData,
+            quantity,
+            subTotal,
+            product: { connect: { id: productId } },
+          },
+      });
+    } else {
+      const newQuantity = existingCartItem.quantity + quantity;
+      const newSubTotal = product.price * newQuantity;
+
+      return this.prismaService.cartItem.update({
+        where: { id: cartItemId },
+        data: {
+          quantity: newQuantity,
+          subTotal: newSubTotal,
+        },
+      });
+    }
+  }
+
+ /* public async updateItemInCart(updateCartItemDto: EditCartItem) {
     const { cartItemId, quantity, comment } = updateCartItemDto;
 
     // Fetch the cart item
@@ -55,31 +97,7 @@ export class CartService {
     });
 
     return updatedCartItem;
-  }
-
-  public async addItemToCart( cartItem: addItemToCartDTO,): Promise<CartItem> {
-
-    const { productId, quantity, cartItemId, ...otherData } = cartItem;
-
-    const product = await this.prismaService.product.findUnique({
-        where: { id: productId },
-    });
-
-    if (!product) {
-      throw new NotFoundException('Product not found');
-    }
-    const subTotal = product.price * quantity;
-  
-    return this.prismaService.cartItem.create({
-      data: {
-        ...otherData,
-        quantity,
-        subTotal,
-        product: { connect: { id: productId } },
-      },
-    });
-  }
-
+  }*/
   
 }
 
