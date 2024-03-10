@@ -15,13 +15,13 @@ export class OrdersService {
             id: true,
             quantity: true,
             comment: true,
-            subtotal: true,
+            subTotal: true,
             productId: true,
             product: true
           },
         },
       },
-  });
+    });
   }
   
   public async create(
@@ -43,4 +43,5 @@ export class OrdersService {
       throw error;
     }
   }
+  
 }

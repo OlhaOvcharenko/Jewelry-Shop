@@ -13,7 +13,7 @@ import shortid from 'shortid';
 export class CartService {
   constructor(private prismaService: PrismaService){}
 
-  public async getAllCartItems() {
+  public getAllCartItems() {
     return this.prismaService.cartItem.findMany({
         include: {
           product: {
