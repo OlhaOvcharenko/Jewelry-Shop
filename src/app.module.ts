@@ -23,12 +23,12 @@ import { CartModule } from './cart/cart.module';
     CartModule, 
     ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
-      serveRoot: '/public',
-  })],
+      rootPath: join(__dirname, '..', '..', 'client', 'build'),
+    })],
   controllers: [AppController],
   providers: [AppService],
 })
+
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {
     consumer.apply(cors()).forRoutes({

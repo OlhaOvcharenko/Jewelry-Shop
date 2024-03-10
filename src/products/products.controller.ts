@@ -4,7 +4,7 @@ import { Get, Post, Body } from '@nestjs/common';
 import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { Param } from '@nestjs/common';
 import { ParseUUIDPipe } from '@nestjs/common';
-import { addItemToCartDTO } from '../cart/dto/addItemToCart.dto';
+import { AddItemToCartDTO } from '../cart/dto/addItemToCart.dto';
 import { CartService } from 'src/cart/cart.service';
 
 
@@ -26,7 +26,7 @@ export class ProductsController {
   }
 
   @Post('/:id')
-  async addToCart(@Body() addedProductData: addItemToCartDTO) {
+  async addToCart(@Body() addedProductData: AddItemToCartDTO) {
     await this.cartService.addItemToCart(addedProductData);
   }
 
