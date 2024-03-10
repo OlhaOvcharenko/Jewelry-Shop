@@ -19,6 +19,7 @@ model Product {
   collection  String
   category    String
   photo       String
+  gallery     String
   quantity    Int
   status      String
 
