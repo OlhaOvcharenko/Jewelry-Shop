@@ -45,7 +45,7 @@ export class CreateOrderDTO {
     @IsNotEmpty()
     @IsInt()
     @Min(0)
-    finalAmount?: number;
+    finalAmount: number;
 
     @IsNotEmpty()
     @IsString()
