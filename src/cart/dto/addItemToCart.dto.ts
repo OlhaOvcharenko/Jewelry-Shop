@@ -6,7 +6,7 @@ import {
     Min
 } from 'class-validator';
   
-export class addItemToCartDTO {
+export class AddItemToCartDTO {
     @IsNotEmpty()
     @IsString()
     @IsUUID()

@@ -4,7 +4,7 @@ import { NotFoundException } from '@nestjs/common';
 
 import { EditCartItem } from './dto/editCartItem.dto';
 import { BadRequestException } from '@nestjs/common';
-import { addItemToCartDTO } from './dto/addItemToCart.dto';
+import { AddItemToCartDTO } from './dto/addItemToCart.dto';
 import { CartItem } from '@prisma/client';
 import shortid from 'shortid';
 
@@ -22,15 +22,13 @@ export class CartService {
               name: true,
               price: true,
               photo: true,
-              createdAt: true,
-              updatedAt: true,
             },
           },
         },
     });
   }
 
-  public async addItemToCart(cartItem: addItemToCartDTO): Promise<CartItem> {
+  public async addItemToCart(cartItem: AddItemToCartDTO): Promise<CartItem> {
     const { productId, quantity, cartItemId, ...otherData } = cartItem;
 
 

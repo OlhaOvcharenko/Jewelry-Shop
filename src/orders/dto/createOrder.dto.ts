@@ -7,7 +7,7 @@ import {
     Max
 } from 'class-validator';
   
-export class createOrderDTO {
+export class CreateOrderDTO {
     
     @IsNotEmpty()
     @IsString()
@@ -32,14 +32,14 @@ export class createOrderDTO {
     @IsInt()
     @Min(5)
     @Max(15)
-    quantity: number;
+    phone: number;
 
     
     @IsNotEmpty()
     @IsString()
     @Min(10)
     @Max(20)
-    addrress: string;
+    address: string;
 
     
     @IsNotEmpty()
@@ -50,7 +50,7 @@ export class createOrderDTO {
     @IsNotEmpty()
     @IsString()
     @IsUUID()
-    productId: string;
+    cartItemId: string;
 
 
 }
