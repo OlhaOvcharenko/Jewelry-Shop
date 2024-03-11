@@ -9,7 +9,7 @@ import { CartService } from 'src/cart/cart.service';
 
 
 
-@Controller('catalogue/products')
+@Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService,
     private cartService: CartService) {}
