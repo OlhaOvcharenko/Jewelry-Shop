@@ -17,23 +17,33 @@ import { OrdersModule } from './orders/orders.module';
 import { CartModule } from './cart/cart.module';
 
 @Module({
-  imports: [ PrismaModule,  
-    ProductsModule,
-    OrdersModule,
-    CartModule, 
-    ConfigModule.forRoot({ load: [configuration], isGlobal: true }),
+  imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '..', 'client', 'build'),
-    })],
-  controllers: [AppController],
-  providers: [AppService],
+    }),
+
+    ProductsModule,
+    OrdersModule,
+    CartModule,
+    ConfigModule.forRoot({
+      load: [configuration],
+      isGlobal: true,
+    }),
+  ],providers: [AppService],
 })
 
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {
-    consumer.apply(cors()).forRoutes({
-      path: '*',
-      method: RequestMethod.ALL,
-    });
+    consumer
+      .apply(
+        cors({
+          origin: ['http://localhost:3000'],
+          credentials: true,
+        }),
+      )
+      .forRoutes({
+        path: '*',
+        method: RequestMethod.ALL,
+      });
   }
 }
