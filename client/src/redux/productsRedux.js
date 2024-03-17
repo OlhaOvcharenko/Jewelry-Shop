@@ -9,6 +9,11 @@ export const getPromoProducts = (state) => {
   return state.products.products.filter(product => product.status === 'promo'); 
 };
 
+export const getTopProducts = (state) => {
+  return state.products.products.filter(product => product.status === 'top-seller'); 
+};
+
+
 
 /* ACTIONS */
 const reducerName = 'products';

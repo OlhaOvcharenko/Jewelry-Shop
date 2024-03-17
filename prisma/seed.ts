@@ -26,7 +26,7 @@ function getProducts() {
       category: 'necklaces',
       photo: "pearl-necklace.jpg", 
       gallery: "pearl-necklace.jpg, pearl-necklace_2.jpg",
-      status: 'top-seller',
+      status: 'new-collection',
       quantity: 1
     },
     {
@@ -130,7 +130,7 @@ function getProducts() {
       category: "necklaces",
       photo: "amethyst-necklace.jpg", 
       gallery: "amethyst-necklace.jpg,methyst-necklace_2.jpg", 
-      status: "top-seller",
+      status: "new-collection'",
       quantity: 1
     },
     {

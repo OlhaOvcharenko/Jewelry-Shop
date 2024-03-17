@@ -7,7 +7,7 @@ import { faUser, faSearch, faBagShopping, faCrown } from '@fortawesome/free-soli
 
 const NavBar = () => {
   return (
-    <Navbar bg="light" data-bs-theme="light" className="pb-0">
+    <Navbar bg="light" data-bs-theme="light" className="pb-0" fixed="top">
 
       <div className={styles.customNavbar}>
 
@@ -29,7 +29,7 @@ const NavBar = () => {
 
           <Col className="d-flex justify-content-end">
             <Navbar.Brand href="#home">
-              <span className={styles.brand}>JEW
+              <span className={styles.brand}>RoyalJewels
               <FontAwesomeIcon icon={faCrown} className="px-2" />
               </span>
             </Navbar.Brand>
@@ -37,9 +37,9 @@ const NavBar = () => {
            
            <Col className="d-flex justify-content-end">
             <Nav className="mx-5">
-              <Nav.Link href="#home"className="px-5" ><span className={styles.link}>Home</span></Nav.Link>
-              <Nav.Link href="#features" className="px-5" ><span className={styles.link}>Catalogue</span></Nav.Link>
-              <Nav.Link href="#pricing" className="px-5" ><span className={styles.link}>Pages</span></Nav.Link>
+              <Nav.Link href="#home"className="px-3" ><span className={styles.link}>Home</span></Nav.Link>
+              <Nav.Link href="#features" className="px-3" ><span className={styles.link}>Catalogue</span></Nav.Link>
+              <Nav.Link href="#pricing" className="px-3" ><span className={styles.link}>Pages</span></Nav.Link>
             </Nav>
           </Col>
         </Row>

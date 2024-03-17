@@ -7,7 +7,9 @@ import { useDispatch } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
-import Container from './components/common/Container/Container';
+import  { Container } from 'react-bootstrap';
+import Footer from './components/views/Footer/Footer';
+import Header from './components/views/Header/Header';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,19 +26,25 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Container>
+    <main>
+      <Header />
+      <Container>
     {loading ? (
       <Button variant="tuned-light">
         <Spinner animation="border" variant="primary" size="lg" />
         Loading ...
       </Button>
     ) : (
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      
       )}
-    </Container>
+      </Container>
+      <Footer />
+    </main>
   );
 };
 

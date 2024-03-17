@@ -1,13 +1,10 @@
-import Footer from "../../views/Footer/Footer";
-import NavBar from "../../views/NavBar/NavBar";
+import TopProducts from "../../features/TopProducts/TopProducts";
 import Promo from "../../views/Promo/Promo";
 
 const Home = () => {
   return (
     <div>
-      <NavBar />
-      <Promo />
-      <Footer />
+      <TopProducts />
     </div>
   )
 };
