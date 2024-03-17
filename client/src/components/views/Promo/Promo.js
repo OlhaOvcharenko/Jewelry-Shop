@@ -11,22 +11,24 @@ const Promo = () => {
   console.log(promoProducts, 'Promo products')
 
   return (
-    <Carousel data-bs-theme="light">
-      {promoProducts.map(product => (
-        <Carousel.Item key={product.id}>
-          <img
-            className='d-block w-100'
-            src={`${IMAGES_URL}/${product.photo}`} 
-            alt={product.name} 
-            style={{ height: '700px', objectFit: 'cover' }} 
-          />
-          <Carousel.Caption>
-            <h5>{product.description}</h5> 
-            <p>{product.collection}</p> 
-          </Carousel.Caption>
-        </Carousel.Item>
-      ))}
-    </Carousel>
+    <section className='Promo'>
+      <Carousel data-bs-theme="dark">
+        {promoProducts.map(product => (
+          <Carousel.Item key={product.id}>
+            <img
+              className='d-block w-100'
+              src={`${IMAGES_URL}/${product.photo}`} 
+              alt={product.name} 
+              style={{ height: '900px', objectFit: 'cover' }} 
+            />
+            <Carousel.Caption>
+              <h1>{product.description}</h1> 
+              <p>{product.collection}</p> 
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    </section>
   );
 };
 
