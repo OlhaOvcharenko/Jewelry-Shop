@@ -4,15 +4,15 @@ import { Get, Post, Body } from '@nestjs/common';
 import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { Param } from '@nestjs/common';
 import { ParseUUIDPipe } from '@nestjs/common';
-import { AddItemToCartDTO } from '../cart/dto/addItemToCart.dto';
-import { CartService } from 'src/cart/cart.service';
+import { BagService } from 'src/bag/bag.service';
+import { AddItemToBagDTO } from 'src/bag/dto/addItemToBag.dto';
 
 
 
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService,
-    private cartService: CartService) {}
+    private cartService: BagService) {}
 
   @Get('/')
   async getAll() {
@@ -26,7 +26,7 @@ export class ProductsController {
   }
 
   @Post('/:id')
-  async addToCart(@Body() addedProductData: AddItemToCartDTO) {
+  async addToCart(@Body() addedProductData: AddItemToBagDTO) {
     await this.cartService.addItemToCart(addedProductData);
   }
 
