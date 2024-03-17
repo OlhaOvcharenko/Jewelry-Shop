@@ -4,6 +4,7 @@ import { Nav } from "react-bootstrap";
 import styles from "../NavBar/NavBar.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faSearch, faBagShopping, faCrown } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -18,7 +19,7 @@ const NavBar = () => {
               <Nav.Link href="#user" className="px-3" >
                 <FontAwesomeIcon icon={faUser} />
               </Nav.Link>
-              <Nav.Link href="#cart" className="px-3" >
+              <Nav.Link as={Link} to="/bag" className="px-3" >
                 <FontAwesomeIcon icon={faBagShopping} />
               </Nav.Link>
               <Nav.Link href="#search" className="px-3" >

@@ -12,6 +12,7 @@ import Footer from './components/views/Footer/Footer';
 import Header from './components/views/Header/Header';
 
 import SingleProduct from './components/features/SingleProduct/SingleProduct';
+import Bag from './components/pages/Bag/Bag';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,8 @@ const App = () => {
         <Container>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/products/:id" element={<SingleProduct />} /> 
+            <Route path="/products/:id" element={<SingleProduct />} />
+            <Route path="/bag" element={<Bag />} />  
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Container>

@@ -39,13 +39,14 @@ const SingleProduct = (props) => {
 
           </Card.Body>
 
-          <Button variant="dark" size="lg" className="px-5 my-5 mx-3" > Add to cart</Button>
+          <Button variant="dark" size="lg" className="px-5 my-5 mx-3" > Add to bag</Button>
+
         </Col>
 
       </Row>
 
-        <Tab.Container id="item-tabs" defaultActiveKey="description">
-          <Nav justify variant="tabs">
+        <Tab.Container id="item-tabs" defaultActiveKey="description" >
+          <Nav justify variant="tabs" className="my-4">
             <Nav.Item eventKey="description">
                 <Nav.Link eventKey="description">Description</Nav.Link>
             </Nav.Item>
@@ -53,14 +54,14 @@ const SingleProduct = (props) => {
                 <Nav.Link eventKey="reviews">Reviews</Nav.Link>
             </Nav.Item>
           </Nav>
-        <Tab.Content>
-          <Tab.Pane eventKey="description" className="py-5">
-            <p>{productData.description}</p>
-          </Tab.Pane>
-          <Tab.Pane eventKey="reviews">
-            <p>Reviews content goes here...</p>
-          </Tab.Pane>
-        </Tab.Content>
+          <Tab.Content>
+            <Tab.Pane eventKey="description" className="py-5">
+              <p>{productData.description}</p>
+            </Tab.Pane>
+            <Tab.Pane eventKey="reviews">
+              <p>Reviews content goes here...</p>
+            </Tab.Pane>
+          </Tab.Content>
       </Tab.Container>
 
     </Card>

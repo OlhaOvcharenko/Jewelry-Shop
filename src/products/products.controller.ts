@@ -27,7 +27,7 @@ export class ProductsController {
 
   @Post('/:id')
   async addToCart(@Body() addedProductData: AddItemToBagDTO) {
-    await this.cartService.addItemToCart(addedProductData);
+    await this.cartService.addItemToBag(addedProductData);
   }
 
 
