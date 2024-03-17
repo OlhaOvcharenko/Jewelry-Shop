@@ -26,10 +26,10 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  cartItems   CartItem[] 
+  bagItems    BagItem[] 
 }
 
-model CartItem {
+model BagItem {
   id        String   @id @default(uuid())
   quantity  Int
   comment   String?
@@ -38,17 +38,17 @@ model CartItem {
   product   Product  @relation(fields: [productId], references: [id])
   productId String 
 
-  carts      Cart[]
+  bags       Bag[]
   orders     Order[]   
 }
 
-model Cart {
+model Bag {
   id          String      @id @default(uuid())
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 
-  cartItem    CartItem @relation(fields: [cartItemId], references: [id])
-  cartItemId  String      
+  bagItem    BagItem @relation(fields: [bagItemId], references: [id])
+  bagItemId  String      
 }
 
 
@@ -61,8 +61,8 @@ model Order {
   address        String
   finalAmount    Int
   
-  cartItem        CartItem @relation(fields: [cartItemId], references: [id])
-  cartItemId      String   @unique
+  bagItem        BagItem @relation(fields: [bagItemId], references: [id])
+  bagItemId      String   @unique
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt

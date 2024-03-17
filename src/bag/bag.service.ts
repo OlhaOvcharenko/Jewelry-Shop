@@ -2,15 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { NotFoundException } from '@nestjs/common';
 
-import { EditCartItem } from './dto/editCartItem.dto';
+import { EditBagItem } from './dto/editBagItem.dto';
 import { BadRequestException } from '@nestjs/common';
-import { AddItemToCartDTO } from './dto/addItemToCart.dto';
+import { AddItemToBagDTO } from './dto/addItemToBag.dto';
 import { CartItem } from '@prisma/client';
 import shortid from 'shortid';
 
 
 @Injectable()
-export class CartService {
+export class BagService {
   constructor(private prismaService: PrismaService){}
 
   public getAllCartItems() {
@@ -28,7 +28,7 @@ export class CartService {
     });
   }
 
-  public async addItemToCart(cartItem: AddItemToCartDTO): Promise<CartItem> {
+  public async addItemToCart(cartItem: AddItemToBagDTO): Promise<CartItem> {
     const { productId, quantity, cartItemId, ...otherData } = cartItem;
 
 

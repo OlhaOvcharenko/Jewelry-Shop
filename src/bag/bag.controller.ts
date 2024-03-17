@@ -1,11 +1,11 @@
 import { Controller } from '@nestjs/common';
-import { CartService } from './cart.service';
+import { BagService } from './bag.service';
 import { Get } from '@nestjs/common';
 
 
 @Controller('cart')
-export class CartController {
-  constructor(private cartService: CartService) {}
+export class BagController {
+  constructor(private cartService: BagService) {}
    
   @Get('/')
   async getCart() {
