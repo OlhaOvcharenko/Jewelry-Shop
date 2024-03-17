@@ -10,7 +10,7 @@ export class OrdersService {
   public getAll(): Promise<Order[]> {
     return this.prismaService.order.findMany({
       include: {
-        cartItem: {
+        bagItem: {
           select: {
             id: true,
             quantity: true,
@@ -27,13 +27,13 @@ export class OrdersService {
   public async create(
     orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>,
   ): Promise<Order> {
-    const { cartItemId, ...otherData } = orderData;
+    const { bagItemId, ...otherData } = orderData;
     try {
       return await this.prismaService.order.create({
         data: {
           ...otherData,
-          cartItem: {
-            connect: { id: cartItemId },
+          bagItem: {
+            connect: { id: bagItemId },
           },
         },
       });

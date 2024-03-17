@@ -5,8 +5,9 @@ import { NotFoundException } from '@nestjs/common';
 import { EditBagItem } from './dto/editBagItem.dto';
 import { BadRequestException } from '@nestjs/common';
 import { AddItemToBagDTO } from './dto/addItemToBag.dto';
-import { CartItem } from '@prisma/client';
+
 import shortid from 'shortid';
+import { BagItem } from '@prisma/client';
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class BagService {
   constructor(private prismaService: PrismaService){}
 
   public getAllCartItems() {
-    return this.prismaService.cartItem.findMany({
+    return this.prismaService.bagItem.findMany({
         include: {
           product: {
             select: {
@@ -28,7 +29,7 @@ export class BagService {
     });
   }
 
-  public async addItemToCart(cartItem: AddItemToBagDTO): Promise<CartItem> {
+  public async addItemToCart(cartItem: AddItemToBagDTO): Promise<BagItem> {
     const { productId, quantity, cartItemId, ...otherData } = cartItem;
 
 
@@ -40,7 +41,7 @@ export class BagService {
       throw new NotFoundException('Product not found');
     }
 
-    let existingCartItem = await this.prismaService.cartItem.findUnique({
+    let existingCartItem = await this.prismaService.bagItem.findUnique({
       where: { id: cartItemId },
     });
 
@@ -48,7 +49,7 @@ export class BagService {
 
       const subTotal = product.price * quantity;
 
-      return this.prismaService.cartItem.create({
+      return this.prismaService.bagItem.create({
           data: {
             ...otherData,
             quantity,
@@ -60,7 +61,7 @@ export class BagService {
       const newQuantity = existingCartItem.quantity + quantity;
       const newSubTotal = product.price * newQuantity;
 
-      return this.prismaService.cartItem.update({
+      return this.prismaService.bagItem.update({
         where: { id: cartItemId },
         data: {
           quantity: newQuantity,

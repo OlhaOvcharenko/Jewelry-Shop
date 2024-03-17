@@ -14,7 +14,8 @@ import { ProductsModule } from './products/products.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { OrdersModule } from './orders/orders.module';
-import { CartModule } from './cart/cart.module';
+import { BagModule } from './bag/bag.module';
+
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { CartModule } from './cart/cart.module';
 
     ProductsModule,
     OrdersModule,
-    CartModule,
+    BagModule,
     ConfigModule.forRoot({
       load: [configuration],
       isGlobal: true,

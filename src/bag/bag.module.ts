@@ -7,4 +7,4 @@ import { BagService } from './bag.service';
   controllers: [BagController],
   providers: [BagService, PrismaService],
 })
-export class CartModule {}
+export class BagModule {}

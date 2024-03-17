@@ -50,7 +50,7 @@ export class CreateOrderDTO {
     @IsNotEmpty()
     @IsString()
     @IsUUID()
-    cartItemId: string;
+    bagItemId: string;
 
 
 }
