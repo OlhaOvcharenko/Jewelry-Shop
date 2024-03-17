@@ -3,13 +3,13 @@ import { BagService } from './bag.service';
 import { Get } from '@nestjs/common';
 
 
-@Controller('cart')
+@Controller('bag')
 export class BagController {
   constructor(private cartService: BagService) {}
    
   @Get('/')
-  async getCart() {
-    return this.cartService.getAllCartItems();
+  async getBag() {
+    return this.cartService.getAllBagItems();
   }
   
   /*@Put('/')

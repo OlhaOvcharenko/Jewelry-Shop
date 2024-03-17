@@ -14,7 +14,7 @@ import { BagItem } from '@prisma/client';
 export class BagService {
   constructor(private prismaService: PrismaService){}
 
-  public getAllCartItems() {
+  public getAllBagItems() {
     return this.prismaService.bagItem.findMany({
         include: {
           product: {
@@ -29,7 +29,7 @@ export class BagService {
     });
   }
 
-  public async addItemToCart(cartItem: AddItemToBagDTO): Promise<BagItem> {
+  public async addItemToBag(cartItem: AddItemToBagDTO): Promise<BagItem> {
     const { productId, quantity, cartItemId, ...otherData } = cartItem;
 
 
