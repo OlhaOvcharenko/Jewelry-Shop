@@ -1,0 +1,20 @@
+@import '../../../styles/settings.scss';
+.customNavbar {
+  background-color: $color-primary;
+  margin: 0;
+  padding: 15px;
+}
+
+.brand {
+  font-family: $font-header;
+  font-size: 35px;
+  font-weight: 700;
+  color: $color-text-bright;
+}
+
+.link {
+  font-family: $font-text;
+  font-size: 25px;
+  padding: 10px;
+}
+  

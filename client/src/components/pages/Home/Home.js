@@ -1,9 +1,10 @@
+import NavBar from "../../views/NavBar/NavBar";
 import Promo from "../../views/Promo/Promo";
 
 const Home = () => {
   return (
     <div>
-      <h1>Jewelry shop</h1>
+      <NavBar />
       <Promo />
     </div>
   )
