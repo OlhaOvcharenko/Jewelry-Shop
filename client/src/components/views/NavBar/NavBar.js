@@ -7,19 +7,22 @@ import { faUser, faSearch, faBagShopping, faCrown } from '@fortawesome/free-soli
 
 const NavBar = () => {
   return (
-    <Navbar bg="light" data-bs-theme="light">
-      <Container className={styles.customNavbar}>
-        <Row className="w-100 align-items-center" >
-           <Col>
+    <Navbar bg="light" data-bs-theme="light" className="pb-0">
+
+      <div className={styles.customNavbar}>
+
+        <Row className="align-items-center" >
+
+           <Col  className="mx-5">
             <Nav className={styles.link} >
-              <Nav.Link href="#user">
-                <FontAwesomeIcon icon={faUser} className="mr-4" />
+              <Nav.Link href="#user" className="px-3" >
+                <FontAwesomeIcon icon={faUser} />
               </Nav.Link>
-              <Nav.Link href="#cart">
-                <FontAwesomeIcon icon={faBagShopping} className="mr-4" />
+              <Nav.Link href="#cart" className="px-3" >
+                <FontAwesomeIcon icon={faBagShopping} />
               </Nav.Link>
-              <Nav.Link href="#search">
-                <FontAwesomeIcon icon={faSearch} className="mr-4" />
+              <Nav.Link href="#search" className="px-3" >
+                <FontAwesomeIcon icon={faSearch} />
               </Nav.Link>
             </Nav>
           </Col>
@@ -27,21 +30,21 @@ const NavBar = () => {
           <Col className="d-flex justify-content-end">
             <Navbar.Brand href="#home">
               <span className={styles.brand}>JEW
-              <FontAwesomeIcon icon={faCrown} className="mr-4 px-2" />
+              <FontAwesomeIcon icon={faCrown} className="px-2" />
               </span>
             </Navbar.Brand>
           </Col>
            
            <Col className="d-flex justify-content-end">
-            <Nav className="me-auto">
-              <Nav.Link href="#home" ><span className={styles.link}>Home</span></Nav.Link>
-              <Nav.Link href="#features"><span className={styles.link}>Catalogue</span></Nav.Link>
-              <Nav.Link href="#pricing"><span className={styles.link}>Pages</span></Nav.Link>
+            <Nav className="mx-5">
+              <Nav.Link href="#home"className="px-5" ><span className={styles.link}>Home</span></Nav.Link>
+              <Nav.Link href="#features" className="px-5" ><span className={styles.link}>Catalogue</span></Nav.Link>
+              <Nav.Link href="#pricing" className="px-5" ><span className={styles.link}>Pages</span></Nav.Link>
             </Nav>
           </Col>
-
         </Row>
-     </Container>
+
+     </div>
     </Navbar>
   )
 };

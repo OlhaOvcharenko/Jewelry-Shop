@@ -4,9 +4,10 @@ import NotFound from './components/pages/NotFound/NotFound';
 import { useEffect } from 'react';
 import { loadProductsRequest } from './redux/productsRedux';
 import { useDispatch } from 'react-redux';
-import { Container, Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
+import Container from './components/common/Container/Container';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,19 +25,17 @@ const App = () => {
 
   return (
     <Container>
-    
-      {loading ? (
-        <Button variant="tuned-light">
-          <Spinner animation="border" variant="primary" size="lg" />
-          Loading ...
-        </Button>
-      ) : (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        )}
-    
+    {loading ? (
+      <Button variant="tuned-light">
+        <Spinner animation="border" variant="primary" size="lg" />
+        Loading ...
+      </Button>
+    ) : (
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      )}
     </Container>
   );
 };
