@@ -5,6 +5,10 @@ import axios from 'axios';
 /*SELECTORS*/
 export const getAllProducts = (state) => state.products.products;
 
+export const getProductById = (state, productId) => { 
+  return state.products.products.find((product) => product.id === productId);
+}
+
 export const getPromoProducts = (state) => {
   return state.products.products.filter(product => product.status === 'promo'); 
 };

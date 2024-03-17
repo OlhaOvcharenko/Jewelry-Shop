@@ -11,6 +11,8 @@ import  { Container } from 'react-bootstrap';
 import Footer from './components/views/Footer/Footer';
 import Header from './components/views/Header/Header';
 
+import SingleProduct from './components/features/SingleProduct/SingleProduct';
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -26,25 +28,26 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <main>
-      <Header />
-      <Container>
+    <div>
     {loading ? (
-      <Button variant="tuned-light">
+      <Button variant="tuned-light" disabled>
         <Spinner animation="border" variant="primary" size="lg" />
         Loading ...
       </Button>
     ) : (
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      
-      )}
-      </Container>
-      <Footer />
-    </main>
+      <div>
+        <Header />
+        <Container>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products/:id" element={<SingleProduct />} /> 
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Container>
+        <Footer />
+      </div>
+    )}
+    </div>
   );
 };
 
