@@ -70,15 +70,9 @@ export const addProductsRequest = (product) => {
 const bagReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_BAG_ITEMS:
-      return {
-        ...state,
-        bagItems: action.payload,
-      };
+      return action.payload;
     case ADD_PRODUCT_TO_BAG: 
-      return {
-        ...state,
-        bagItems: [...state.bagItems, action.payload],
-      };
+      return [...state, action.payload];
     default:
       return state;
   }

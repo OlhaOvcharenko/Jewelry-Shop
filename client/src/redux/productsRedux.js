@@ -3,18 +3,18 @@ import { API_URL }from "../config";
 import axios from 'axios';
 
 /*SELECTORS*/
-export const getAllProducts = (state) => state.products.products;
+export const getAllProducts = (state) => state.products;
 
 export const getProductById = (state, productId) => { 
-  return state.products.products.find((product) => product.id === productId);
+  return state.products.find((product) => product.id === productId);
 }
 
 export const getPromoProducts = (state) => {
-  return state.products.products.filter(product => product.status === 'promo'); 
+  return state.products.filter(product => product.status === 'promo'); 
 };
 
 export const getTopProducts = (state) => {
-  return state.products.products.filter(product => product.status === 'top-seller'); 
+  return state.products.filter(product => product.status === 'top-seller'); 
 };
 
 
@@ -62,10 +62,7 @@ export const loadProductsRequest = () => {
 export default function productsReducer(statePart = initialState, action = {}) {
   switch (action.type) {
     case DATA_PRODUCTS:
-      return {
-        ...statePart,
-        products: action.payload,
-      };
+      return action.payload;
     default:
       return statePart;
   }
