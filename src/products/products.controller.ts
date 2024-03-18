@@ -12,7 +12,7 @@ import { AddItemToBagDTO } from 'src/bag/dto/addItemToBag.dto';
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService,
-    private cartService: BagService) {}
+    private bagService: BagService) {}
 
   @Get('/')
   async getAll() {
@@ -26,8 +26,8 @@ export class ProductsController {
   }
 
   @Post('/:id')
-  async addToCart(@Body() addedProductData: AddItemToBagDTO) {
-    await this.cartService.addItemToBag(addedProductData);
+  async addToBag(@Body() addedProductData: AddItemToBagDTO) {
+    await this.bagService.addItemToBag(addedProductData);
   }
 
 

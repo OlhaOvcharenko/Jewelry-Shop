@@ -31,6 +31,7 @@ const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 export const DATA_PRODUCTS = createActionName('DATA_PRODUCTS');
 
 
+
 /* ACTIONS CREATORS */
 export const startRequest = payload => ({ payload, type: START_REQUEST });
 export const endRequest = payload => ({ payload, type: END_REQUEST });
@@ -38,7 +39,6 @@ export const errorRequest = payload => ({ payload, type: ERROR_REQUEST });
 
 
 export const fetchDataProducts = payload => ({type: DATA_PRODUCTS, payload});
-
 
 export const loadProductsRequest = () => {
   return async (dispatch) => {
@@ -48,13 +48,14 @@ export const loadProductsRequest = () => {
     try {
       let res = await axios.get(`http://localhost:8000/api/products`);
       dispatch(fetchDataProducts(res.data));
-      console.log(res.data, 'resdata')
+      console.log(res.data, 'resdata');
       dispatch(endRequest({ name: requestName }));
     } catch (e) {
       dispatch(errorRequest({ name: requestName, error: e.message }));
     }
   };
 };
+
 
 
 /* REDUCER */

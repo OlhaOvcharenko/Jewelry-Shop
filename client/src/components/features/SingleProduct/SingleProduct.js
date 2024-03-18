@@ -1,19 +1,27 @@
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../../redux/productsRedux";
 import { Card, Button, Nav } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IMAGES_URL } from "../../../config";
 import { Row, Col} from "react-bootstrap";
 import  {ButtonGroup} from "react-bootstrap";
 import { Tab } from "react-bootstrap";
+import { addProductsRequest } from "../../../redux/bagRedux";
 
 
-const SingleProduct = (props) => {
+const SingleProduct = () => {
   const { id } = useParams(); 
+  const dispatch = useDispatch();
+
   const productData = useSelector(state => getProductById(state, id));
-  console.log(productData, 'singl item')
- 
   const categoryToUpperCase = productData.category.toUpperCase();
+  
+  const handleAddProductToBag = (product) => {
+    const { id, quantity } = product; 
+    dispatch(addProductsRequest({ productId: id, quantity: quantity }));
+  };
+
+
   return(
 
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
@@ -39,7 +47,7 @@ const SingleProduct = (props) => {
 
           </Card.Body>
 
-          <Button variant="dark" size="lg" className="px-5 my-5 mx-3" > Add to bag</Button>
+          <Button variant="dark" size="lg" className="px-5 my-5 mx-3" onClick={() => handleAddProductToBag(productData)} > Add to bag</Button>
 
         </Col>
 

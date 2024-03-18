@@ -13,6 +13,7 @@ import Header from './components/views/Header/Header';
 
 import SingleProduct from './components/features/SingleProduct/SingleProduct';
 import Bag from './components/pages/Bag/Bag';
+import {  loadBagItemsRequest } from './redux/bagRedux';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,8 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(loadProductsRequest())
+    dispatch(loadProductsRequest());
+    dispatch(loadBagItemsRequest())
       .then(() => {
         setTimeout(() => {
           setLoading(false); 

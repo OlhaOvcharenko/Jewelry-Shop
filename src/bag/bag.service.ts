@@ -29,9 +29,8 @@ export class BagService {
     });
   }
 
-  public async addItemToBag(cartItem: AddItemToBagDTO): Promise<BagItem> {
-    const { productId, quantity, cartItemId, ...otherData } = cartItem;
-
+  public async addItemToBag(bagProduct: AddItemToBagDTO): Promise<BagItem> {
+    const { productId, quantity, ...otherData } = bagProduct;
 
     const product = await this.prismaService.product.findUnique({
       where: { id: productId },
@@ -41,35 +40,37 @@ export class BagService {
       throw new NotFoundException('Product not found');
     }
 
-    let existingCartItem = await this.prismaService.bagItem.findUnique({
-      where: { id: cartItemId },
+    let existingBagItem = await this.prismaService.bagItem.findFirst({
+      where: {
+        productId: productId,
+      },
     });
 
-    if (!existingCartItem) {
-
+    if (!existingBagItem) {
       const subTotal = product.price * quantity;
 
       return this.prismaService.bagItem.create({
-          data: {
-            ...otherData,
-            quantity,
-            subTotal,
-            product: { connect: { id: productId } },
-          },
-      });
-    } else {
-      const newQuantity = existingCartItem.quantity + quantity;
-      const newSubTotal = product.price * newQuantity;
-
-      return this.prismaService.bagItem.update({
-        where: { id: cartItemId },
         data: {
-          quantity: newQuantity,
-          subTotal: newSubTotal,
+          ...otherData,
+          quantity,
+          subTotal,
+          product: { connect: { id: productId } },
         },
       });
-    }
+    } else {
+      const newQuantity = existingBagItem.quantity + quantity;
+      const newSubTotal = product.price * newQuantity;
+
+    return this.prismaService.bagItem.update({
+      where: { id: existingBagItem.id },
+      data: {
+        quantity: newQuantity,
+        subTotal: newSubTotal,
+      },
+    });
   }
+  
+}
 
  /* public async updateItemInCart(updateCartItemDto: EditCartItem) {
     const { cartItemId, quantity, comment } = updateCartItemDto;

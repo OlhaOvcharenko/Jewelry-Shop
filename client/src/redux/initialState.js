@@ -1,7 +1,7 @@
 /* INITIAL STATE */
 const initialState = {
   products: [],
-  cartItems: [],
+  bagItems: [],
   orders: [],
 };
   

@@ -5,11 +5,11 @@ import { Get } from '@nestjs/common';
 
 @Controller('bag')
 export class BagController {
-  constructor(private cartService: BagService) {}
+  constructor(private bagService: BagService) {}
    
   @Get('/')
   async getBag() {
-    return this.cartService.getAllBagItems();
+    return this.bagService.getAllBagItems();
   }
   
   /*@Put('/')
