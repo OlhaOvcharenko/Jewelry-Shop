@@ -1,13 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { NotFoundException } from '@nestjs/common';
-
-import { EditBagItem } from './dto/editBagItem.dto';
-import { BadRequestException } from '@nestjs/common';
 import { AddItemToBagDTO } from './dto/addItemToBag.dto';
 
-import shortid from 'shortid';
+import { Bag } from '@prisma/client';
 import { BagItem } from '@prisma/client';
+import { Product } from '@prisma/client';
 
 
 @Injectable()
@@ -28,6 +26,7 @@ export class BagService {
         },
     });
   }
+
 
   public async addItemToBag(bagProduct: AddItemToBagDTO): Promise<BagItem> {
     const { productId, quantity, ...otherData } = bagProduct;
@@ -70,7 +69,13 @@ export class BagService {
     });
   }
   
-}
+  }
+
+  public deleteById(id: BagItem['id']): Promise<BagItem> {
+    return this.prismaService.bagItem.delete({
+      where: { id },
+    });
+  }
 
  /* public async updateItemInCart(updateCartItemDto: EditCartItem) {
     const { cartItemId, quantity, comment } = updateCartItemDto;

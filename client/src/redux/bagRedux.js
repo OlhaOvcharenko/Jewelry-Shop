@@ -5,10 +5,13 @@ export const getAllBagItems = (state) => state.bagItems;
 
 /* ACTIONS*/
 const ADD_PRODUCT_TO_BAG = 'ADD_PRODUCT_TO_BAG';
+const REMOVE_PRODUCT_FROM_BAG = 'ADD_PRODUCT_TO_BAG';
+
 const START_REQUEST = 'START_REQUEST'; 
 const END_REQUEST = 'END_REQUEST'; 
 const ERROR_REQUEST = 'ERROR_REQUEST';
 const LOAD_BAG_ITEMS =  'LOAD_BAG_ITEMS'
+
 
 /* ACTION CREATORS */
 
@@ -22,6 +25,8 @@ export const addProductToBag = (product) => ({
   type: ADD_PRODUCT_TO_BAG,
   payload: product,
 });
+
+export const removeProductFromBag = (product) => ({ type: REMOVE_PRODUCT_FROM_BAG , payload: product});
 
 
 /* ASYNC ACTION CREATOR */
@@ -66,6 +71,25 @@ export const addProductsRequest = (product) => {
   };
 };
 
+export const removeProductFromBagRequest = (item) => {
+  return async (dispatch) => {
+    const requestName = 'REMOVE_PRODUCT_FROM_BAG';
+    dispatch(startRequest({ name: requestName }));
+    console.log(item, 'product');
+    const productId = item.id.toString();
+    console.log(productId, 'productId')
+    try {
+      await axios.delete(`http://localhost:8000/api/bag`, {
+        data: { id: productId } 
+      });
+
+      dispatch(removeProductFromBag(item.id));
+      dispatch(endRequest(requestName));
+    } catch (error) {
+      dispatch(errorRequest(requestName, error.message));
+    }
+  };
+};
 
 const bagReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -73,6 +97,8 @@ const bagReducer = (state = initialState, action) => {
       return action.payload;
     case ADD_PRODUCT_TO_BAG: 
       return [...state, action.payload];
+    case REMOVE_PRODUCT_FROM_BAG:
+      return state.filter(product => product.productId !== action.payload);
     default:
       return state;
   }

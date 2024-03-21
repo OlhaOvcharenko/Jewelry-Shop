@@ -38,8 +38,9 @@ model BagItem {
   product   Product  @relation(fields: [productId], references: [id])
   productId String 
 
-  bags       Bag[]
-  orders     Order[]   
+  bags      Bag[]
+
+  orders    Order[]   
 }
 
 model Bag {
@@ -47,10 +48,9 @@ model Bag {
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 
-  bagItem    BagItem @relation(fields: [bagItemId], references: [id])
-  bagItemId  String      
+  bagItem    BagItem? @relation(fields: [bagItemId], references: [id], onDelete: SetNull)
+  bagItemId  String?  @unique   
 }
-
 
 model Order {
   id             String  @id @default(uuid())
@@ -61,8 +61,8 @@ model Order {
   address        String
   finalAmount    Int
   
-  bagItem        BagItem @relation(fields: [bagItemId], references: [id])
-  bagItemId      String   @unique
+  bagItem        BagItem? @relation(fields: [bagItemId], references: [id])
+  bagItemId      String?   @unique
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt

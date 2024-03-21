@@ -3,9 +3,18 @@ import { IMAGES_URL } from "../../../config";
 import { Image } from "react-bootstrap";
 import { Row, Col, ButtonGroup, Button, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDeleteLeft, faRemove, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { removeProductFromBagRequest } from "../../../redux/bagRedux";
 
 const BagItem = ({bagItem}) => {
+  const dispatch = useDispatch();
+  
+  const handleRemoveItemfromBag = () => {
+    dispatch(removeProductFromBagRequest(bagItem));
+  }
+
+
   return(
     <Card className="mb-3">
       <Card.Body>
@@ -32,7 +41,7 @@ const BagItem = ({bagItem}) => {
            </ButtonGroup>
           </Col>
 
-         <Col><FontAwesomeIcon icon={faTrash} /></Col>
+         <Col onClick={handleRemoveItemfromBag}><FontAwesomeIcon icon={faTrash} /></Col>
 
           <Col lg={3}>
             <p className="mb-0">Subtotal: {bagItem.subTotal} zl</p>
