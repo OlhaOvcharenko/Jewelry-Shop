@@ -6,7 +6,7 @@ import { IMAGES_URL } from "../../../config";
 import { Row, Col} from "react-bootstrap";
 import  {ButtonGroup} from "react-bootstrap";
 import { Tab } from "react-bootstrap";
-import { addProductsRequest } from "../../../redux/bagRedux";
+import { addToBag } from "../../../redux/bagRedux";
 import { useState } from "react";
 
 const SingleProduct = () => {
@@ -14,6 +14,7 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   const productData = useSelector(state => getProductById(state, id));
   const categoryToUpperCase = productData.category.toUpperCase();
+
   const [quantity, setQuantity] = useState(1); 
 
   const handleDecrement = () => {
@@ -25,9 +26,19 @@ const SingleProduct = () => {
   const handleIncrement = () => {
     setQuantity(quantity + 1);
   };
+  
 
   const handleAddProductToBag = () => {
-    dispatch(addProductsRequest({ productId: id, quantity: quantity }));
+;
+    const product = {
+      productId: id,
+      name: productData.name, 
+      price: productData.price, 
+      photo: productData.photo,
+      quantity: quantity,
+    };
+    dispatch(addToBag(product)); 
+    console.log(product);
   };
 
   return (

@@ -8,10 +8,10 @@ import bagReducer, { localStorageMiddleware } from './bagRedux';
 // combine reducers
 const rootReducer = combineReducers({
   products: productsReducer,
-  bagItems: bagReducer
+  bag: bagReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(withExtraArgument(thunk, localStorageMiddleware))));
+const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(withExtraArgument(thunk))));
 
 export default store;

@@ -1,39 +1,39 @@
-import { useDispatch, useSelector } from "react-redux";
-import { getAllBagProducts, submitBagRequest } from "../../../redux/bagRedux";
+
 import { Container, Row, Col } from "react-bootstrap";
 import BagItem from "../BagItem/BagItem";
 import { Link } from "react-router-dom";
 import PageContainer from "../../common/PageContainer/PageContainer";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const BagList = () => {
-  const dispatch = useDispatch();
+  const [bagProducts, setBagItems] = useState([]);
 
-  const bagItems = useSelector(state => getAllBagProducts(state));
+  useEffect(() => {
+    const storedBagItems = JSON.parse(localStorage.getItem('bagItems')) || [];
+    setBagItems(storedBagItems);
+  }, []);
 
-  const handleSubmit = () => {
-    const updatedBagItems = bagItems.map(item => ({
-      bagItemId: item.id,
-      productId: item.productId,
-      quantity: item.quantity,
-      comment: item.comment
-    }));
-  
-    dispatch(submitBagRequest(updatedBagItems));
-  }
+  const handleRemoveItem = (id) => {
+    const updatedBagProducts = bagProducts.filter(product => product.productId !== id);
+    setBagItems(updatedBagProducts);
+    localStorage.setItem('bagItems', JSON.stringify(updatedBagProducts));
+  };
 
   return (
     <Container>
       <PageContainer>
-        {bagItems.map((item) => (
-          <BagItem key={item.id} bagItem={item} />
+        {bagProducts.map((item) => (
+          <BagItem key={item.id} bagItem={item} onRemove={handleRemoveItem} />
         ))}
       </PageContainer>
       <Row>
         <Col className="text-end mt-3">
-          <Link to="/order" className="btn btn-secondary" onClick={handleSubmit}>Create my order</Link> 
+          <Link to="/order" className="btn btn-secondary">Submit</Link> 
         </Col>
       </Row>
     </Container>
   );
-}
+};
+
 export default BagList;

@@ -8,7 +8,8 @@ import { useSelector } from "react-redux";
 
 const OrderItems = () => {
 
-  const orderItems = useSelector(state => getAllBagProducts(state))
+  const orderItems = JSON.parse(localStorage.getItem('bagItems'));
+  console.log(orderItems, 'order items')
   return(
     <>
       {orderItems.map((orderedItem) => ( // Iterate through orderItems and use bagItem inside the map function

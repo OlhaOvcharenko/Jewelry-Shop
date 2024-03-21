@@ -6,7 +6,6 @@ import { Spinner } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 import  { Container } from 'react-bootstrap';
-import { loadBagProductssRequest } from './redux/bagRedux';
 import Home from './components/pages/Home/Home';
 import NotFound from './components/pages/NotFound/NotFound';
 import Footer from './components/views/Footer/Footer';
@@ -24,8 +23,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(loadProductsRequest());
-    dispatch(loadBagProductssRequest())
+    dispatch(loadProductsRequest())
       .then(() => {
         setTimeout(() => {
           setLoading(false); 
