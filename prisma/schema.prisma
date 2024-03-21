@@ -38,18 +38,7 @@ model BagItem {
   product   Product  @relation(fields: [productId], references: [id])
   productId String 
 
-  bags      Bag[]
-
   orders    Order[]   
-}
-
-model Bag {
-  id          String      @id @default(uuid())
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-
-  bagItem    BagItem? @relation(fields: [bagItemId], references: [id], onDelete: SetNull)
-  bagItemId  String?  @unique   
 }
 
 model Order {

@@ -1,20 +1,39 @@
-import { useSelector } from "react-redux";
-import { getAllBagItems } from "../../../redux/bagRedux";
-import { Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllBagProducts, submitBagRequest } from "../../../redux/bagRedux";
+import { Container, Row, Col } from "react-bootstrap";
 import BagItem from "../BagItem/BagItem";
-import styles from '../BagList/BagList.module.scss'
+import { Link } from "react-router-dom";
+import PageContainer from "../../common/PageContainer/PageContainer";
+
 const BagList = () => {
-  const bagItems = useSelector(state => getAllBagItems(state))
+  const dispatch = useDispatch();
+
+  const bagItems = useSelector(state => getAllBagProducts(state));
+
+  const handleSubmit = () => {
+    const updatedBagItems = bagItems.map(item => ({
+      bagItemId: item.id,
+      productId: item.productId,
+      quantity: item.quantity,
+      comment: item.comment
+    }));
   
-  return(
-    <Container >
-     <div className={styles.bagContainer}>
-      {bagItems.map((item) => (
-        <BagItem  key={item.id} bagItem={item} />
-      ))}
-      </div>
+    dispatch(submitBagRequest(updatedBagItems));
+  }
+
+  return (
+    <Container>
+      <PageContainer>
+        {bagItems.map((item) => (
+          <BagItem key={item.id} bagItem={item} />
+        ))}
+      </PageContainer>
+      <Row>
+        <Col className="text-end mt-3">
+          <Link to="/order" className="btn btn-secondary" onClick={handleSubmit}>Create my order</Link> 
+        </Col>
+      </Row>
     </Container>
-  )
+  );
 }
-  
 export default BagList;

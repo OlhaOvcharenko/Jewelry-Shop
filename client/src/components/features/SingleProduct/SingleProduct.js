@@ -7,52 +7,51 @@ import { Row, Col} from "react-bootstrap";
 import  {ButtonGroup} from "react-bootstrap";
 import { Tab } from "react-bootstrap";
 import { addProductsRequest } from "../../../redux/bagRedux";
-
+import { useState } from "react";
 
 const SingleProduct = () => {
   const { id } = useParams(); 
   const dispatch = useDispatch();
-
   const productData = useSelector(state => getProductById(state, id));
   const categoryToUpperCase = productData.category.toUpperCase();
-  
-  const handleAddProductToBag = (product) => {
-    const { id, quantity } = product; 
+  const [quantity, setQuantity] = useState(1); 
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleIncrement = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleAddProductToBag = () => {
     dispatch(addProductsRequest({ productId: id, quantity: quantity }));
   };
 
-
-  return(
-
+  return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-    <Card style={{ width: '75rem', border: 'none' }}>
-      <Row>
-
-        <Col>
-          <Card.Img src={`${IMAGES_URL}/${productData.photo}`} />
-        </Col>
-
-        <Col>
-          <Card.Body className="py-5">
-            <p>{categoryToUpperCase}</p>
-            <h2>{productData.name}</h2>
-            <p>{productData.price}zl</p>
-             
-            <p>Quantity</p>
-            <ButtonGroup size="lg" aria-label="Quantity" >
-                <Button variant="secondary">-</Button>
-                <Button variant="secondary">{productData.quantity}</Button> 
-                <Button variant="secondary">+</Button>
-           </ButtonGroup>
-
-          </Card.Body>
-
-          <Button variant="dark" size="lg" className="px-5 my-5 mx-3" onClick={() => handleAddProductToBag(productData)} > Add to bag</Button>
-
-        </Col>
-
-      </Row>
-
+      <Card style={{ width: '75rem', border: 'none' }}>
+        <Row>
+          <Col>
+            <Card.Img src={`${IMAGES_URL}/${productData.photo}`} />
+          </Col>
+          <Col>
+            <Card.Body className="py-5">
+              <p>{categoryToUpperCase}</p>
+              <h2>{productData.name}</h2>
+              <p>{productData.price}zl</p>
+              <p>Quantity</p>
+              <ButtonGroup size="lg" aria-label="Quantity" >
+                <Button variant="secondary" onClick={handleDecrement}>-</Button>
+                <Button variant="secondary">{quantity}</Button> 
+                <Button variant="secondary" onClick={handleIncrement}>+</Button>
+              </ButtonGroup>
+            </Card.Body>
+            <Button variant="dark" size="lg" className="px-5 my-5 mx-3" onClick={handleAddProductToBag}>Add to bag</Button>
+          </Col>
+        </Row>
         <Tab.Container id="item-tabs" defaultActiveKey="description" >
           <Nav justify variant="tabs" className="my-4">
             <Nav.Item eventKey="description">
@@ -70,13 +69,9 @@ const SingleProduct = () => {
               <p>Reviews content goes here...</p>
             </Tab.Pane>
           </Tab.Content>
-      </Tab.Container>
-
-    </Card>
- 
-  </div>
-
-
+        </Tab.Container>
+      </Card>
+    </div>
   );
 }
 

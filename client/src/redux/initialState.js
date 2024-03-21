@@ -1,7 +1,7 @@
 /* INITIAL STATE */
 const initialState = {
   products: [],
-  bagItems: [],
+  bagItems: JSON.parse(localStorage.getItem('bagItems')) || [],
   orders: [],
 };
   

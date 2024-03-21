@@ -2,10 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { NotFoundException } from '@nestjs/common';
 import { AddItemToBagDTO } from './dto/addItemToBag.dto';
-
-import { Bag } from '@prisma/client';
 import { BagItem } from '@prisma/client';
-import { Product } from '@prisma/client';
+import { EditBagItem } from './dto/editBagItem.dto';
+import { BadRequestException } from '@nestjs/common';
 
 
 @Injectable()
@@ -77,32 +76,30 @@ export class BagService {
     });
   }
 
- /* public async updateItemInCart(updateCartItemDto: EditCartItem) {
-    const { cartItemId, quantity, comment } = updateCartItemDto;
+  public async submitItemsInBag(submitItemsDto: EditBagItem): Promise<void> {
+    const { bagItemId, quantity, comment } = submitItemsDto;
 
     // Fetch the cart item
-    const cartItem = await this.prismaService.cartItem.findUnique({
-      where: { id: cartItemId },
+    const cartItem = await this.prismaService.bagItem.findUnique({
+      where: { id: bagItemId },
       include: { product: true },
     });
 
     // Throw error if cart item not found
     if (!cartItem) {
-      throw new BadRequestException(`Cart item with ID ${cartItemId} not found`);
+      throw new BadRequestException(`Cart item with ID ${bagItemId} not found`);
     }
 
     // Update the cart item
-    const updatedCartItem = await this.prismaService.cartItem.update({
-      where: { id: cartItemId },
+    await this.prismaService.bagItem.update({
+      where: { id: bagItemId },
       data: {
         quantity,
         comment,
-        subTotal: cartItem.product.price * quantity, 
+        subTotal: cartItem.product.price * quantity,
       },
     });
-
-    return updatedCartItem;
-  }*/
+  }
   
 }
 

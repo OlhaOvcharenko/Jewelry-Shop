@@ -13,7 +13,7 @@ export class EditBagItem {
     @IsNotEmpty()
     @IsString()
     @IsUUID()
-    cartItemId: string;
+    bagItemId: string;
 
     @IsNotEmpty()
     @IsString()
