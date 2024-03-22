@@ -7,9 +7,6 @@ import { IMAGES_URL } from '../../../config';
 
 const Promo = () => {
   const promoProducts = useSelector(state =>  getPromoProducts(state));
-
-  console.log(promoProducts, 'Promo products')
-
   return (
     <section className='Promo'>
       <Carousel data-bs-theme="dark">

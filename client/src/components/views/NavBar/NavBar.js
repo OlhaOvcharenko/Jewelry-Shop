@@ -39,7 +39,7 @@ const NavBar = () => {
            <Col className="d-flex justify-content-end">
             <Nav className="mx-5">
               <Nav.Link href="/#home"className="px-3" ><span className={styles.link}>Home</span></Nav.Link>
-              <Nav.Link href="/#catalogue" className="px-3" ><span className={styles.link}>Catalogue</span></Nav.Link>
+              <Nav.Link href="/products" className="px-3" ><span className={styles.link}>Catalogue</span></Nav.Link>
               <Nav.Link href="/#pages" className="px-3" ><span className={styles.link}>Pages</span></Nav.Link>
             </Nav>
           </Col>

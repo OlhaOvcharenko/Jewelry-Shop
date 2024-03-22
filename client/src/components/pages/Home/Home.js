@@ -1,11 +1,15 @@
-import TopProducts from "../../features/TopProducts/TopProducts";
+import { Container } from "react-bootstrap";
 import Promo from "../../features/Promo/Promo";
+import TopProducts from "../../features/TopProducts/TopProducts";
+
 
 const Home = () => {
   return (
     <div>
       <Promo />
-      <TopProducts />
+      <Container>
+        <TopProducts />
+      </Container>
     </div>
   )
 };
