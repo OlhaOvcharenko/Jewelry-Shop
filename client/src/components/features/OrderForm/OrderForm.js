@@ -1,4 +1,5 @@
-import { Form, Row, Col, Button, Card} from "react-bootstrap";
+import { Form, Row, Col, Button, Card, Alert} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import OrderItems from "../OrderItems/OrderItems";
 import PageContainer from "../../common/PageContainer/PageContainer";
 import { useLocation } from "react-router-dom";
@@ -7,6 +8,7 @@ import { createOrderRequest } from "../../../redux/orderRedux";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getAllBagProducts } from "../../../redux/bagRedux";
+import { getRequest } from "../../../redux/orderRedux";
 import { useForm }from 'react-hook-form'
 
 
@@ -16,28 +18,36 @@ const OrderForm = () => {
   const finalAmount = location.state.totalAmount;
   
   const orderItems = useSelector(state => getAllBagProducts(state));
+  const request = useSelector(getRequest);
+  console.log(request);
 
   const { register, handleSubmit: validate, formState: { errors } } = useForm();
-
+  
   const [clientName, setClientName] = useState('');
   const [clientSurname, setClientSurname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (orderItems.length > 0) {
-      const parsedPhone = parseInt(data.phone, 10);
+      
       const newOrder = {
         clientName: data.clientName,
         clientSurname: data.clientSurname,
         email: data.email,
-        phone: parsedPhone,
+        phone: data.phone,
         address: data.address,
         finalAmount,
         productIds: orderItems.map((item) => item.id),
       };
-      dispatch(createOrderRequest(newOrder));
+
+      try {
+        await dispatch(createOrderRequest(newOrder)); 
+        
+      } catch (error) {
+        console.error('Error submitting order:', error);
+      }
     } else {
       console.error('No order items found.');
     }
@@ -45,6 +55,17 @@ const OrderForm = () => {
 
   return (
     <PageContainer>
+       {request['app/order/CREATE_ORDER']?.success && (
+         <Alert variant="success">
+          <p>Order has been registered successfully!</p>
+          <Link to='/'>Continue shopping</Link>
+         </Alert>
+      )}
+      {request['app/order/CREATE_ORDER']?.error && (
+        <Alert variant="warning">There was an error processing your order. Please check your data and try again.</Alert>
+      )}
+      {!request['app/order/CREATE_ORDER']?.success && !request['app/order/CREATE_ORDER']?.error && (
+        <>
       <h1 className="text-center mb-4">Order</h1>
       <Row>
         <Col md={6}>
@@ -52,7 +73,7 @@ const OrderForm = () => {
             <Card.Body>
               <Form onSubmit={validate(onSubmit)}>
                 <Row className="mb-3">
-                  <Form.Group as={Col} controlId="formGridName">
+                  <Form.Group as={Col}>
                     <Form.Label>Name</Form.Label>
                     <Form.Control
                       {...register("clientName", { required: true, minLength: 4, maxLength: 20 })}
@@ -75,19 +96,18 @@ const OrderForm = () => {
                   <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control
-                      {...register("email", { required: true, pattern: /^\S+@\S+$/i, minLength: 10, maxLength: 20 })}
+                      {...register("email", { required: true, minLength: 10, maxLength: 20 })}
                       type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} 
                     />
-                    {errors.email && <small className="d-block form-text text-danger mt-2">This field is required (min 10 characters , max 20)</small>}
+                    {errors.email && <small className="d-block form-text text-danger mt-2">This field is required (min 10 characters, max 20)</small>}
                   </Form.Group>
-
                   <Form.Group as={Col} controlId="formGridNumber">
                     <Form.Label>Phone number</Form.Label>
                     <Form.Control
-                      {...register("phone", { required: true, pattern: /^\d+$/ , minLength: 4, maxLength: 20})}
+                      {...register("phone", { required: true , minLength: 9, maxLength: 20})}
                       type="text" placeholder="Phone" value={phone} onChange={e => setPhone(e.target.value)} 
                     />
-                    {errors.phone && <small className="d-block form-text text-danger mt-2">mThis field is required (min 4 characters , max 20)</small>}
+                    {errors.phone && <small className="d-block form-text text-danger mt-2">mThis field is required (min 9 characters , max 20)</small>}
                   </Form.Group>
                 </Row>
 
@@ -95,7 +115,7 @@ const OrderForm = () => {
                   <Form.Label>Address</Form.Label>
                   <Form.Control
                     {...register("address", { required: true, minLength: 5, maxLength: 30 })}
-                    placeholder="Country, city, postal code, street, apartment" value={address} onChange={e => setAddress(e.target.value)} 
+                    type="text"  placeholder="Country, city, postal code, street, apartment" value={address} onChange={e => setAddress(e.target.value)} 
                   />
                   {errors.address && <small className="d-block form-text text-danger mt-2">This field is required (min 5 characters , max 30)</small>}
                 </Form.Group>
@@ -117,7 +137,10 @@ const OrderForm = () => {
           </Row>
         </Col>
       </Row>
+      </>
+      )}
     </PageContainer>
+   
   );
 }
 

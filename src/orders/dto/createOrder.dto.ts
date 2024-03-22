@@ -25,10 +25,10 @@ export class CreateOrderDTO {
     email: string;
   
     @IsNotEmpty()
-    @Length(4, 20)
-    @IsInt()
-    phone: number;
-  
+    @Length(9, 20) 
+    @IsString()
+    phone: string;
+
     @IsNotEmpty()
     @Length(5, 30)
     @IsString()

@@ -45,7 +45,7 @@ const BagItem = ({ bagProduct, onRemove }) => {
               <h5>{productState.name}</h5>
             </div>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-              <Form.Control as="textarea" placeholder="Add your comment here" rows={2} value={productState.comment} onChange={handleCommentChange} />
+              <Form.Control as="textarea" placeholder="Add your comment here" rows={2} value={productState.comment || '' } onChange={handleCommentChange} />
             </Form.Group>
           </Col>
 

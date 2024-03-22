@@ -1,5 +1,8 @@
+import { clearBag } from "./bagRedux";
 import initialState from "./initialState";
 import axios from "axios";
+
+export const getRequest = (state) => state.orders.requests;
 
 /* ACTIONS */
 const reducerName = 'order';
@@ -10,12 +13,30 @@ const END_REQUEST = createActionName('END_REQUEST');
 const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 
 export const CREATE_ORDER = createActionName('CREATE_ORDER');
+export const LOAD_ORDERS_DATA = createActionName('LOAD_ORDERS_DATA');
 
 /* ACTION CREATORS */
 export const startRequest = payload => ({ payload, type: START_REQUEST });
 export const endRequest = payload => ({ payload, type: END_REQUEST });
 export const errorRequest = payload => ({ payload, type: ERROR_REQUEST });
+
 export const createOrder = payload => ({ payload, type: CREATE_ORDER });
+export const loadOrders = payload => ({ payload, type: LOAD_ORDERS_DATA });
+
+export const loadOrdersRequest = () => {
+  return async (dispatch) => {
+    const requestName = LOAD_ORDERS_DATA;
+    dispatch(startRequest({ name: requestName }));
+
+    try {
+      let res = await axios.get(`http://localhost:8000/api/order`);
+      dispatch(loadOrders(res.data));
+      dispatch(endRequest({ name: requestName }));
+    } catch (e) {
+      dispatch(errorRequest({ name: requestName, error: e.message }));
+    }
+  };
+};
 
 export const createOrderRequest = (newOrder) => {
   return async (dispatch) => {
@@ -23,30 +44,44 @@ export const createOrderRequest = (newOrder) => {
     try {
       const res = await axios.post(
         `http://localhost:8000/api/order`,
-        {clientName: newOrder.clientName,
-         clientSurname: newOrder.clientSurname,
-         email: newOrder.email,
-         phone: newOrder.phone,
-         address:newOrder.address,
-         finalAmount: newOrder.finalAmount,
-         productIds: newOrder.productIds }
+        {
+          clientName: newOrder.clientName,
+          clientSurname: newOrder.clientSurname,
+          email: newOrder.email,
+          phone: newOrder.phone,
+          address: newOrder.address,
+          finalAmount: newOrder.finalAmount,
+          productIds: newOrder.productIds
+        }
       );
 
       dispatch(createOrder(res.data));
+      
       dispatch(endRequest({ name: CREATE_ORDER }));
+      dispatch(clearBag());
     } catch (e) {
       dispatch(errorRequest({ name: CREATE_ORDER, error: e.message }));
     }
   };
 };
 
+
 /* REDUCER */
-export default function ordersReducer(statePart = initialState, action = {}) {
+export default function ordersReducer(state = initialState, action = {}) {
   switch (action.type) {
+    case LOAD_ORDERS_DATA:
+      return { ...state, orders: action.payload }; // Set orders directly
     case CREATE_ORDER: {
-      return { ...statePart, data: [...statePart.data, action.payload] };
+      return { ...state, orders: [...state.orders, action.payload] }; // Update orders array
     }
+    
+    case START_REQUEST:
+      return { ...state, requests: {...state.requests, [action.payload.name]: { pending: true, error: null, success: false }} };
+    case END_REQUEST:
+      return { ...state, requests: { ...state.requests, [action.payload.name]: { pending: false, error: null, success: true }} };
+    case ERROR_REQUEST:
+      return { ...state, requests: { ...state.requests, [action.payload.name]: { pending: false, error: action.payload.error, success: false }} };
     default:
-      return statePart;
+      return state;
   }
 }

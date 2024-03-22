@@ -47,7 +47,7 @@ model Order {
   clientName     String
   clientSurname  String
   email          String 
-  phone          Int
+  phone          String
   address        String
   finalAmount    Int
   

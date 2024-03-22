@@ -15,6 +15,7 @@ import SingleProduct from './components/features/SingleProduct/SingleProduct';
 
 import Bag from './components/pages/Bag/Bag';
 import Order from './components/pages/Order/Order';
+import { loadOrdersRequest } from './redux/orderRedux';
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(loadProductsRequest())
+    dispatch(loadOrdersRequest())
       .then(() => {
         setTimeout(() => {
           setLoading(false); 
