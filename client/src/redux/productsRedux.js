@@ -1,5 +1,4 @@
 import initialState from "./initialState";
-import { API_URL }from "../config";
 import axios from 'axios';
 
 /*SELECTORS*/
@@ -48,7 +47,6 @@ export const loadProductsRequest = () => {
     try {
       let res = await axios.get(`http://localhost:8000/api/products`);
       dispatch(fetchDataProducts(res.data));
-console.log(res.data, 'resdata');
       dispatch(endRequest({ name: requestName }));
     } catch (e) {
       dispatch(errorRequest({ name: requestName, error: e.message }));

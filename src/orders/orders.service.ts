@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Order } from '@prisma/client';
 import { BadRequestException } from '@nestjs/common';
+import { CreateOrderDTO } from './dto/createOrder.dto';
 
 @Injectable()
 export class OrdersService {
@@ -10,39 +11,35 @@ export class OrdersService {
   public getAll(): Promise<Order[]> {
     return this.prismaService.order.findMany({
       include: {
-        bagItem: {
+        products: {
           select: {
             id: true,
             quantity: true,
-            comment: true,
-            subTotal: true,
-            productId: true,
-            product: true
+            name: true
           },
         },
       },
     });
   }
   
-  public async create(
-    orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>,
-  ): Promise<Order> {
-    const { bagItemId, ...otherData } = orderData;
+  async createOrder(orderData: CreateOrderDTO): Promise<Order> {
+    const { productIds, ...orderDetails } = orderData;
+    console.log(orderData)
     try {
-      return await this.prismaService.order.create({
+      // Create the order
+      const createdOrder = await this.prismaService.order.create({
         data: {
-          ...otherData,
-          bagItem: {
-            connect: { id: bagItemId },
-          },
+          ...orderDetails,
+          products: { connect: productIds.map(id => ({ id })) }, // Connect products by their IDs
         },
       });
+
+      return createdOrder;
     } catch (error) {
-      if (error.code === 'P2025')
-        throw new BadRequestException("Product doesn't exist");
+      if (error.code === 'P2025') {
+        throw new BadRequestException("One or more products don't exist");
+      }
       throw error;
     }
   }
-
-  
 }

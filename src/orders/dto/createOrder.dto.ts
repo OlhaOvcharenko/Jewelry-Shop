@@ -3,54 +3,43 @@ import {
     IsString,
     IsUUID,
     IsInt,
-    Min,
-    Max
+    Length,
+    ArrayNotEmpty,
+    Min
 } from 'class-validator';
   
 export class CreateOrderDTO {
-    
     @IsNotEmpty()
+    @Length(4, 20)
     @IsString()
-    @Min(4)
-    @Max(10)
     clientName: string;
-
+  
     @IsNotEmpty()
+    @Length(4, 20)
     @IsString()
-    @Min(4)
-    @Max(20)
     clientSurname: string;
-
+  
     @IsNotEmpty()
+    @Length(10, 20)
     @IsString()
-    @Min(10)
-    @Max(20)
     email: string;
-
-
+  
     @IsNotEmpty()
+    @Length(4, 20)
     @IsInt()
-    @Min(5)
-    @Max(15)
     phone: number;
-
-    
+  
     @IsNotEmpty()
+    @Length(5, 30)
     @IsString()
-    @Min(10)
-    @Max(20)
     address: string;
-
-    
+  
     @IsNotEmpty()
     @IsInt()
     @Min(0)
     finalAmount: number;
-
-    @IsNotEmpty()
-    @IsString()
-    @IsUUID()
-    bagItemId: string;
-
-
-}
+  
+    @ArrayNotEmpty()
+    @IsUUID("4", { each: true })
+    productIds: string[]; 
+  }

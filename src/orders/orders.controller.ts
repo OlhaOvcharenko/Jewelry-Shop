@@ -2,7 +2,7 @@ import { Controller, Post, Get, Body } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDTO } from './dto/createOrder.dto';
 
-@Controller('orders')
+@Controller('order')
 export class OrdersController {
     constructor(private ordersService: OrdersService) {}
 
@@ -13,7 +13,7 @@ export class OrdersController {
 
     @Post('/')
     create(@Body() orderData: CreateOrderDTO) {
-      return this.ordersService.create(orderData);
+      return this.ordersService.createOrder(orderData);
     }
 
 }

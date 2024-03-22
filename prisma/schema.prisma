@@ -22,6 +22,8 @@ model Product {
   gallery     String
   quantity    Int
   status      String
+  comment     String?
+  subTotal    Int?
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -49,8 +51,7 @@ model Order {
   address        String
   finalAmount    Int
   
-  product        Product? @relation(fields: [productId], references: [id])
-  productId      String?   @unique
+  products       Product[]
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
