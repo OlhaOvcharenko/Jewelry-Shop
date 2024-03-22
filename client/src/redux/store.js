@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { withExtraArgument, thunk} from 'redux-thunk';
 import initialState from './initialState';
 import productsReducer from './productsRedux';
-import bagReducer, { localStorageMiddleware } from './bagRedux';
+import bagReducer from './bagRedux';
 
 
 // combine reducers

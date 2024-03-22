@@ -1,30 +1,33 @@
-
 import { Container, Row, Col } from "react-bootstrap";
 import BagItem from "../BagItem/BagItem";
-import { Link } from "react-router-dom";
 import PageContainer from "../../common/PageContainer/PageContainer";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getAllBagProducts } from "../../../redux/bagRedux";
 import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeFromBag } from "../../../redux/bagRedux";
 
 const BagList = () => {
+  const dispatch = useDispatch();
   const [bagProducts, setBagItems] = useState([]);
 
+  const storedBagItems = useSelector(state => getAllBagProducts(state));
+
   useEffect(() => {
-    const storedBagItems = JSON.parse(localStorage.getItem('bagItems')) || [];
     setBagItems(storedBagItems);
-  }, []);
+  }, [storedBagItems]);
 
   const handleRemoveItem = (id) => {
-    const updatedBagProducts = bagProducts.filter(product => product.productId !== id);
-    setBagItems(updatedBagProducts);
-    localStorage.setItem('bagItems', JSON.stringify(updatedBagProducts));
+    dispatch(removeFromBag({ id }));
   };
 
   return (
     <Container>
       <PageContainer>
-        {bagProducts.map((item) => (
-          <BagItem key={item.id} bagItem={item} onRemove={handleRemoveItem} />
+        {bagProducts.map((product) => (
+          <BagItem key={product.id} bagProduct={product} onRemove={handleRemoveItem} />
         ))}
       </PageContainer>
       <Row>

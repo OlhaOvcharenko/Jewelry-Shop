@@ -6,13 +6,18 @@ import { IMAGES_URL } from "../../../config";
 import { Row, Col} from "react-bootstrap";
 import  {ButtonGroup} from "react-bootstrap";
 import { Tab } from "react-bootstrap";
-import { addToBag } from "../../../redux/bagRedux";
+import { addToBag, getAllBagProducts } from "../../../redux/bagRedux";
 import { useState } from "react";
+import { updateBag } from "../../../redux/bagRedux";
 
 const SingleProduct = () => {
   const { id } = useParams(); 
   const dispatch = useDispatch();
   const productData = useSelector(state => getProductById(state, id));
+  console.log(productData)
+  const bag = useSelector(state => getAllBagProducts(state));
+  console.log(bag, 'bag')
+
   const categoryToUpperCase = productData.category.toUpperCase();
 
   const [quantity, setQuantity] = useState(1); 
@@ -29,16 +34,22 @@ const SingleProduct = () => {
   
 
   const handleAddProductToBag = () => {
-;
-    const product = {
-      productId: id,
-      name: productData.name, 
-      price: productData.price, 
-      photo: productData.photo,
-      quantity: quantity,
-    };
-    dispatch(addToBag(product)); 
-    console.log(product);
+    const subtotal = productData.price * quantity;
+    const existingProductIndex = bag.findIndex(item => item.id === id);
+  
+    if (existingProductIndex !== -1) {
+      const updatedBag = [...bag];
+      updatedBag[existingProductIndex].quantity += quantity;
+      updatedBag[existingProductIndex].subTotal += subtotal;
+      dispatch(updateBag(updatedBag));
+
+    } else {
+      const product = {
+        ...productData,
+        subTotal: subtotal
+      };
+      dispatch(addToBag(product)); 
+    }
   };
 
   return (

@@ -4,32 +4,32 @@ import { Image } from "react-bootstrap";
 import { Row, Col, ButtonGroup, Button, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
-import { removeFromBag } from "../../../redux/bagRedux";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateBag } from "../../../redux/bagRedux";
 
-
-const BagItem = ({ bagItem, onRemove }) => {
+const BagItem = ({ bagProduct, onRemove }) => {
   const dispatch = useDispatch();
-  const [comment, setComment] = useState('');
-  const [quantity, setQuantity] = useState(bagItem.quantity);
-  const [subtotal, setSubtotal] = useState(bagItem.subtotal);
-  
-
+  const [productState, setProductState] = useState(bagProduct);
+  console.log(productState.price, 'productSate')
   const handleRemoveProductFromBag = () => {
-    onRemove(bagItem.productId); 
+    onRemove(productState.id); 
   };
 
   const handleQuantityChange = (change) => {
-    const newQuantity = Math.max(quantity + change, 1);
-    setQuantity(newQuantity);
-    localStorage.setItem(`${bagItem.id}_quantity`, newQuantity.toString());
+    const newQuantity = Math.max(productState.quantity + change, 1);
+    const newSubTotal = newQuantity * productState.price;
+    console.log(newSubTotal, 'subTotal')
+    const newProductState = { ...productState, quantity: newQuantity, subTotal: newSubTotal };
+    setProductState(newProductState);
+    dispatch(updateBag(newProductState)); // Dispatch the action to update bag
   };
 
   const handleCommentChange = (event) => {
     const newComment = event.target.value;
-    setComment(newComment);
-    localStorage.setItem(`${bagItem.id}_comment`, newComment);
+    const newProductState = { ...productState, comment: newComment };
+    setProductState(newProductState);
+    dispatch(updateBag(newProductState)); // Dispatch the action to update bag
   };
 
   return (
@@ -37,22 +37,22 @@ const BagItem = ({ bagItem, onRemove }) => {
       <Card.Body>
         <Row className="align-items-center">
           <Col lg={2}>
-            <Image src={`${IMAGES_URL}/${bagItem.photo}`} alt={bagItem.name} rounded style={{ width: '150px' }} />
+            <Image src={`${IMAGES_URL}/${productState.photo}`} alt={productState.name} rounded style={{ width: '150px' }} />
           </Col>
 
           <Col lg={4}>
             <div>
-              <h5>{bagItem.name}</h5>
+              <h5>{productState.name}</h5>
             </div>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-              <Form.Control as="textarea" placeholder="Add your comment here" rows={2} value={comment} onChange={handleCommentChange} />
+              <Form.Control as="textarea" placeholder="Add your comment here" rows={2} value={productState.comment} onChange={handleCommentChange} />
             </Form.Group>
           </Col>
 
           <Col lg={2}>
             <ButtonGroup size="lg" aria-label="Quantity">
               <Button variant="secondary" onClick={() => handleQuantityChange(-1)}>-</Button>
-              <Button variant="secondary">{quantity}</Button>
+              <Button variant="secondary">{productState.quantity}</Button>
               <Button variant="secondary" onClick={() => handleQuantityChange(1)}>+</Button>
             </ButtonGroup>
           </Col>
@@ -60,7 +60,7 @@ const BagItem = ({ bagItem, onRemove }) => {
           <Col onClick={handleRemoveProductFromBag}><FontAwesomeIcon icon={faTrash} /></Col>
 
           <Col lg={3}>
-            <p className="mb-0">Subtotal: {subtotal} zl</p>
+            <p className="mb-0">Subtotal: {productState.subTotal} zl</p>
           </Col>
         </Row>
       </Card.Body>

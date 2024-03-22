@@ -8,8 +8,9 @@ import { useSelector } from "react-redux";
 
 const OrderItems = () => {
 
-  const orderItems = JSON.parse(localStorage.getItem('bagItems'));
-  console.log(orderItems, 'order items')
+  const orderItems = useSelector(state=>getAllBagProducts(state));
+  console.log(orderItems, 'order items');
+  
   return(
     <>
       {orderItems.map((orderedItem) => ( // Iterate through orderItems and use bagItem inside the map function
@@ -17,11 +18,11 @@ const OrderItems = () => {
           <Card.Body>
             <Row className="align-items-start">
               <Col lg={2}>
-                <Image src={`${IMAGES_URL}/${orderedItem.product.photo}`} alt={orderedItem.product.name} rounded style={{ width: '70px' }} />
+                <Image src={`${IMAGES_URL}/${orderedItem.photo}`} alt={orderedItem.name} rounded style={{ width: '70px' }} />
               </Col>
               <Col >
                 <div>
-                  <h5>{orderedItem.product.name}</h5>
+                  <h5>{orderedItem.name}</h5>
                 </div>
               <Col className="mx-2" >
                 <p>{orderedItem.comment}</p>
