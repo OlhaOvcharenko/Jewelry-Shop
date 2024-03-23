@@ -10,11 +10,20 @@ h1 {
   font-family: $font-header;
   font-weight: bold;
   margin: 2rem 0;
-  font-size: 4rem;
+  font-size: 6rem;
 }
 
 h2 {
+  font-family: $font-header;
   font-weight: bold;
   margin: 2rem 0;
-  font-size: 3rem;
+  font-size: 5rem;
+}
+
+p{
+  font-family: $font-text;
+}
+
+li{
+  font-family: $font-text;
 }

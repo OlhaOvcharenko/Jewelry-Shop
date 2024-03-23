@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeFromBag } from "../../../redux/bagRedux";
 import { Link } from "react-router-dom";
-
+import styles from '../BagList/BagList.module.scss'
 const BagList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize useHistory
@@ -37,35 +37,44 @@ const BagList = () => {
 
 
   return (
-    <Container>
-      <PageContainer>
-        {bagProducts.length === 0 ? (
-          <div className="text-center">
-            Your bag is still empty.<Link to="/">Shop now</Link>.
-          </div>
-        ) : (
-          bagProducts.map((product) => (
-            <BagItem key={product.id} bagProduct={product} onRemove={handleRemoveItem} />
-          ))
-        )}
-      </PageContainer>
-
-      {bagProducts.length > 0 && (
-        <>
-          <Row className="mt-4">
-            <Col className="text-end">
-              <h4>Total Amount: {totalAmount} zl</h4>
-            </Col>
-          </Row>
-          
-          <Row>
-            <Col className="text-end mt-3">
-            <Button onClick={handleOrderSubmit}>Submit</Button> 
-            </Col>
-          </Row>
-        </>
+    <PageContainer>
+      <h4 className={styles.bagTitle}> Bag </h4>
+      <div >
+        <ul className={styles.list}>
+          <li>Product</li>
+          <li>Comment</li>
+          <li>Quantity</li>
+          <li>Remove</li>
+          <li>Subtotal</li>
+        </ul>
+      </div>
+      {bagProducts.length === 0 ? (
+        <div className="text-center">
+          Your bag is still empty.<Link to="/">Shop now</Link>.
+        </div>
+      ) : (
+        bagProducts.map((product) => (
+          <BagItem key={product.id} bagProduct={product} onRemove={handleRemoveItem} />
+        ))
       )}
-    </Container>
+    
+
+    {bagProducts.length > 0 && (
+      <>
+        <Row className="mt-4">
+          <Col className="text-end">
+            <p className={styles.amount}>Total: {totalAmount} zl</p>
+          </Col>
+        </Row>
+        
+        <Row>
+          <Col className="text-end mt-3">
+            <Button className={styles.btn} onClick={handleOrderSubmit}>Submit</Button> 
+          </Col>
+        </Row>
+      </>
+    )}
+  </PageContainer>
   );
 };
 

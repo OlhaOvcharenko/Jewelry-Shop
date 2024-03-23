@@ -34,14 +34,14 @@ const BagItem = ({ bagProduct, onRemove }) => {
   };
 
   return (
-    <Card className="mb-3">
+    <Card className="mb-3" style={{ border: 'none' }}>
       <Card.Body>
         <Row className="align-items-center">
           <Col lg={2}>
             <Image src={`${IMAGES_URL}/${productState.photo}`} alt={productState.name} rounded style={{ width: '150px' }} />
           </Col>
 
-          <Col lg={4}>
+          <Col lg={3}>
             <div>
               <h5>{productState.name}</h5>
             </div>
@@ -50,15 +50,15 @@ const BagItem = ({ bagProduct, onRemove }) => {
             </Form.Group>
           </Col>
 
-          <Col lg={2}>  
+          <Col>  
             <ButtonsGroup quantity={productState.quantity} handleDecrement={() => handleQuantityChange(-1)} handleIncrement={() => handleQuantityChange(1)} /> 
           </Col>
 
-          <Col onClick={handleRemoveProductFromBag}>
+          <Col onClick={handleRemoveProductFromBag} lg={2} >
             <span className={styles.icon}><FontAwesomeIcon icon={faTrashCan} /></span>
           </Col>
 
-          <Col lg={3}>
+          <Col lg={2}>
             <p className={styles.subtotal}><b>Subtotal:</b> {productState.subTotal} zl</p>
           </Col>
         </Row>

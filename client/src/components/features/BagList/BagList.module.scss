@@ -1,1 +1,28 @@
+@import '../../../styles/settings.scss';
 
+.bagTitle{
+  color: $color-text-light;
+  font-size: 40px;
+}
+
+.list{
+  display: flex;
+  list-style: none;
+  border-bottom: 1px solid $color-secondary;
+
+   li {
+    padding: 30px 85px 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: $color-text-light;
+   }
+}
+
+.btn {
+  background-color: $color-text-light;
+}
+
+.amount {
+  color: $color-text;
+  font-size: 25px;
+}
