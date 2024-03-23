@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import Promo from "../../features/Promo/Promo";
+import Promo from "../../views/Promo/Promo";
 import TopProducts from "../../features/TopProducts/TopProducts";
 
 

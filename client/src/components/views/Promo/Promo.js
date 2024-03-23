@@ -2,7 +2,9 @@ import { Carousel } from 'react-bootstrap';
 import { getPromoProducts } from '../../../redux/productsRedux';
 import { useSelector } from 'react-redux';
 import { IMAGES_URL } from '../../../config';
-
+import styles from '../Promo/Promo.module.scss'
+import Button from '../../common/Button/Button';
+import { Link } from 'react-router-dom';
 
 
 const Promo = () => {
@@ -18,10 +20,17 @@ const Promo = () => {
               alt={product.name} 
               style={{ height: '900px', objectFit: 'cover' }} 
             />
+            
             <Carousel.Caption>
-              <h1>{product.description}</h1> 
-              <p>{product.collection}</p> 
+              <div className={styles.promoBox}>
+                <h1 className={styles.promoTitle} >{product.description}</h1> 
+                <p className={styles.promoText}>{product.collection}</p> 
+                <Button>
+                  <Link to='/products' className={styles.textBtn}><span>Shop now</span></Link>
+                </Button>
+              </div>
             </Carousel.Caption>
+
           </Carousel.Item>
         ))}
       </Carousel>

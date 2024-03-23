@@ -53,34 +53,33 @@ const NavBar = () => {
           </Col>
 
           <Col className="d-flex justify-content-end">
-      <Navbar.Toggle aria-controls="mobile-menu" />
-      <Navbar.Collapse id="mobile-menu">
-        <Nav className="mx-5">
-          <Nav.Link href="/" className={`px-3 ${styles.link}`}><span>Home</span></Nav.Link>
+            <Navbar.Toggle aria-controls="mobile-menu" />
+            <Navbar.Collapse id="mobile-menu">
+              <Nav className="mx-5">
+                <Nav.Link href="/" className={`px-3 ${styles.link}`}><span>Home</span></Nav.Link>
 
-          <div className={styles.dropdown}>
-            <Nav.Link href="/products" className={`px-3 ${styles.link}`}><span>Catalogue</span></Nav.Link>
-              <div className={styles.dropdownContent}>
-                <div  className={styles.block}>
-                  <h5 className={styles.blockTitle}>Categories</h5>
-                  <a href="#" >Rings</a>
-                  <a href="#">Bracelets</a>
-                  <a href="#" >Pendants</a>
-                  <a href="#">Earrings</a>
+                <div className={styles.dropdown}>
+                  <Nav.Link href="/products" className={`px-3 ${styles.link}`}><span>Catalogue</span></Nav.Link>
+                    <div className={styles.dropdownContent}>
+                      <div  className={styles.block}>
+                        <h5 className={styles.blockTitle}>Categories</h5>
+                        <a href="#" >Rings</a>
+                        <a href="#">Bracelets</a>
+                        <a href="#" >Pendants</a>
+                        <a href="#">Earrings</a>
+                      </div>
+                      <div className={styles.block}>
+                        <h5 className={styles.blockTitle}>Collections</h5>
+                        <a href="#" >Top Seller</a>
+                        <a href="#">New collection</a>
+                        <a href="#" >Spring</a>
+                      </div>
+                    </div>
                 </div>
-                <div className={styles.block}>
-                  <h5 className={styles.blockTitle}>Collections</h5>
-                  <a href="#" >Top Seller</a>
-                  <a href="#">New collection</a>
-                  <a href="#" >Spring</a>
-                </div>
-              </div>
-          </div>
-          
-          <Nav.Link href="/pages" className={`px-3 ${styles.link}`}><span>Pages</span></Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Col>
+                <Nav.Link href="/pages" className={`px-3 ${styles.link}`}><span>Pages</span></Nav.Link>
+             </Nav>
+           </Navbar.Collapse>
+         </Col>
         </Row>
       </div>
     </Navbar>

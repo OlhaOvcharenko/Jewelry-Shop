@@ -1,0 +1,22 @@
+@import '../../../styles/settings.scss';
+
+
+.promoBox {
+  margin-bottom: 15%;
+  margin-right: 50%;
+  color:  $color-text;
+}
+
+.promoTitle {
+  font-weight: 700;
+  font-size: 70px;
+}
+
+.promoText {
+  font-size: 30px;
+}
+
+.textBtn {
+  text-decoration: none;
+  color: $color-text-bright;
+}
