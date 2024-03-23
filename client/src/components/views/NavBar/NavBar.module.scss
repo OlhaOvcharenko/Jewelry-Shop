@@ -17,4 +17,61 @@
   font-size: 20px;
   font-weight: 700;
 }
+
+.badge {
+  font-size: 10px; 
+  padding: 0.25rem 0.4rem; 
+  border-radius: 0.7rem; 
+  background-color: $color-text-bright;
+  color: $color-text;
+  position: absolute;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: $color-text-bright;
+  border-radius: 5px;
+  z-index: 1;
+  padding: 30px;
+  text-align: center;
+}
+
+.dropdownContent a {
+  font-family: $font-text;
+  font-weight: 400;
+  font-size: 20px;
+  color: $color-success;
+  text-decoration: none;
+  display: block;
+  padding: 7px 0;
+}
+
+.dropdownContent a:hover {
+  background-color:$color-text-bright;
+}
+
+.dropdown:hover .dropdownContent {
+  display: flex;
+  justify-content: center;
+}
+
+.block {
+  padding: 7px;
+}
+
+.blockTitle {
+  text-align: start;
+  border-bottom: 1px solid #ccc; 
+  padding: 0 5px 0 0;
+}
+
+@media (max-width: 865px) {
+  
+}
   
