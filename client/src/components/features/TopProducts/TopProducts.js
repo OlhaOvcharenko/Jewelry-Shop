@@ -4,6 +4,7 @@ import { Row, Col, Card} from "react-bootstrap";
 import { IMAGES_URL } from "../../../config";
 import styles from '../TopProducts/TopProducts.module.scss'
 import { Link } from "react-router-dom";
+import CardProduct from "../CardProduct/CardProduct";
 
 const TopProducts = () => {
 
@@ -18,31 +19,7 @@ const TopProducts = () => {
     
         <Row xs={1} md={2} lg={4} className="g-4 py-3">
           {topProducts.map(product => (
-          <Col key={product.id}>
-            <Card className="m-2">
-              <div className={styles.imageContainer}>
-                <Card.Img
-                  variant="top"
-                  src={`${IMAGES_URL}/${product.photo}`}
-                  style={{ height: '250px', objectFit: 'cover' }}
-                  className={styles.image}
-                />
-                <div className={styles.overlay}>
-                  <Link to={`/products/${product.id}`} className={styles.link}>
-                    See More
-                  </Link>
-                </div>
-              </div>
-
-              <Card.Body>
-                <Link to={`/products/${product.id}`}  className={styles.link}>
-                  <Card.Title className="d-flex justify-content-center">{product.name}</Card.Title>
-                </Link>
-                <Card.Text className="d-flex justify-content-center">{product.price}zl</Card.Text>
-              </Card.Body>
-            </Card>
-            </Col>
-            
+          <CardProduct  key={product.id} product={product}/>
           ))}
         </Row>
         <p className='text-center'> And many more modern styles <b>Shop All Products</b></p>

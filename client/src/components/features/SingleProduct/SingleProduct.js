@@ -10,6 +10,9 @@ import { updateBag } from "../../../redux/bagRedux";
 import styles from '../SingleProduct/SingleProduct.module.scss';
 import Tabs from "../../common/Tabs/Tabs";
 import Gallery from "../../views/Gallery/Gallery";
+import  Zoom  from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
+
 
 const SingleProduct = () => {
   const { id } = useParams(); 
@@ -58,7 +61,9 @@ const SingleProduct = () => {
 
           <Col>
             <div className="d-flex justify-content-center align-items-center">
-              <Card.Img src={`${IMAGES_URL}/${productData.photo}`} style={{ width: '30rem', margin: '1rem' }} />
+              <Zoom>
+                <Card.Img src={`${IMAGES_URL}/${productData.photo}`} style={{ width: '30rem', margin: '1rem' }} />
+              </Zoom>
             </div>
             <Gallery galleryImages={galleryImages} />
           </Col>

@@ -1,4 +1,5 @@
-import { Form, Row, Col, Button, Card, Alert} from "react-bootstrap";
+import { Form, Row, Col, Card, Alert, Container} from "react-bootstrap";
+import Button from "../../common/Button/Button";
 import { Link } from "react-router-dom";
 import OrderItems from "../OrderItems/OrderItems";
 import PageContainer from "../../common/PageContainer/PageContainer";
@@ -54,6 +55,7 @@ const OrderForm = () => {
   };
 
   return (
+    <Container >
     <PageContainer>
        {request['app/order/CREATE_ORDER']?.success && (
          <Alert variant="success">
@@ -120,7 +122,7 @@ const OrderForm = () => {
                   {errors.address && <small className="d-block form-text text-danger mt-2">This field is required (min 5 characters , max 30)</small>}
                 </Form.Group>
 
-                <Button className="btn btn-secondary px-5 my-4 mx-3" size="lg" type="submit">Create</Button>
+                <Button >Create</Button>
               </Form>
             </Card.Body>
           </Card>
@@ -140,7 +142,7 @@ const OrderForm = () => {
       </>
       )}
     </PageContainer>
-   
+    </Container>
   );
 }
 

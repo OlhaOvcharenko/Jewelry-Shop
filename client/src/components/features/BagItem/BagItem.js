@@ -1,17 +1,18 @@
 import { Card } from "react-bootstrap";
 import { IMAGES_URL } from "../../../config";
 import { Image } from "react-bootstrap";
-import { Row, Col, ButtonGroup, Button, Form } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
+import ButtonsGroup from "../../common/ButtonsGroup/ButtonsGroup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateBag } from "../../../redux/bagRedux";
+import styles from '../BagItem/BagItem.module.scss';
 
 const BagItem = ({ bagProduct, onRemove }) => {
   const dispatch = useDispatch();
   const [productState, setProductState] = useState(bagProduct);
-  console.log(productState.price, 'productSate')
   const handleRemoveProductFromBag = () => {
     onRemove(productState.id); 
   };
@@ -22,14 +23,14 @@ const BagItem = ({ bagProduct, onRemove }) => {
     console.log(newSubTotal, 'subTotal')
     const newProductState = { ...productState, quantity: newQuantity, subTotal: newSubTotal };
     setProductState(newProductState);
-    dispatch(updateBag(newProductState)); // Dispatch the action to update bag
+    dispatch(updateBag(newProductState)); 
   };
 
   const handleCommentChange = (event) => {
     const newComment = event.target.value;
     const newProductState = { ...productState, comment: newComment };
     setProductState(newProductState);
-    dispatch(updateBag(newProductState)); // Dispatch the action to update bag
+    dispatch(updateBag(newProductState)); 
   };
 
   return (
@@ -49,18 +50,16 @@ const BagItem = ({ bagProduct, onRemove }) => {
             </Form.Group>
           </Col>
 
-          <Col lg={2}>
-            <ButtonGroup size="lg" aria-label="Quantity">
-              <Button variant="secondary" onClick={() => handleQuantityChange(-1)}>-</Button>
-              <Button variant="secondary">{productState.quantity}</Button>
-              <Button variant="secondary" onClick={() => handleQuantityChange(1)}>+</Button>
-            </ButtonGroup>
+          <Col lg={2}>  
+            <ButtonsGroup quantity={productState.quantity} handleDecrement={() => handleQuantityChange(-1)} handleIncrement={() => handleQuantityChange(1)} /> 
           </Col>
 
-          <Col onClick={handleRemoveProductFromBag}><FontAwesomeIcon icon={faTrash} /></Col>
+          <Col onClick={handleRemoveProductFromBag}>
+            <span className={styles.icon}><FontAwesomeIcon icon={faTrashCan} /></span>
+          </Col>
 
           <Col lg={3}>
-            <p className="mb-0">Subtotal: {productState.subTotal} zl</p>
+            <p className={styles.subtotal}><b>Subtotal:</b> {productState.subTotal} zl</p>
           </Col>
         </Row>
       </Card.Body>

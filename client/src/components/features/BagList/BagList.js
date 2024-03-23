@@ -1,4 +1,5 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col} from "react-bootstrap";
+import Button from "../../common/Button/Button";
 import BagItem from "../BagItem/BagItem";
 import PageContainer from "../../common/PageContainer/PageContainer";
 import { useNavigate } from "react-router-dom";
@@ -59,7 +60,7 @@ const BagList = () => {
           
           <Row>
             <Col className="text-end mt-3">
-              <Button onClick={handleOrderSubmit} className="btn btn-secondary px-5 my-4 mx-3" size="lg">Submit</Button> 
+            <Button onClick={handleOrderSubmit}>Submit</Button> 
             </Col>
           </Row>
         </>
