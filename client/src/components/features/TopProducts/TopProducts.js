@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { getTopProducts } from "../../../redux/productsRedux";
-import { Row, Col, Card, Container } from "react-bootstrap";
+import { Row, Col, Card} from "react-bootstrap";
 import { IMAGES_URL } from "../../../config";
 import styles from '../TopProducts/TopProducts.module.scss'
 import { Link } from "react-router-dom";
@@ -20,12 +20,22 @@ const TopProducts = () => {
           {topProducts.map(product => (
           <Col key={product.id}>
             <Card className="m-2">
-              <Card.Img variant="top" 
-              src={`${IMAGES_URL}/${product.photo}`}
-              style={{ height: '300px', objectFit: 'cover' }} 
-              />
+              <div className={styles.imageContainer}>
+                <Card.Img
+                  variant="top"
+                  src={`${IMAGES_URL}/${product.photo}`}
+                  style={{ height: '250px', objectFit: 'cover' }}
+                  className={styles.image}
+                />
+                <div className={styles.overlay}>
+                  <Link to={`/products/${product.id}`} className={styles.link}>
+                    See More
+                  </Link>
+                </div>
+              </div>
+
               <Card.Body>
-                <Link to={`/products/${product.id}`}>
+                <Link to={`/products/${product.id}`}  className={styles.link}>
                   <Card.Title className="d-flex justify-content-center">{product.name}</Card.Title>
                 </Link>
                 <Card.Text className="d-flex justify-content-center">{product.price}zl</Card.Text>
