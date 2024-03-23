@@ -31,14 +31,14 @@ const NavBar = () => {
           <Col className="mx-5" m>
             <Nav className={styles.link}>
               <Nav.Link as={Link} to="/bag" className="px-3">
-                <FontAwesomeIcon icon={faBagShopping} />
+                <span className={styles.icon}><FontAwesomeIcon icon={faBagShopping} /></span>
                 {numberOfBagItems > 0 && <span className={styles.badge}>{numberOfBagItems}</span>}
               </Nav.Link>
               <Nav.Link href="#user" className="px-3">
-                <FontAwesomeIcon icon={faUser} />
+                <span className={styles.icon}><FontAwesomeIcon icon={faUser} /></span>
               </Nav.Link>
               <Nav.Link href="#search" className="px-3">
-                <FontAwesomeIcon icon={faSearch} />
+                <span className={styles.icon}><FontAwesomeIcon icon={faSearch} /></span>
               </Nav.Link>
             </Nav>
           </Col>
@@ -56,10 +56,10 @@ const NavBar = () => {
             <Navbar.Toggle aria-controls="mobile-menu" />
             <Navbar.Collapse id="mobile-menu">
               <Nav className="mx-5">
-                <Nav.Link href="/" className={`px-3 ${styles.link}`}><span>Home</span></Nav.Link>
+                <Nav.Link href="/"><span className={styles.link}>Home</span></Nav.Link>
 
                 <div className={styles.dropdown}>
-                  <Nav.Link href="/products" className={`px-3 ${styles.link}`}><span>Catalogue</span></Nav.Link>
+                  <Nav.Link href="/products"><span className={styles.link}>Catalogue</span></Nav.Link>
                     <div className={styles.dropdownContent}>
                       <div  className={styles.block}>
                         <h5 className={styles.blockTitle}>Categories</h5>
@@ -76,7 +76,7 @@ const NavBar = () => {
                       </div>
                     </div>
                 </div>
-                <Nav.Link href="/pages" className={`px-3 ${styles.link}`}><span>Pages</span></Nav.Link>
+                <Nav.Link href="/pages"><span className={styles.link}>Pages</span></Nav.Link>
              </Nav>
            </Navbar.Collapse>
          </Col>

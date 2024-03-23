@@ -16,11 +16,20 @@
   font-family: $font-text;
   font-size: 20px;
   font-weight: 700;
+  color: $color-text;
+  padding: 15px;
+}
+
+.icon {
+  font-family: $font-text;
+  font-size: 20px;
+  font-weight: 700;
+  color: $color-text;
 }
 
 .badge {
   font-size: 10px; 
-  padding: 0.25rem 0.4rem; 
+  padding: 0.15rem 0.4rem; 
   border-radius: 0.7rem; 
   background-color: $color-text-bright;
   color: $color-text;

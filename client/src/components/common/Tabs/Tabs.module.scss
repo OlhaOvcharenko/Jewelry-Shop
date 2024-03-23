@@ -1,0 +1,17 @@
+@import '../../../styles/settings.scss';
+
+.content{
+  font-family: $font-text;
+  font-size: 20px;
+}
+
+.link {
+  font-family: $font-text;
+  text-decoration: none;
+  color: $color-text;
+  font-size: 20px;
+}
+
+.link:hover {
+  color: $color-secondary
+}

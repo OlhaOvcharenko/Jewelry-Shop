@@ -1,24 +1,23 @@
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../../redux/productsRedux";
-import { Card, Button, Nav } from "react-bootstrap";
+import { Card,Row, Col, Button } from "react-bootstrap";
+import ButtonsGroup from "../../common/ButtonsGroup/ButtonsGroup";
 import { useDispatch, useSelector } from "react-redux";
 import { IMAGES_URL } from "../../../config";
-import { Row, Col} from "react-bootstrap";
-import  {ButtonGroup} from "react-bootstrap";
-import { Tab } from "react-bootstrap";
 import { addToBag, getAllBagProducts } from "../../../redux/bagRedux";
 import { useState } from "react";
 import { updateBag } from "../../../redux/bagRedux";
+import styles from '../SingleProduct/SingleProduct.module.scss';
+import Tabs from "../../common/Tabs/Tabs";
+import Gallery from "../../views/Gallery/Gallery";
 
 const SingleProduct = () => {
   const { id } = useParams(); 
   const dispatch = useDispatch();
   const productData = useSelector(state => getProductById(state, id));
-  console.log(productData)
   const bag = useSelector(state => getAllBagProducts(state));
-  console.log(bag, 'bag')
-
-  const categoryToUpperCase = productData.category.toUpperCase();
+  const galleryImages = productData.gallery.split(',');
+  const size = productData.size.split(',');
 
   const [quantity, setQuantity] = useState(1); 
 
@@ -31,7 +30,7 @@ const SingleProduct = () => {
   const handleIncrement = () => {
     setQuantity(quantity + 1);
   };
-  
+
 
   const handleAddProductToBag = () => {
     const subtotal = productData.price * quantity;
@@ -53,45 +52,45 @@ const SingleProduct = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+    <div className={styles.box}>
       <Card style={{ width: '75rem', border: 'none' }}>
         <Row>
+
           <Col>
-            <Card.Img src={`${IMAGES_URL}/${productData.photo}`} />
+            <div className="d-flex justify-content-center align-items-center">
+              <Card.Img src={`${IMAGES_URL}/${productData.photo}`} style={{ width: '30rem', margin: '1rem' }} />
+            </div>
+            <Gallery galleryImages={galleryImages} />
           </Col>
+
           <Col>
-            <Card.Body className="py-5">
-              <p>{categoryToUpperCase}</p>
-              <h2>{productData.name}</h2>
-              <p>{productData.price}zl</p>
-              <p>Quantity</p>
-              <ButtonGroup size="lg" aria-label="Quantity" >
-                <Button variant="secondary" onClick={handleDecrement}>-</Button>
-                <Button variant="secondary">{quantity}</Button> 
-                <Button variant="secondary" onClick={handleIncrement}>+</Button>
-              </ButtonGroup>
+            <Card.Body className="py-4">
+              <h1 className={styles.title}>{productData.name}</h1>
+              <div className={styles.content}>
+                <p className="py-2" ><b>Price:</b>{productData.price}zl</p>
+                <p className="py-2"> <b>Size:</b>{" "}
+                  {size.map((sizeElement, index) => (
+                    <span key={index} className={styles.size}>
+                      {sizeElement}
+                    </span>
+                  ))}
+                </p>
+                <p className="py-2"><b>Category:</b> {productData.category}</p>
+                <p className="py-2"><b>Quantity:</b>
+                  <ButtonsGroup quantity={quantity} handleDecrement={handleDecrement} handleIncrement={handleIncrement}/>
+                </p>
+              </div>
             </Card.Body>
-            <Button variant="dark" size="lg" className="px-5 my-5 mx-3" onClick={handleAddProductToBag}>Add to bag</Button>
+            <Button variant="dark" size="lg" className="px-5 my-2 mx-3 mb-4" onClick={handleAddProductToBag}>Add to bag</Button>
+            <p className="py-4"><i>We can deliver your order at any place or you can but the product in our local department.</i></p>
           </Col>
         </Row>
-        <Tab.Container id="item-tabs" defaultActiveKey="description" >
-          <Nav justify variant="tabs" className="my-4">
-            <Nav.Item eventKey="description">
-                <Nav.Link eventKey="description">Description</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="reviews">Reviews</Nav.Link>
-            </Nav.Item>
-          </Nav>
-          <Tab.Content>
-            <Tab.Pane eventKey="description" className="py-5">
-              <p>{productData.description}</p>
-            </Tab.Pane>
-            <Tab.Pane eventKey="reviews">
-              <p>Reviews content goes here...</p>
-            </Tab.Pane>
-          </Tab.Content>
-        </Tab.Container>
+
+        <Tabs 
+        descriptionContent={productData.description}
+        reviewsContent="Reviews content goes here..."
+        />
+
       </Card>
     </div>
   );

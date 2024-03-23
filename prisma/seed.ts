@@ -64,7 +64,7 @@ function getProducts() {
       collection: 'Spring Collection',
       category: 'pendants',
       photo: "ruby-pendant.jpg",
-      gallery: "ruby-pendant.jpg,ruby-pendant_2.jpg",
+      gallery: "ruby-pendant.jpg, ruby-pendant_2.jpg",
       status: 'top-seller',
       quantity: 1
     },

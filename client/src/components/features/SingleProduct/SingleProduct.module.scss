@@ -1,0 +1,30 @@
+@import '../../../styles/settings.scss';
+
+.box{
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  min-height: 100vh;
+  margin: 5rem;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 40px;
+  padding-bottom: 20px;
+}
+.content{
+  font-family: $font-text;
+  font-size: 25px;
+  padding-top: 10px;
+}
+
+.size{
+  border: 1px solid rgb(154, 151, 151);
+  border-radius: 5px;
+  padding: 6px;
+  margin: 3px;
+}
+
+
+
