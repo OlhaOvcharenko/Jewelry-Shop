@@ -30,7 +30,7 @@ export const loadOrdersRequest = () => {
     dispatch(startRequest({ name: requestName }));
 
     try {
-      let res = await axios.get(`http://localhost:8000/api/order`);
+      let res = await axios.get(`${API_URL}/order`);
       dispatch(loadOrders(res.data));
       dispatch(endRequest({ name: requestName }));
     } catch (e) {
