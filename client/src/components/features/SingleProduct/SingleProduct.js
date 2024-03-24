@@ -62,11 +62,11 @@ const SingleProduct = () => {
 
           <Col className="m-3">
             <div className="d-flex justify-content-center align-items-center">
-             
+              <Zoom>
                 <Card.Img 
                   src={`${IMAGES_URL}/${productData.photo}`} 
                   style={{ width: '30rem', height: '30rem', margin: '1rem' ,objectFit: 'cover'}} />
-             
+              </Zoom>
             </div>
             <Gallery galleryImages={galleryImages} />
           </Col>
