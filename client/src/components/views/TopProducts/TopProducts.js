@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { getTopProducts } from "../../../redux/productsRedux";
 import { Row, Col, Card} from "react-bootstrap";
 import { IMAGES_URL } from "../../../config";
-import styles from '../TopProducts/TopProducts.module.scss'
+import styles from './TopProducts.module.scss'
 import { Link } from "react-router-dom";
-import CardProduct from "../CardProduct/CardProduct";
+import CardProduct from "../../features/CardProduct/CardProduct";
 
 const TopProducts = () => {
 

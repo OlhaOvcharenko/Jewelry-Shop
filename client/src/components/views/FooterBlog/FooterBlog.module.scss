@@ -2,14 +2,15 @@
 
 .blog {
   background-color: $color-text-light ;
-  height: 65vh;
+  height: 75vh;
   margin-top: 10rem;
 }
 
 .content {
   display: flex;
   justify-content: start;
-  padding-top: 5rem;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
   padding-left: 5rem;
   color: $color-primary;
 
@@ -43,8 +44,8 @@
 }
 
 .details {
-  padding-left: 5rem;
-  padding-top: 4rem;
+  padding-top: 2rem;
+  padding-right: 5rem;
   text-align: end;
   font-size: 20px;
 }

@@ -4,14 +4,14 @@ const FooterBlog = () => (
   <section className={styles.blog}>
     <div className={styles.content}>
       <div  className={styles.block}>
-        <h5 className={styles.blockTitle}>USEFUL LINKS</h5>
+        <h5 className={styles.blockTitle}>LINKS</h5>
         <a href="#" >Legal&Privacy</a>
         <a href="#">Contact</a>
         <a href="#" >Gift card</a>
         <a href="#">Customer service</a>
       </div>
       <div className={styles.block}>
-        <h5 className={styles.blockTitle}>MY ACCOUNT</h5>
+        <h5 className={styles.blockTitle}>ACCOUNT</h5>
         <a href="#" >My profile</a>
         <a href="#">My order history</a>
         <a href="#">My wishlist</a>
@@ -38,7 +38,7 @@ const FooterBlog = () => (
         <p>Saturday: 9:00-18:00</p>
       </div>
     </div>
-    <div className='text-center mt-5'>
+    <div className='text-center'>
       <p>Copyright © Jewels 2024</p>
     </div>
   </section>

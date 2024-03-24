@@ -194,7 +194,7 @@ function getProducts() {
       collection: "Spring Collection",
       category: "earrings",
       photo: "earrings_spring_2.jpg", 
-      gallery: "earrings_spring_2.jpg", 
+      gallery: "earrings_spring_3.jpg", 
       status: "new-added",
       quantity: 1
     }

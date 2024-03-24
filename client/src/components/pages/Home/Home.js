@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap";
 import Promo from "../../views/Promo/Promo";
-import TopProducts from "../../features/TopProducts/TopProducts";
+import TopProducts from "../../views/TopProducts/TopProducts";
 import SpringCollection from "../../views/SpringCollection/SpringCollection";
 
 
