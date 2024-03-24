@@ -26,7 +26,7 @@ const SpringCollection = () => {
         </div>
         
         <div className={styles.smallProduct}>
-          <img src={`${IMAGES_URL}/${galleryImages}`} alt='gallery-img' />
+          <img src={`${IMAGES_URL}/${galleryImages[1][1]}`} alt='gallery-img' />
         </div>
         
         <Row className="gx-0 mt-5">
