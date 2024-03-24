@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs/cli": "^10.3.2",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@nestjs/common": "^9.4.3",
@@ -41,7 +42,6 @@
     "shortid": "^2.2.16"
   },
   "devDependencies": {
-    "@nestjs/cli": "^10.3.2",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
     "@types/cors": "^2.8.17",
