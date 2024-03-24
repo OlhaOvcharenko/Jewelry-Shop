@@ -6,8 +6,6 @@ import { ConfigService } from '@nestjs/config';
 import * as express from 'express';
 
 
-
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
