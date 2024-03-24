@@ -8,7 +8,16 @@ import { Link } from 'react-router-dom';
 const SpringCollection = () => {
     const collectionProducts = useSelector(state => getSpringCollectionProducts(state));
     
-    const galleryImages = collectionProducts.map(product => product.gallery.split(',').map(image => image.trim()));
+
+    // Ensure galleryImages is properly initialized
+    const galleryImages = collectionProducts.map(product => {
+        // Ensure product.gallery is not empty and contains images
+        if (product.gallery) {
+            return product.gallery.split(',').map(image => image.trim());
+        } else {
+            return []; // Return empty array if gallery is empty
+        }
+    });
    
     return (  
       <div className={styles.collectionBox}>
