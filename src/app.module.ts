@@ -20,7 +20,7 @@ import { BagModule } from './bag/bag.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', 'client', 'build'),
+      rootPath: join(__dirname, '../../', 'client', 'build'),
     }),
 
     ProductsModule,
@@ -38,7 +38,7 @@ export class AppModule implements NestModule {
     consumer
       .apply(
         cors({
-          origin: ['http://localhost:3000'],
+          origin: ['http://localhost:3000'] &&['http://localhost:3000'],
           credentials: true,
         }),
       )
