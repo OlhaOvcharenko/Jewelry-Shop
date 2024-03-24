@@ -1,14 +1,12 @@
 import { useSelector } from "react-redux";
-import { Row, Col, Card, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { IMAGES_URL } from "../../../config";
+import { Row, Container } from "react-bootstrap";
 import PageContainer from "../../common/PageContainer/PageContainer";
 import { getAllProducts } from "../../../redux/productsRedux";
-import CardProduct from "../CardProduct/CardProduct";
+import CardProduct from "../../features/CardProduct/CardProduct";
 
 const Catalogue = () => {
   const allProducts = useSelector(state=>getAllProducts(state));
-  
+
   return (
     <Container>
       <PageContainer>
