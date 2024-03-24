@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const OrderItems = ({item}) => {
   return(
-    <Card className="mb-1">
+    <Card className="mb-1" style={{border:'none'}}>
       <Card.Body>
         <Row className="align-items-center">
           <Col lg={2}>

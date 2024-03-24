@@ -1,0 +1,23 @@
+@import '../../../styles/settings.scss';
+
+.orderTitle{
+  color: $color-text-light;
+  font-size: 40px;
+}
+
+.btn {
+  background-color: $color-text-light;
+  margin-top: 20px;
+}
+
+.amount {
+  font-family: $font-text;
+  color: $color-text-light;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.border {
+  border-top: 1px solid $color-text-light;
+  padding-bottom: 10px;
+}

@@ -1,7 +1,8 @@
-import { Container, Row, Col} from "react-bootstrap";
+
 import Button from "../../common/Button/Button";
 import BagItem from "../BagItem/BagItem";
 import PageContainer from "../../common/PageContainer/PageContainer";
+import { Row, Col} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAllBagProducts } from "../../../redux/bagRedux";
@@ -10,19 +11,20 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeFromBag } from "../../../redux/bagRedux";
 import { Link } from "react-router-dom";
-import styles from '../BagList/BagList.module.scss'
+import styles from '../BagList/BagList.module.scss';
+
+
 const BagList = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize useHistory
+  const navigate = useNavigate(); 
   const [bagProducts, setBagItems] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0); // State to hold the total amount
-
+  const [totalAmount, setTotalAmount] = useState(0); 
   const storedBagItems = useSelector(state => getAllBagProducts(state));
 
   useEffect(() => {
     setBagItems(storedBagItems);
 
-    // Calculate total amount
+    
     const amount = storedBagItems.reduce((total, item) => total + item.subTotal, 0);
     setTotalAmount(amount);
   }, [storedBagItems]);
@@ -39,23 +41,26 @@ const BagList = () => {
   return (
     <PageContainer>
       <h4 className={styles.bagTitle}> Bag </h4>
-      <div >
-        <ul className={styles.list}>
-          <li>Product</li>
-          <li>Comment</li>
-          <li>Quantity</li>
-          <li>Remove</li>
-          <li>Subtotal</li>
-        </ul>
-      </div>
+      
       {bagProducts.length === 0 ? (
         <div className="text-center">
-          Your bag is still empty.<Link to="/">Shop now</Link>.
+          <p className={styles.amount}>Your bag is still empty. <Link to="/">Shop now</Link>.</p>
         </div>
       ) : (
-        bagProducts.map((product) => (
-          <BagItem key={product.id} bagProduct={product} onRemove={handleRemoveItem} />
-        ))
+        <>
+          <div >
+            <ul className={styles.list}>
+              <li>Product</li>
+              <li>Comment</li>
+              <li>Quantity</li>
+              <li>Remove</li>
+              <li>Subtotal</li>
+            </ul>
+          </div>
+          {bagProducts.map((product) => (
+            <BagItem key={product.id} bagProduct={product} onRemove={handleRemoveItem} />
+          ))}
+        </>
       )}
     
 

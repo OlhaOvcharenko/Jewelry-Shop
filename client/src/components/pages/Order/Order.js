@@ -1,7 +1,10 @@
+import { Container } from "react-bootstrap";
 import OrderForm from "../../features/OrderForm/OrderForm";
 const Order = () => {
   return(
-    <OrderForm/>
+    <Container>
+      <OrderForm/>
+    </Container>
   )
 }
   
