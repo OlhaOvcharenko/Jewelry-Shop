@@ -1,3 +1,4 @@
+import { API_URL } from "../config";
 import { clearBag } from "./bagRedux";
 import initialState from "./initialState";
 import axios from "axios";
@@ -43,7 +44,7 @@ export const createOrderRequest = (newOrder) => {
     dispatch(startRequest({ name: CREATE_ORDER }));
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/order`,
+        `${API_URL}/order`,
         {
           clientName: newOrder.clientName,
           clientSurname: newOrder.clientSurname,
