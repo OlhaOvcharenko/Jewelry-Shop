@@ -26,3 +26,9 @@
   color: $color-text;
   font-size: 25px;
 }
+
+@media only screen and (max-width: 867px) {
+  .list{
+    display: none;
+  }
+}

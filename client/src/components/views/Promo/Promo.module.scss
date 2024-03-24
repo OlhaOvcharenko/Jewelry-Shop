@@ -24,3 +24,11 @@
 .textBtn:hover {
   color: $color-text;
 }
+
+@media only screen and (max-width: 867px) {
+  .promoTitle {
+    font-weight: 700;
+    font-size: 40px;
+  }
+
+}

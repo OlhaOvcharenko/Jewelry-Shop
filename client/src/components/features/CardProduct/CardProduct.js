@@ -16,13 +16,13 @@ const CardProduct = ({ product }) => {
             className={styles.image}
           />
           <div className={styles.overlay}>
-            <Link to={`/products/${product.id}`} className={styles.link}>
+            <Link to={`/${product.id}`} className={styles.link}>
               See More
             </Link>
           </div>
         </div>
         <Card.Body>
-          <Link to={`/products/${product.id}`} className={styles.link}>
+          <Link to={`/${product.id}`} className={styles.link}>
             <Card.Title className="d-flex justify-content-center">{product.name}</Card.Title>
           </Link>
           <Card.Text className="d-flex justify-content-center">{product.price}zl</Card.Text>

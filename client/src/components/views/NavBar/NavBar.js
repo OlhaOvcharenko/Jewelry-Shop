@@ -27,19 +27,21 @@ const NavBar = () => {
       <div className={styles.customNavbar}>
 
         <Row className="align-items-center"> 
-
-          <Col className="mx-5" m>
+          
+          <Col className="mx-5" >
             <Nav className={styles.link}>
-              <Nav.Link as={Link} to="/bag" className="px-3">
-                <span className={styles.icon}><FontAwesomeIcon icon={faBagShopping} /></span>
-                {numberOfBagItems > 0 && <span className={styles.badge}>{numberOfBagItems}</span>}
-              </Nav.Link>
-              <Nav.Link href="#user" className="px-3">
-                <span className={styles.icon}><FontAwesomeIcon icon={faUser} /></span>
-              </Nav.Link>
-              <Nav.Link href="#search" className="px-3">
-                <span className={styles.icon}><FontAwesomeIcon icon={faSearch} /></span>
-              </Nav.Link>
+              <div className={styles.mediaBox}>
+                <Nav.Link as={Link} to="/bag" className="px-3">
+                  <span className={styles.icon}><FontAwesomeIcon icon={faBagShopping} /></span>
+                  {numberOfBagItems > 0 && <span className={styles.badge}>{numberOfBagItems}</span>}
+                </Nav.Link>
+                <Nav.Link href="#user" className="px-3">
+                  <span className={styles.icon}><FontAwesomeIcon icon={faUser} /></span>
+                </Nav.Link>
+                <Nav.Link href="#search" className="px-3">
+                  <span className={styles.icon}><FontAwesomeIcon icon={faSearch} /></span>
+                </Nav.Link>
+              </div>
             </Nav>
           </Col>
 
