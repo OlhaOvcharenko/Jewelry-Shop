@@ -18,6 +18,7 @@ const SingleProduct = () => {
   const { id } = useParams(); 
   const dispatch = useDispatch();
   const productData = useSelector(state => getProductById(state, id));
+  console.log(productData)
   const bag = useSelector(state => getAllBagProducts(state));
   const galleryImages = productData.gallery.split(',');
   const size = productData.size.split(',');
@@ -61,11 +62,11 @@ const SingleProduct = () => {
 
           <Col className="m-3">
             <div className="d-flex justify-content-center align-items-center">
-              <Zoom>
+             
                 <Card.Img 
                   src={`${IMAGES_URL}/${productData.photo}`} 
                   style={{ width: '30rem', height: '30rem', margin: '1rem' ,objectFit: 'cover'}} />
-              </Zoom>
+             
             </div>
             <Gallery galleryImages={galleryImages} />
           </Col>
