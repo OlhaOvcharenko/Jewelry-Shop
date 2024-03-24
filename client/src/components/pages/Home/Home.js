@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import Promo from "../../views/Promo/Promo";
 import TopProducts from "../../features/TopProducts/TopProducts";
+import SpringCollection from "../../views/SpringCollection/SpringCollection";
 
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
       <Container>
         <TopProducts />
       </Container>
+      <SpringCollection />
     </div>
   )
 };

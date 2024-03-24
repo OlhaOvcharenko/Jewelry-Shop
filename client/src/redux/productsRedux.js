@@ -16,6 +16,10 @@ export const getTopProducts = (state) => {
   return state.products.filter(product => product.status === 'top-seller'); 
 };
 
+export const getSpringCollectionProducts = (state) => {
+  return state.products.filter(product => product.status === 'new-added'); 
+};
+
 
 
 /* ACTIONS */
@@ -53,8 +57,6 @@ export const loadProductsRequest = () => {
     }
   };
 };
-
-
 
 /* REDUCER */
 export default function productsReducer(statePart = initialState, action = {}) {
