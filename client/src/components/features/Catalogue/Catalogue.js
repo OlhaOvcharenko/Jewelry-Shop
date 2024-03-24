@@ -7,10 +7,8 @@ import { getAllProducts } from "../../../redux/productsRedux";
 import CardProduct from "../CardProduct/CardProduct";
 
 const Catalogue = () => {
-
   const allProducts = useSelector(state=>getAllProducts(state));
-  console.log(allProducts);
-
+  
   return (
     <Container>
       <PageContainer>

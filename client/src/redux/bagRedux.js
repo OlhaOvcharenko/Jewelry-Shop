@@ -1,6 +1,5 @@
 export const getAllBagProducts = (state) => state.bag.bagItems;
 
-
 // action types
 const ADD_TO_BAG = 'app/bag/ADD_TO_BAG';
 const UPDATE_BAG = 'app/bag/UPDATE_BAG';

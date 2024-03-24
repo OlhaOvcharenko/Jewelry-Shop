@@ -70,9 +70,9 @@ export const createOrderRequest = (newOrder) => {
 export default function ordersReducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD_ORDERS_DATA:
-      return { ...state, orders: action.payload }; // Set orders directly
+      return { ...state, orders: action.payload };
     case CREATE_ORDER: {
-      return { ...state, orders: [...state.orders, action.payload] }; // Update orders array
+      return { ...state, orders: [...state.orders, action.payload] }; 
     }
     
     case START_REQUEST:

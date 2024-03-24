@@ -94,8 +94,8 @@ const SingleProduct = () => {
         </Row>
 
         <Tabs 
-        descriptionContent={productData.description}
-        reviewsContent="Reviews content goes here..."
+          descriptionContent={productData.description}
+          reviewsContent="Reviews content goes here..."
         />
 
       </Card>

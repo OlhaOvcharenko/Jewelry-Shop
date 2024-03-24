@@ -1,4 +1,4 @@
-import { Row, Col, Overlay } from 'react-bootstrap';
+import { Row, Col} from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { getSpringCollectionProducts } from '../../../redux/productsRedux';
 import { IMAGES_URL } from '../../../config';
@@ -9,8 +9,7 @@ const SpringCollection = () => {
     const collectionProducts = useSelector(state => getSpringCollectionProducts(state));
     
     const galleryImages = collectionProducts.map(product => product.gallery.split(',').map(image => image.trim()));
-    console.log(galleryImages[1],'gallery' )
-    
+   
     return (  
       <div className={styles.collectionBox}>
         <div className={styles.textBox} >
@@ -19,7 +18,7 @@ const SpringCollection = () => {
         </div>
         
         <div className={styles.smallProduct}>
-          <img src={`${IMAGES_URL}/${galleryImages[1][1]}`} />
+          <img src={`${IMAGES_URL}/${galleryImages[1][1]}`} alt='gallery-img' />
         </div>
         
         <Row className="gx-0 mt-5">
@@ -35,9 +34,9 @@ const SpringCollection = () => {
                   />
                   <div className={styles.overlay}>
 
-                    <Link to={`/products/${product.id}`} className={styles.link}>
-                        Discover now
-                    </Link>
+                  <Link to={`/products/${product.id}`} className={styles.link}>
+                    Discover now
+                  </Link>
 
                   </div>
                </div>

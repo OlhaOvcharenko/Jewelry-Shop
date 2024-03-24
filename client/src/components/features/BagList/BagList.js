@@ -22,9 +22,7 @@ const BagList = () => {
   const storedBagItems = useSelector(state => getAllBagProducts(state));
 
   useEffect(() => {
-    setBagItems(storedBagItems);
-
-    
+    setBagItems(storedBagItems);  
     const amount = storedBagItems.reduce((total, item) => total + item.subTotal, 0);
     setTotalAmount(amount);
   }, [storedBagItems]);
@@ -63,7 +61,6 @@ const BagList = () => {
         </>
       )}
     
-
     {bagProducts.length > 0 && (
       <>
         <Row className="mt-4">
@@ -80,6 +77,7 @@ const BagList = () => {
       </>
     )}
   </PageContainer>
+  
   );
 };
 

@@ -20,7 +20,6 @@ const BagItem = ({ bagProduct, onRemove }) => {
   const handleQuantityChange = (change) => {
     const newQuantity = Math.max(productState.quantity + change, 1);
     const newSubTotal = newQuantity * productState.price;
-    console.log(newSubTotal, 'subTotal')
     const newProductState = { ...productState, quantity: newQuantity, subTotal: newSubTotal };
     setProductState(newProductState);
     dispatch(updateBag(newProductState)); 

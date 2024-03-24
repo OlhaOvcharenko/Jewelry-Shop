@@ -42,8 +42,6 @@ const OrderForm = () => {
         productIds: orderItems.map((item) => item.id),
       };
       
-      console.log(newOrder);
-
       try {
         await dispatch(createOrderRequest(newOrder)); 
         

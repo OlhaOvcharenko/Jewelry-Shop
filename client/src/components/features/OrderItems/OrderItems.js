@@ -2,8 +2,6 @@ import { Card } from "react-bootstrap";
 import { IMAGES_URL } from "../../../config";
 import { Image } from "react-bootstrap";
 import { Row, Col} from "react-bootstrap";
-import {  getAllBagProducts } from "../../../redux/bagRedux";
-import { useSelector } from "react-redux";
 
 
 const OrderItems = ({item}) => {
