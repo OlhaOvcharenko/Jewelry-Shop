@@ -7,7 +7,7 @@ import styles from '../CardProduct/CardProduct.module.scss';
 const CardProduct = ({ product }) => {
   return (
     <Col key={product.id}>
-      <Card className="m-2">
+      <Card className={`m-2 ${styles.card}`}>
         <div className={styles.imageContainer}>
           <Card.Img
             variant="top"
