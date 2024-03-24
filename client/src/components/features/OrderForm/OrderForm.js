@@ -57,19 +57,19 @@ const OrderForm = () => {
 
   return (
     <PageContainer>
-       {request['app/order/CREATE_ORDER']?.success && (
-         <Alert variant="info">
-          <p>Order has been registered successfully! We will keep you posted. 
-            All shipping information and invoice will be sent to your email.</p>
+       
+      {request['app/order/CREATE_ORDER']?.success && (
+        <Alert variant="info">
+          <p>Order has been registered successfully! We will keep you posted. All shipping information and invoice will be sent to your email.</p>
           <Link to='/'>Continue shopping</Link>
-         </Alert>
+        </Alert>
       )}
       {request['app/order/CREATE_ORDER']?.error && (
-        <div>
-          <Alert variant="warning">There was an error processing your order. Please check your data and try again.</Alert>
-          <Link to='/order'>Return to my bag</Link>
-        </div>
+        <Alert variant="warning">
+          <p>There was an error processing your order. Please check your data and try again.</p>
+        </Alert>
       )}
+
       {!request['app/order/CREATE_ORDER']?.success && !request['app/order/CREATE_ORDER']?.error && (
         <>
       <h3 className={styles.orderTitle}>Order</h3>

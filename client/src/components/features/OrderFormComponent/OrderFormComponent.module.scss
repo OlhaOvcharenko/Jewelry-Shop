@@ -8,3 +8,24 @@
   padding-right:  195px;
   padding-left: 195px;
 }
+
+@media (max-width: 868px) {
+  .btn {
+    padding-right: 100px; 
+    padding-left: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  .btn{
+    padding-right: 50px; 
+    padding-left: 50px; 
+  }
+}
+
+@media (max-width: 400px) {
+  .btn {
+    padding-right: 30px;
+    padding-left: 30px; 
+  }
+}

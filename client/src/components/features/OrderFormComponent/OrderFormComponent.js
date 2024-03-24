@@ -1,17 +1,19 @@
 import React from "react";
 import { Form, Row, Col, Card } from "react-bootstrap";
 import Button from "../../common/Button/Button";
-import styles from '../OrderFormComponent/OrderFormComponent.module.scss'
+import styles from '../OrderFormComponent/OrderFormComponent.module.scss';
+
 const OrderFormComponent = ({ onSubmit, register, errors, clientName, setClientName, clientSurname, setClientSurname, email, setEmail, phone, setPhone, address, setAddress }) => {
+  
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission
-    onSubmit({ clientName, clientSurname, email, phone, address }); // Call onSubmit with form data
+    event.preventDefault(); 
+    onSubmit({ clientName, clientSurname, email, phone, address }); 
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row className="mb-3">
-        <Form.Group as={Col}>
+      <Row className="mb-3" >
+        <Form.Group as={Col} lg={6} xs={12} >
           <Form.Label>Name</Form.Label>
           <Form.Control
             {...register("clientName", { required: true, minLength: 4, maxLength: 20 })}
@@ -31,7 +33,7 @@ const OrderFormComponent = ({ onSubmit, register, errors, clientName, setClientN
       </Row>
 
       <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
+        <Form.Group as={Col} controlId="formGridEmail" xs={12} >
           <Form.Label>Email</Form.Label>
           <Form.Control
             {...register("email", { required: true, minLength: 10, maxLength: 20 })}
@@ -57,7 +59,7 @@ const OrderFormComponent = ({ onSubmit, register, errors, clientName, setClientN
         />
         {errors.address && <small className="d-block form-text text-danger mt-2">This field is required (min 5 characters , max 30)</small>}
       </Form.Group>
-      <Button className={styles.btn}>Create</Button>
+      <div className="text-center"><Button className={styles.btn}>Create</Button></div>
     </Form>
   
   );
