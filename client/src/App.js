@@ -15,7 +15,7 @@ import SingleProduct from './components/features/SingleProduct/SingleProduct';
 import Bag from './components/pages/Bag/Bag';
 import Order from './components/pages/Order/Order';
 import { loadOrdersRequest } from './redux/orderRedux';
-import Catalogue from './components/features/Catalogue/Catalogue';
+import Catalogue from '../src/components/pages/Catalogue/Catalogue';
 
 
 const App = () => {
