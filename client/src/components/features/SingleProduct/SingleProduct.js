@@ -59,7 +59,7 @@ const SingleProduct = () => {
       <Card style={{ width: '75rem', border: 'none' }}>
         <Row>
 
-          <Col>
+          <Col className="m-3">
             <div className="d-flex justify-content-center align-items-center">
               <Zoom>
                 <Card.Img src={`${IMAGES_URL}/${productData.photo}`} style={{ width: '30rem', margin: '1rem' }} />

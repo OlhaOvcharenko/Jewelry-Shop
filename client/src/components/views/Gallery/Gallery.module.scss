@@ -1,22 +1,22 @@
 @import '../../../styles/settings.scss';
 
 .slider {
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    border-top: 1px solid #b6b6b6;
-    border-bottom: 1px solid #b6b6b6;
-    z-index: 2;
-  }
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border-top: 1px solid #cfcdcd;
+  border-bottom: 1px solid #cfcdcd;
+  z-index: 2;
+}
   
-  .slider .item {
-    width: 150px;
-  }
-  
-  .slider .item img {
-    width: 100%;
-    height: auto;
-    object-fit: cover; /* Ensure the image covers the entire slider area */
-  }
+.slider .item {
+  width: 150px;
+}
+
+.slider .item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensure the image covers the entire slider area */
+}

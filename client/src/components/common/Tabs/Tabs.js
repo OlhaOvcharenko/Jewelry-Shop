@@ -5,7 +5,7 @@ import styles from '../Tabs/Tabs.module.scss'
 const Tabs = ({ descriptionContent, reviewsContent }) => (
 
     <Tab.Container id="item-tabs" defaultActiveKey="description">
-      <Nav justify variant="tabs" className="my-4">
+      <Nav justify variant="tabs" className="my-4 mx-0">
         <Nav.Item>
           <Nav.Link eventKey="description"><span className={styles.link}>Description</span></Nav.Link>
         </Nav.Item>
