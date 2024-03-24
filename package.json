@@ -41,7 +41,7 @@
     "shortid": "^2.2.16"
   },
   "devDependencies": {
-    "@nestjs/cli": "^9.5.0",
+    "@nestjs/cli": "^10.3.2",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
     "@types/cors": "^2.8.17",
