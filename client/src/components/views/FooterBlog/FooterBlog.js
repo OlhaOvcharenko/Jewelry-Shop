@@ -28,6 +28,7 @@ const FooterBlog = () => (
         <h5 className={styles.blockTitle}>COMPANY</h5>
         <a href="#">About us</a>
         <a href="#">Blog</a>
+        <a href="#">Services</a>
         <a href="#">Contact Us</a>
       </div>
       <div className={styles.details}>
@@ -37,7 +38,7 @@ const FooterBlog = () => (
         <p>Saturday: 9:00-18:00</p>
       </div>
     </div>
-    <div className='text-center pt-5'>
+    <div className='text-center mt-5'>
       <p>Copyright © Jewels 2024</p>
     </div>
   </section>

@@ -2,7 +2,7 @@
 
 .blog {
   background-color: $color-text-light ;
-  height: 55vh;
+  height: 65vh;
   margin-top: 10rem;
 }
 
@@ -10,7 +10,7 @@
   display: flex;
   justify-content: start;
   padding-top: 5rem;
-  padding-left: 9rem;
+  padding-left: 5rem;
   color: $color-primary;
 
 }
@@ -36,14 +36,14 @@
 }
 
 .blockTitle {
-  font-size: 30px;
+  font-size: 23px;
   font-weight: bold;
   text-align: start; 
   padding-bottom: 2rem;
 }
 
 .details {
-  padding-left: 10rem;
+  padding-left: 5rem;
   padding-top: 4rem;
   text-align: end;
   font-size: 20px;
@@ -61,4 +61,58 @@
   padding-bottom: 3rem;
 }
 
+@media only screen and (max-width: 867px) {
+  .blog {
+    height: auto;
+    margin-top: 5rem;
+  }
 
+  .content {
+    flex-direction: column;
+    padding: 2rem;
+    align-items: center;
+  }
+
+  .details {
+    padding-left: 0;
+    padding-top: 2rem;
+    text-align: center;
+  }
+
+  .block a {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .blog {
+    height: auto;
+    margin-top: 3rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .block {
+    padding: 10px 10px;
+  }
+
+  .details {
+    padding-top: 1rem;
+  }
+
+  .blockTitle {
+    font-size: 25px;
+    padding-bottom: 5px;
+  }
+
+  .detailsTitle {
+    font-size: 25px;
+  }
+
+  .number {
+    font-size: 20px;
+    padding-bottom: 2rem;
+  }
+}
