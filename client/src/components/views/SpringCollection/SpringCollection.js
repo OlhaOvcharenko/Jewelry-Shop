@@ -9,11 +9,10 @@ const SpringCollection = () => {
     const collectionProducts = useSelector(state => getSpringCollectionProducts(state));
     
     const galleryImages = collectionProducts.map(product => {
-        // Ensure product.gallery is not empty and contains images
         if (product.gallery) {
             return product.gallery.split(',').map(image => image.trim());
         } else {
-            return []; // Return empty array if gallery is empty
+            return [];
         }
     });
 
@@ -26,7 +25,7 @@ const SpringCollection = () => {
         </div>
         
         <div className={styles.smallProduct}>
-          <img src={`${IMAGES_URL}/${galleryImages[1][1]}`} alt='gallery-img' />
+          <img src={`${IMAGES_URL}/${galleryImages[0]}`} alt='gallery-img' />
         </div>
         
         <Row className="gx-0 mt-5">

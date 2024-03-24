@@ -6,8 +6,8 @@
 }
 .textBox {
   position: absolute ;
-  margin-top: 25rem;
-  left: 10%;
+  margin-top: 5rem;
+  left: 55rem;
   color: $color-text-bright;
   text-align: center;
   z-index: 1;
@@ -70,9 +70,9 @@
   position: absolute;
   width: 170px;
   height: 170px;
-  background-color: $color-text-bright;
+  background-color: $color-primary;
   border-radius: 50%;
-  margin: 2% 0 20% 60%;
+  margin: 2% 0 20% 30%;
   z-index: 2;
   transition: opacity 1s ease, width 2s ease, height 2s ease;
 }
