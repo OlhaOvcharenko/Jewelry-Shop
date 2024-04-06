@@ -41,7 +41,7 @@ const SpringCollection = () => {
                   />
                   <div className={styles.overlay}>
 
-                  <Link to={`/products/${product.id}`} className={styles.link}>
+                  <Link to={`/${product.id}`} className={styles.link}>
                     Discover now
                   </Link>
 
