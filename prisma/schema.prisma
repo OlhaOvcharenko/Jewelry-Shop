@@ -70,7 +70,7 @@ model User {
   name     String
   surname  String
   email    String    @unique
-  phone    Int
+  phone    String
   country  String
   city     String
 

@@ -4,7 +4,7 @@ import { Get } from '@nestjs/common';
 import { Param } from '@nestjs/common';
 import { ParseUUIDPipe } from '@nestjs/common';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
 
