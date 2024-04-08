@@ -15,6 +15,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { OrdersModule } from './orders/orders.module';
 import { BagModule } from './bag/bag.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -30,6 +32,8 @@ import { BagModule } from './bag/bag.module';
       load: [configuration],
       isGlobal: true,
     }),
+    UserModule,
+    AuthModule,
   ],providers: [AppService],
 })
 
