@@ -43,5 +43,19 @@
 }
 
 .link:hover {
-  color: $color-text-light;
+  color: $color-secondary;
+}
+
+.cardBtn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  color: black;
+  padding: 8px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 20px;
+  box-shadow: inset;
+  z-index: 2;
 }

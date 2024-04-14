@@ -2,7 +2,7 @@ import { Controller } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Get } from '@nestjs/common';
 import { Param } from '@nestjs/common';
-import { ParseUUIDPipe } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common';
 
 @Controller('users')
 export class UserController {
@@ -14,7 +14,9 @@ export class UserController {
    }
 
    @Get('/:id')
-   async getById(@Param('id', new ParseUUIDPipe()) id: string){
+   async getById(@Param('id') id: string){
     const user = await this.userService.getUserById(id)
+    if (!user) throw new NotFoundException('User not found');
+    return user;
    }
 }

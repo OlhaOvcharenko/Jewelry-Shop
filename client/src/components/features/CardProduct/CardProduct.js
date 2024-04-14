@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { IMAGES_URL } from "../../../config";
+import Button from '../../common/Button/Button';
 import styles from '../CardProduct/CardProduct.module.scss';
 
 const CardProduct = ({ product }) => {
@@ -16,9 +17,11 @@ const CardProduct = ({ product }) => {
             className={styles.image}
           />
           <div className={styles.overlay}>
-            <Link to={`/${product.id}`} className={styles.link}>
-              See More
-            </Link>
+            <Button className={styles.cardBtn}>
+              <Link to={`/${product.id}`} className={styles.link}>
+                See More
+              </Link>
+            </Button>
           </div>
         </div>
         <Card.Body>
