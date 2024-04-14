@@ -13,6 +13,7 @@ import styles from '../BagItem/BagItem.module.scss';
 const BagItem = ({ bagProduct, onRemove }) => {
   const dispatch = useDispatch();
   const [productState, setProductState] = useState(bagProduct);
+  console.log(bagProduct, 'bag')
   const handleRemoveProductFromBag = () => {
     onRemove(productState.id); 
   };
@@ -43,6 +44,7 @@ const BagItem = ({ bagProduct, onRemove }) => {
           <Col lg={3}>
             <div>
               <h5>{productState.name}</h5>
+              <p className="px-2 text-muted">Size: {productState.size}</p>
             </div>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
               <Form.Control as="textarea" placeholder="Add your comment here" rows={2} value={productState.comment || '' } onChange={handleCommentChange} />

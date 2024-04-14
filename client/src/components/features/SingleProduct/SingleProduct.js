@@ -11,6 +11,7 @@ import styles from '../SingleProduct/SingleProduct.module.scss';
 import Tabs from "../../common/Tabs/Tabs";
 import Gallery from "../../views/Gallery/Gallery";
 import  Zoom  from 'react-medium-image-zoom';
+import { clsx } from "clsx";
 import 'react-medium-image-zoom/dist/styles.css';
 
 
@@ -18,12 +19,13 @@ const SingleProduct = () => {
   const { id } = useParams(); 
   const dispatch = useDispatch();
   const productData = useSelector(state => getProductById(state, id));
-  console.log(productData)
+
   const bag = useSelector(state => getAllBagProducts(state));
   const galleryImages = productData.gallery.split(',');
   const size = productData.size.split(',');
 
   const [quantity, setQuantity] = useState(1); 
+  const [chosenSize, setChosenSize] = useState(1);
 
   const handleDecrement = () => {
     if (quantity > 1) {
@@ -35,6 +37,10 @@ const SingleProduct = () => {
     setQuantity(quantity + 1);
   };
 
+  
+  const handleChoseSize = (clickedSize) => {
+    setChosenSize(prevChosenSize => (prevChosenSize === clickedSize ? null : clickedSize));
+  }
 
   const handleAddProductToBag = () => {
     const subtotal = productData.price * quantity;
@@ -44,16 +50,19 @@ const SingleProduct = () => {
       const updatedBag = [...bag];
       updatedBag[existingProductIndex].quantity += quantity;
       updatedBag[existingProductIndex].subTotal += subtotal;
+      updatedBag[existingProductIndex].size += size[chosenSize];
       dispatch(updateBag(updatedBag));
 
     } else {
       const product = {
         ...productData,
-        subTotal: subtotal
+        subTotal: subtotal,
+        size: size[chosenSize]
       };
       dispatch(addToBag(product)); 
     }
   };
+
 
   return (
     <div className={styles.box}>
@@ -78,9 +87,13 @@ const SingleProduct = () => {
                 <p className="py-2" ><b>Price:</b>{productData.price}zl</p>
                 <p className="py-2"> <b>Size:</b>{" "}
                   {size.map((sizeElement, index) => (
-                    <span key={index} className={styles.size}>
+                  
+                    <span key={index} variant="outline-secondary mx-2" className={clsx(styles.size, {[styles.isChosenSize]: index === chosenSize})} 
+                      onClick={() => handleChoseSize(index)} 
+                    >
                       {sizeElement}
                     </span>
+                 
                   ))}
                 </p>
                 <p className="py-2"><b>Category:</b> {productData.category}</p>
