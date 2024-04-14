@@ -35,10 +35,10 @@ const NavBar = () => {
                   <span className={styles.icon}><FontAwesomeIcon icon={faBagShopping} /></span>
                   {numberOfBagItems > 0 && <span className={styles.badge}>{numberOfBagItems}</span>}
                 </Nav.Link>
-                <Nav.Link href="#user" className="px-3">
+                <Nav.Link href="/user" className="px-3">
                   <span className={styles.icon}><FontAwesomeIcon icon={faUser} /></span>
                 </Nav.Link>
-                <Nav.Link href="#search" className="px-3">
+                <Nav.Link href="/search" className="px-3">
                   <span className={styles.icon}><FontAwesomeIcon icon={faSearch} /></span>
                 </Nav.Link>
               </div>
@@ -46,7 +46,7 @@ const NavBar = () => {
           </Col>
 
           <Col className="d-flex justify-content-end">
-            <Navbar.Brand href="/home">
+            <Navbar.Brand href="/">
               <span className={styles.brand}>
                 {isMobileView ? 'RJ' : 'RoyalJewels'}
                 <FontAwesomeIcon icon={faCrown} className="px-2" />
@@ -78,7 +78,7 @@ const NavBar = () => {
                       </div>
                     </div>
                 </div>
-                <Nav.Link href="/pages"><span className={styles.link}>Pages</span></Nav.Link>
+                <Nav.Link href="/about"><span className={styles.link}>About</span></Nav.Link>
              </Nav>
            </Navbar.Collapse>
          </Col>
