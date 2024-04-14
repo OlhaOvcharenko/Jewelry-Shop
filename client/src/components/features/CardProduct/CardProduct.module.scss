@@ -39,7 +39,7 @@
   font-family: $font-text;
   text-decoration: none;
   color: $color-text;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .link:hover {
@@ -52,10 +52,8 @@
   transform: translateX(-50%);
   background-color: white;
   color: black;
-  padding: 8px 15px;
+  padding: 5px 17px;
   text-decoration: none;
   border-radius: 5px;
-  font-size: 20px;
-  box-shadow: inset;
   z-index: 2;
 }
