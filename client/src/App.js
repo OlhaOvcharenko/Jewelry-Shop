@@ -36,10 +36,14 @@ const App = () => {
   return (
     <div>
     {loading ? (
-      <Button variant="tuned-light" disabled>
-        <Spinner animation="border" variant="primary" size="lg" />
-        Loading ...
-      </Button>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Spinner 
+          animation="grow" 
+          variant="secondary" 
+          style={{ width: '100px', height: '100px' }} 
+        />
+      <h2>Loading ...</h2>
+    </div>
     ) : (
       <div>
         <Header />
