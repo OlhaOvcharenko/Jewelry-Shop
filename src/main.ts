@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 
 import { ConfigService } from '@nestjs/config';
 import * as express from 'express';
-
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,6 +17,7 @@ async function bootstrap() {
     credentials: true,
   });
   
+  app.use(cookieParser())
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.setGlobalPrefix('api');
   app.use('/public', express.static('public'));
