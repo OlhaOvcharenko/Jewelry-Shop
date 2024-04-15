@@ -19,4 +19,15 @@ export class AuthService {
     };
     return this.userService.create(userData, hashedPassword);
   }
+
+  public async validateUser(email: string, password: string) {
+    const user = await this.userService.getByEmail(email);
+    if (user && (await bcrypt.compare(password, user.password.hashedPassword))) {
+      const { password, ...result } = user;
+      return result;
+    }
+    return null;
+  }
+
+
 }
