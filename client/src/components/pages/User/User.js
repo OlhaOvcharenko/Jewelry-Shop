@@ -1,9 +1,8 @@
 import PageContainer from "../../common/PageContainer/PageContainer";
+import LogIn from "../LogIn/LogIn";
 
 const User = () => (
-    <PageContainer>
-      <h1>Page 'User' has to be created.</h1>
-    </PageContainer>
-  );
+  <LogIn />
+);
   
 export default User;
