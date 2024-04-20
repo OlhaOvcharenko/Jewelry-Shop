@@ -33,7 +33,7 @@ const OrderFormComponent = ({ onSubmit, register, errors, clientName, setClientN
       </Row>
 
       <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail" xs={12} >
+        <Form.Group as={Col} controlId="formGridEmail" xs={12} className="pb-3">
           <Form.Label>Email</Form.Label>
           <Form.Control
             {...register("email", { required: true, minLength: 10, maxLength: 20 })}

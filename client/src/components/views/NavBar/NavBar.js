@@ -35,7 +35,7 @@ const NavBar = () => {
                   <span className={styles.icon}><FontAwesomeIcon icon={faBagShopping} /></span>
                   {numberOfBagItems > 0 && <span className={styles.badge}>{numberOfBagItems}</span>}
                 </Nav.Link>
-                <Nav.Link href="/user" className="px-3">
+                <Nav.Link href="/login" className="px-3">
                   <span className={styles.icon}><FontAwesomeIcon icon={faUser} /></span>
                 </Nav.Link>
                 <Nav.Link href="/search" className="px-3">

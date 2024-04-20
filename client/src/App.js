@@ -19,6 +19,8 @@ import Catalogue from '../src/components/pages/Catalogue/Catalogue';
 import User from './components/pages/User/User';
 import Search from './components/pages/Search/Search';
 import About from './components/pages/About/About';
+import LogIn from './components/pages/LogIn/LogIn';
+import CreateAccount from './components/pages/CreateAccount/CreateAccount';
 
 
 const App = () => {
@@ -55,7 +57,9 @@ const App = () => {
             <Route path="/:id" element={<SingleProduct />} />
             <Route path="/bag" element={<Bag />} /> 
             <Route path="/order" element={<Order />} /> 
-            <Route path="/products" element={<Catalogue />} /> 
+            <Route path="/products" element={<Catalogue />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/register" element={<CreateAccount />} />
             <Route path="/user" element={<User />} /> 
             <Route path="/search" element={<Search />} /> 
             <Route path="/about" element={<About/>} /> 

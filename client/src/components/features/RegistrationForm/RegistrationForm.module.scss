@@ -1,0 +1,65 @@
+@import '../../../styles/settings.scss';
+@import '../../../styles/typography.scss';
+
+
+.accountHeader {
+  margin: 0;
+  padding: 0;
+  height: 30vh;
+  background-color: $color-text-light;
+  color: $color-text-bright;
+  text-align: center;
+}
+
+.headerLink {
+  color: $color-text-bright;
+  text-decoration: none;
+}
+.accountTitle {
+  margin-top: 2rem;
+  margin-bottom: 0;
+  padding-top: 7rem;
+  font-size: 35px;
+}
+
+.loginBox {
+  display: flex;
+  margin-top: 50px;
+  padding: 20px 0;
+  justify-content: center;
+  background-color: gainsboro;
+  border-radius: 10px;
+}
+
+.btn {
+  background-color: $color-text-bright;
+  color: $color-text;
+  border: 1px solid $color-secondary;
+  border-radius: 15px;
+  font-size: 15px;
+  padding: 7px 40px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.btn:hover {
+background-color: $color-secondary;
+}
+
+.border {
+border-bottom: 1px solid $color-secondary;
+margin-bottom: 20px;
+}
+
+.link {
+text-decoration: none;
+color:  $color-text;
+padding: 10px;
+font-size: 15px;
+}
+
+.link:hover{
+color: $color-text-bright
+}
+
