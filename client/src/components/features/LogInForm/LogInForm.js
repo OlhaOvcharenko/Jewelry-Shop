@@ -8,7 +8,8 @@ const LogInForm = () => (
     <div>
       <div className={styles.accountHeader}>
         <h1 className={styles.accountTitle}>ACCOUNT</h1>
-        <p>Home / Account</p>
+        <Link to="/"  className={styles.headerLink}><b>Home</b></Link> /
+        <Link to="/account" className={styles.headerLink}><b>Account</b></Link>
       </div>
       <Container>
         <div className={styles.loginBox}>
@@ -28,8 +29,8 @@ const LogInForm = () => (
                 Login
               </Button>
             </Form>
-            <Link to="/register" className={styles.link}>Create account</Link>
-            <Link to="/" className={styles.link}>Return to store</Link>
+            <Link to="/register" className={styles.link}><b>Create account</b></Link>
+            <Link to="/products" className={styles.link}><b>Return to store</b></Link>
           </Col>
         </div>
       </Container>
