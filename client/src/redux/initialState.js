@@ -3,6 +3,7 @@
 const initialState = {
   products: [],
   orders: [],
+  users: [],
   requests: {}
 };
   

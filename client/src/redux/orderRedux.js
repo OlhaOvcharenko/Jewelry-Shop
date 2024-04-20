@@ -30,7 +30,7 @@ export const loadOrdersRequest = () => {
     dispatch(startRequest({ name: requestName }));
 
     try {
-      let res = await axios.get(`${API_URL}/order`);
+      let res = await axios.get(`${API_URL}/api/order`);
       dispatch(loadOrders(res.data));
       dispatch(endRequest({ name: requestName }));
     } catch (e) {
@@ -44,7 +44,7 @@ export const createOrderRequest = (newOrder) => {
     dispatch(startRequest({ name: CREATE_ORDER }));
     try {
       const res = await axios.post(
-        `${API_URL}/order`,
+        `${API_URL}/api/order`,
         {
           clientName: newOrder.clientName,
           clientSurname: newOrder.clientSurname,

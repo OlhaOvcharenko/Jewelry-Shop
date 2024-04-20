@@ -4,6 +4,7 @@ import initialState from './initialState';
 import productsReducer from './productsRedux';
 import bagReducer from './bagRedux';
 import ordersReducer from './orderRedux';
+import usersReducer from './usersRedux';
 
 
 // combine reducers
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   products: productsReducer,
   bag: bagReducer,
   orders: ordersReducer,
+  users: usersReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
