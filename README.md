@@ -23,11 +23,6 @@
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
   
-## Published
-https://jewelry-shop-7e6x.onrender.com
-
-## last commit 
-https://github.com/OlhaOvcharenko/Jewelry-Shop/commit/293b0f417835d77415e07e76cc6c25dbd9e2e781
 
 ## Description
 
