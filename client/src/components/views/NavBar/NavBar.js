@@ -1,17 +1,20 @@
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faBagShopping, faSearch, faCrown} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faBagShopping, faSearch, faCrown, faSignIn, faSignOut} from '@fortawesome/free-solid-svg-icons';
 import { Navbar, Nav, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllBagProducts } from '../../../redux/bagRedux';
 import styles from '../NavBar/NavBar.module.scss';
+import { getUser } from '../../../redux/usersRedux';
 
 const NavBar = () => {
-  const bagItems = useSelector(state => getAllBagProducts(state)); 
+  const bagItems = useSelector(state => getAllBagProducts(state));
+  const user = useSelector(state => getUser(state));
+  console.log(user, 'users') 
   const [numberOfBagItems, setNumberOfBagItems] = useState(0);
   const [isMobileView, setIsMobileView] = useState(false);
-
+  
   useEffect(() => {
     setNumberOfBagItems(bagItems.length);
     const handleResize = () => {
@@ -31,12 +34,25 @@ const NavBar = () => {
           <Col className="mx-5" >
             <Nav className={styles.link}>
               <div className={styles.mediaBox}>
+
+
+              {user && user !== null && (
+                <>
+                <Nav.Link href="/user" className="px-3">
+                  <span className={styles.icon}><FontAwesomeIcon icon={faUser} /></span>
+                </Nav.Link>
+                </>
+              )}
+               
+              {(user === null ) && (
+                <Nav.Link href="/login" className="px-3">
+                  <span className={styles.icon}><FontAwesomeIcon icon={faSignIn} /></span>
+                </Nav.Link>
+              )}
+
                 <Nav.Link as={Link} to="/bag" className="px-3">
                   <span className={styles.icon}><FontAwesomeIcon icon={faBagShopping} /></span>
                   {numberOfBagItems > 0 && <span className={styles.badge}>{numberOfBagItems}</span>}
-                </Nav.Link>
-                <Nav.Link href="/login" className="px-3">
-                  <span className={styles.icon}><FontAwesomeIcon icon={faUser} /></span>
                 </Nav.Link>
                 <Nav.Link href="/search" className="px-3">
                   <span className={styles.icon}><FontAwesomeIcon icon={faSearch} /></span>

@@ -21,6 +21,7 @@ import Search from './components/pages/Search/Search';
 import About from './components/pages/About/About';
 import LogIn from './components/pages/LogIn/LogIn';
 import CreateAccount from './components/pages/CreateAccount/CreateAccount';
+import { fetchUserData } from './redux/usersRedux';
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(loadProductsRequest())
+    dispatch(fetchUserData())
     dispatch(loadOrdersRequest())
       .then(() => {
         setTimeout(() => {
