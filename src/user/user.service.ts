@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { User, Password } from '@prisma/client';
-import { ConflictException } from '@nestjs/common';
 
+import { ConflictException } from '@nestjs/common';
+import {User, Password } from '@prisma/client';
 
 @Injectable()
 export class UserService {
