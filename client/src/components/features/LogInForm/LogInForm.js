@@ -4,9 +4,9 @@ import { Form, Alert, Spinner} from "react-bootstrap";
 import Button from "../../common/Button/Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { loginRequest } from "../../../redux/usersRedux";
 import { useDispatch } from "react-redux";
-import { API_URL } from "../../../config";
-import { logIn } from "../../../redux/usersRedux";
+
 
 const LogInForm = () => {
 
@@ -16,34 +16,12 @@ const LogInForm = () => {
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState(null)
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const options = {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json' 
-      },
-      body: JSON.stringify({ email, password })
-    }
+    dispatch(loginRequest({ email, password }));
+  };
 
-    setStatus("loading");
-    fetch(`${API_URL}/api/auth/login`, options)
-      .then((res) => {
-        if (res.status === 201) {
-          setStatus("success");
-          dispatch(logIn({email}));
-        } else if (res.status === 400) {
-          setStatus("clientError");
-        } else if (res.status === 409) {
-          setStatus("loginError");
-        } else {
-          setStatus("serverError");
-        }
-      })
-      .catch((err) => {
-        setStatus("serverError");
-      });
-  }
 
   return (
     <div>

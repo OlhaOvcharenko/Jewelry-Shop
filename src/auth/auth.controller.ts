@@ -19,8 +19,10 @@ export class AuthController {
     async login(@Request() req, @Response() res) {
     const tokens = await this.authService.createSession(req.user);
     res.cookie('auth', tokens, { httpOnly: true });
+    console.log(tokens,'tokens', req.user, 'user')
     res.send({
-      message: 'success',
+      user: req.user,
+      tokens
     });
   }
 

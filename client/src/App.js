@@ -3,24 +3,22 @@ import { useEffect } from 'react';
 import { loadProductsRequest } from './redux/productsRedux';
 import { useDispatch } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 import Home from './components/pages/Home/Home';
 import NotFound from './components/pages/NotFound/NotFound';
 import Footer from './components/views/Footer/Footer';
 import Header from './components/views/Header/Header';
-
 import SingleProduct from './components/features/SingleProduct/SingleProduct';
-
 import Bag from './components/pages/Bag/Bag';
 import Order from './components/pages/Order/Order';
-import { loadOrdersRequest } from './redux/orderRedux';
 import Catalogue from '../src/components/pages/Catalogue/Catalogue';
 import User from './components/pages/User/User';
 import Search from './components/pages/Search/Search';
 import About from './components/pages/About/About';
 import LogIn from './components/pages/LogIn/LogIn';
+import LogOut from './components/pages/LogOut/LogOut';
 import CreateAccount from './components/pages/CreateAccount/CreateAccount';
+import { loadOrdersRequest } from './redux/orderRedux';
 import { fetchUserData } from './redux/usersRedux';
 
 
@@ -30,13 +28,12 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(loadProductsRequest())
-    dispatch(fetchUserData())
-    dispatch(loadOrdersRequest())
+    Promise.all([ dispatch(loadProductsRequest()), dispatch(loadOrdersRequest())])
       .then(() => {
         setTimeout(() => {
           setLoading(false); 
         }, 1000); 
+  
       })
   }, [dispatch]);
 
@@ -61,6 +58,7 @@ const App = () => {
             <Route path="/order" element={<Order />} /> 
             <Route path="/products" element={<Catalogue />} />
             <Route path="/login" element={<LogIn />} />
+            <Route path="/logout" element={<LogOut />} />
             <Route path="/register" element={<CreateAccount />} />
             <Route path="/user" element={<User />} /> 
             <Route path="/search" element={<Search />} /> 

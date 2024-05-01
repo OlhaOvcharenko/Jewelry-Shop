@@ -1,8 +1,8 @@
-import PageContainer from "../../common/PageContainer/PageContainer";
-import LogIn from "../LogIn/LogIn";
+
+import AccountView from "../../views/AccountView/AccountView";
 
 const User = () => (
-  <p>User</p>
+  <AccountView />
 );
   
 export default User;

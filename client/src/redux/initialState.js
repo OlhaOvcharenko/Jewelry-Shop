@@ -3,8 +3,10 @@
 const initialState = {
   products: [],
   orders: [],
-  users: [],
-  requests: {}
+  requests: {},
+  users: null,
+  loading: false,
+  error: null,
 };
   
 export default initialState;

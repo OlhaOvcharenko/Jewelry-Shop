@@ -17,7 +17,7 @@ export const getLocalBagData = () => {
   return localBagData ? JSON.parse(localBagData) : [];
 };
 
-// helper function to update local storage with bag items
+
 const updateLocalStorage = (bagItems) => {
   localStorage.setItem('bagItems', JSON.stringify(bagItems));
 };

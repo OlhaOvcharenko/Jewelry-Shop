@@ -2,16 +2,17 @@ import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBagShopping, faSearch, faCrown, faSignIn, faSignOut} from '@fortawesome/free-solid-svg-icons';
 import { Navbar, Nav, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllBagProducts } from '../../../redux/bagRedux';
 import styles from '../NavBar/NavBar.module.scss';
-import { getUser } from '../../../redux/usersRedux';
+import { getUser, getUserById } from '../../../redux/usersRedux';
 
 const NavBar = () => {
+
   const bagItems = useSelector(state => getAllBagProducts(state));
   const user = useSelector(state => getUser(state));
-  console.log(user, 'users') 
+  console.log(user,'user')
   const [numberOfBagItems, setNumberOfBagItems] = useState(0);
   const [isMobileView, setIsMobileView] = useState(false);
   
@@ -35,20 +36,19 @@ const NavBar = () => {
             <Nav className={styles.link}>
               <div className={styles.mediaBox}>
 
-
-              {user && user !== null && (
-                <>
-                <Nav.Link href="/user" className="px-3">
-                  <span className={styles.icon}><FontAwesomeIcon icon={faUser} /></span>
-                </Nav.Link>
-                </>
-              )}
-               
-              {(user === null ) && (
-                <Nav.Link href="/login" className="px-3">
-                  <span className={styles.icon}><FontAwesomeIcon icon={faSignIn} /></span>
-                </Nav.Link>
-              )}
+                {user && user.user !== null ? (
+                  <>
+                    <Nav.Link href="/user" className="px-3">
+                      <span className={styles.icon}><FontAwesomeIcon icon={faUser} /></span>
+                    </Nav.Link>
+                  </>
+                ) : (
+                  <>
+                    <Nav.Link href="/login" className="px-3">
+                      <span className={styles.icon}><FontAwesomeIcon icon={faSignIn} /></span>
+                    </Nav.Link>
+                  </>
+                )}
 
                 <Nav.Link as={Link} to="/bag" className="px-3">
                   <span className={styles.icon}><FontAwesomeIcon icon={faBagShopping} /></span>
