@@ -30,8 +30,6 @@ export class AuthController {
   @Delete('/logout')
     async logout(@Response() res) {
     res.clearCookie('auth',{ httpOnly: true });
-    res.send({
-      message: 'success',
-    });
+    res.status(200).send({ message: 'Logged out successfully' });
   }
 }
