@@ -14,6 +14,7 @@ const LogInForm = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const requests = useSelector(getRequests);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -39,7 +40,7 @@ const LogInForm = () => {
             </Alert>
           ) : (
             <>
-              {(requests && requests?.error) && (
+              {(requests && requests['app/user/LOGIN_REQUEST']?.error) && (
                 <Alert variant="danger">
                   <Alert.Heading>Something went wrong...</Alert.Heading>
                   <p>Unexpected error, try again!</p>

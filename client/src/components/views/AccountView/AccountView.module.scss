@@ -1,0 +1,22 @@
+@import '../../../styles/settings.scss';
+@import '../../../styles/typography.scss';
+
+
+.btn {
+  background-color: $color-text-bright;
+  color: $color-text;
+  border: 1px solid $color-secondary;
+  border-radius: 15px;
+  font-size: 15px;
+  padding: 7px 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: $color-secondary;
+  color: $color-text-bright;
+}
+  
