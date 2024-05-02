@@ -19,7 +19,7 @@ const RegistrationForm = () => {
   const [status, setStatus] = useState(null);
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault(); 
     
     const registrationData = {
       name, surname, email, phone, city, country, password, passwordRepeat: repeatedPassword
@@ -103,53 +103,53 @@ const RegistrationForm = () => {
             </>
           ) : (
             <Row>
-            <Col lg={6}>
-              <Form className={styles.border} onSubmit={handleSubmit}>
-                <Row className="mb-3">
-                  <Form.Group as={Col} lg={6} xs={12}>
-                    <Form.Label className="text-muted">Name</Form.Label>
-                    <Form.Control type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} />
-                  </Form.Group>
-                  <Form.Group as={Col}>
-                    <Form.Label className="text-muted">Surname</Form.Label>
-                    <Form.Control type="text" placeholder="Surname" value={surname} onChange={e => setSurname(e.target.value)} />
-                  </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                  <Form.Group as={Col} lg={6} xs={12}>
-                    <Form.Label className="text-muted">Email</Form.Label>
-                    <Form.Control type="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-                  </Form.Group>
-                  <Form.Group as={Col}>
-                    <Form.Label className="text-muted">Phone</Form.Label>
-                    <Form.Control type="text" placeholder="Phone" value={phone} onChange={e => setPhone(e.target.value)} />
-                  </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                  <Form.Group as={Col} lg={6} xs={12}>
-                    <Form.Label className="text-muted">Country</Form.Label>
-                    <Form.Control type="text" placeholder="Country" value={country} onChange={e => setCountry(e.target.value)} />
-                  </Form.Group>
-                  <Form.Group as={Col}>
-                    <Form.Label className="text-muted">City</Form.Label>
-                    <Form.Control type="text" placeholder="City" value={city} onChange={e => setCity(e.target.value)} />
-                  </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                  <Form.Group as={Col}>
-                    <Form.Label className="text-muted">Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-                  </Form.Group>
-                  <Form.Group as={Col}>
-                    <Form.Label className="text-muted">Repeat Password</Form.Label>
-                    <Form.Control type="password" placeholder="Repeat your password" value={repeatedPassword} onChange={e => setRepeatedPassword(e.target.value)} />
-                  </Form.Group>
-                </Row>
-                <Button className={styles.btn} type="submit">Submit</Button>
-              </Form>
-              <Link to="/register" className={styles.link}><b>Log in</b></Link> /
-              <Link to="/products" className={styles.link}><b>Return to store</b></Link>
-            </Col>
+              <Col>
+                <Form className={styles.border} onSubmit={handleSubmit}>
+                  <Row className="mb-3">
+                    <Form.Group as={Col}  xs={12}>
+                      <Form.Label className="text-muted">Name</Form.Label>
+                      <Form.Control type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group as={Col} xs={12}>
+                      <Form.Label className="text-muted">Surname</Form.Label>
+                      <Form.Control type="text" placeholder="Surname" value={surname} onChange={e => setSurname(e.target.value)} />
+                    </Form.Group>
+                  </Row>
+                  <Row className="mb-3">
+                    <Form.Group as={Col} lg={6} xs={12}>
+                      <Form.Label className="text-muted">Email</Form.Label>
+                      <Form.Control type="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                      <Form.Label className="text-muted">Phone</Form.Label>
+                      <Form.Control type="text" placeholder="Phone" value={phone} onChange={e => setPhone(e.target.value)} />
+                    </Form.Group>
+                  </Row>
+                  <Row className="mb-3">
+                    <Form.Group as={Col} lg={6} xs={12}>
+                      <Form.Label className="text-muted">Country</Form.Label>
+                      <Form.Control type="text" placeholder="Country" value={country} onChange={e => setCountry(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                      <Form.Label className="text-muted">City</Form.Label>
+                      <Form.Control type="text" placeholder="City" value={city} onChange={e => setCity(e.target.value)} />
+                    </Form.Group>
+                  </Row>
+                  <Row className="mb-3">
+                    <Form.Group as={Col}>
+                      <Form.Label className="text-muted">Password</Form.Label>
+                      <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                      <Form.Label className="text-muted">Repeat Password</Form.Label>
+                      <Form.Control type="password" placeholder="Repeat your password" value={repeatedPassword} onChange={e => setRepeatedPassword(e.target.value)} />
+                    </Form.Group>
+                  </Row>
+                  <Button className={styles.btn} type="submit">Submit</Button>
+                </Form>
+                <Link to="/register" className={styles.link}><b>Log in</b></Link> /
+                <Link to="/products" className={styles.link}><b>Return to store</b></Link>
+              </Col>
           </Row>
         )}
       </div>
