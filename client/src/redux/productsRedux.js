@@ -50,7 +50,7 @@ export const loadProductsRequest = () => {
     dispatch(startRequest({ name: requestName }));
 
     try {
-      let res = await axios.get(`${API_URL}/api/products`);
+      let res = await axios.get(`${API_URL}/products`);
       dispatch(fetchDataProducts(res.data));
       dispatch(endRequest({ name: requestName }));
     } catch (e) {

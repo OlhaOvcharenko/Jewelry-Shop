@@ -44,7 +44,7 @@ export const createOrderRequest = (newOrder) => {
     dispatch(startRequest({ name: CREATE_ORDER }));
     try {
       const res = await axios.post(
-        `${API_URL}/api/order`,
+        `${API_URL}/order`,
         {
           clientName: newOrder.clientName,
           clientSurname: newOrder.clientSurname,

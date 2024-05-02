@@ -17,7 +17,7 @@ export const LOGOUT = 'LOGOUT';
 export const loginRequest = (userData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${API_URL}/api/auth/login`, userData);
+      const response = await axios.post(`${API_URL}/auth/login`, userData);
       const { tokens, user } = response.data;
       localStorage.setItem('accessToken', tokens.access_token);
       localStorage.setItem('user', JSON.stringify(user));
@@ -41,7 +41,7 @@ export const logoutRequest = () => {
 
       // If access token exists, send logout request to backend
       if (accessToken) {
-        await axios.delete(`${API_URL}/api/auth/logout`, {
+        await axios.delete(`${API_URL}/auth/logout`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
