@@ -30,7 +30,7 @@ export const loadOrdersRequest = () => {
     dispatch(startRequest({ name: requestName }));
 
     try {
-      let res = await axios.get(`${API_URL}/api/order`);
+      let res = await axios.get(`${API_URL}/order`);
       dispatch(loadOrders(res.data));
       dispatch(endRequest({ name: requestName }));
     } catch (e) {
@@ -75,7 +75,6 @@ export default function ordersReducer(state = initialState, action = {}) {
     case CREATE_ORDER: {
       return { ...state, orders: [...state.orders, action.payload] }; 
     }
-    
     case START_REQUEST:
       return { ...state, requests: {...state.requests, [action.payload.name]: { pending: true, error: null, success: false }} };
     case END_REQUEST:

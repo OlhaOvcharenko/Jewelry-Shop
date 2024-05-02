@@ -4,9 +4,9 @@ import { Form, Alert, Spinner} from "react-bootstrap";
 import Button from "../../common/Button/Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { loginRequest } from "../../../redux/usersRedux";
+import { getRequests, loginRequest } from "../../../redux/usersRedux";
 import { useDispatch } from "react-redux";
-
+import { useSelector } from "react-redux";
 
 const LogInForm = () => {
 
@@ -14,8 +14,6 @@ const LogInForm = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [status, setStatus] = useState(null)
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,61 +30,41 @@ const LogInForm = () => {
       </div>
       <Container>
         <div className={styles.loginBox}>
-          {(status === "success" || status === "serverError" || status === "clientError" || status === "loginError" || status === "loading") ? (
+          {(requests && requests['app/user/LOGIN_REQUEST']?.success) ? (
+            <Alert variant="success" className="text-center">
+              <Alert.Heading>Success!</Alert.Heading>
+              <p>You have been logged in!</p>
+              <Link to="/" className={styles.headerLink}><b>Continue shopping</b></Link> /
+              <Link to="/user" className={styles.headerLink}><b>Open my account</b></Link> 
+            </Alert>
+          ) : (
             <>
-              {status === "success" && (
-                <Alert variant="success" className="text-center">
-                  <Alert.Heading>Success!</Alert.Heading>
-                  <p>Your account has been created.</p>
-                  <Link to="/" className={styles.headerLink}><b>Continue shopping</b></Link> 
-                </Alert>
-              )}
-              {status === "serverError" && (
+              {(requests && requests?.error) && (
                 <Alert variant="danger">
                   <Alert.Heading>Something went wrong...</Alert.Heading>
                   <p>Unexpected error, try again!</p>
                   <Link to="/login" className={styles.headerLink}><b>Back to login</b></Link>
                 </Alert>
               )}
-              {status === "clientError" && (
-                <Alert variant="danger">
-                  <Alert.Heading>Not enough data</Alert.Heading>
-                  <p>You have to fill all the fields</p>
-                  <Link to="/register" className={styles.headerLink}><b>Back to registration</b></Link>
-                </Alert>
-              )}
-              {status === "loginError" && (
-                <Alert variant="warning">
-                  <Alert.Heading>Login already in use</Alert.Heading>
-                  <p>You have to use another login</p>
-                  <Link to="/register" className={styles.headerLink}><b>Back to registration</b></Link>
-                </Alert>
-              )}
-              {status === "loading" && (
-                <Spinner animation="border" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </Spinner>
-              )}
-            </>
-          ) : (
-            <Col lg={6}>
-              <Form className={styles.border} onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
-                  <Form.Label className="text-muted">Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
-                </Form.Group>
+              <Col lg={6}>
+                <Form className={styles.border} onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3">
+                    <Form.Label className="text-muted">Email address</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
+                  </Form.Group>
 
-                <Form.Group className="mb-3">
-                  <Form.Label className="text-muted">Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-                </Form.Group>
-                <Button className={styles.btn} type="submit">
-                  Login
-                </Button>
-              </Form>
-              <Link to="/register" className={styles.link}><b>Create account</b></Link> /
-              <Link to="/products" className={styles.link}><b>Return to store</b></Link>
-            </Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label className="text-muted">Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                  </Form.Group>
+                  <Button className={styles.btn} type="submit">
+                    Login
+                  </Button>
+                </Form>
+                <Link to="/register" className={styles.link}><b>Create account</b></Link> /
+                <Link to="/products" className={styles.link}><b>Return to store</b></Link>
+              </Col>
+            </>
           )}
         </div>
       </Container>

@@ -15,6 +15,7 @@ const AccountView = () => {
 
   const handleLogout = () => {
     dispatch(logoutRequest());
+    navigate('/')
   };
 
   

@@ -153,7 +153,7 @@ const RegistrationForm = () => {
           </Row>
         )}
       </div>
-    </Container>
+      </Container>
   </div>
 );
 };

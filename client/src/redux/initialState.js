@@ -4,9 +4,7 @@ const initialState = {
   products: [],
   orders: [],
   requests: {},
-  users: null,
-  loading: false,
-  error: null,
+  users: [],
 };
   
 export default initialState;
