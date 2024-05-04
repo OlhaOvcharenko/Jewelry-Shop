@@ -11,8 +11,9 @@ import { getUser, getUserById } from '../../../redux/usersRedux';
 const NavBar = () => {
 
   const bagItems = useSelector(state => getAllBagProducts(state));
+  console.log(bagItems,'items')
   const user = useSelector(state => getUser(state));
-  console.log(user,'user')
+ 
   const [numberOfBagItems, setNumberOfBagItems] = useState(0);
   const [isMobileView, setIsMobileView] = useState(false);
   

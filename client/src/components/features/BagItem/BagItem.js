@@ -13,9 +13,10 @@ import styles from '../BagItem/BagItem.module.scss';
 const BagItem = ({ bagProduct, onRemove }) => {
   const dispatch = useDispatch();
   const [productState, setProductState] = useState(bagProduct);
-  console.log(bagProduct, 'bag')
+
   const handleRemoveProductFromBag = () => {
     onRemove(productState.id); 
+    console.log(productState.id)
   };
 
   const handleQuantityChange = (change) => {
@@ -38,12 +39,12 @@ const BagItem = ({ bagProduct, onRemove }) => {
       <Card.Body>
         <Row className="align-items-center">
           <Col lg={2}>
-            <Image src={`${IMAGES_URL}/${productState.photo}`} alt={productState.name} rounded style={{ width: '150px' }} />
+            <Image src={`${IMAGES_URL}/${productState.product.photo}`} alt={productState.product.name} rounded style={{ width: '150px' }} />
           </Col>
 
           <Col lg={3}>
             <div>
-              <h5>{productState.name}</h5>
+              <h5>{productState.product.name}</h5>
               <p className="px-2 text-muted">Size: {productState.size}</p>
             </div>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

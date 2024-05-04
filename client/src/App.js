@@ -19,7 +19,7 @@ import LogIn from './components/pages/LogIn/LogIn';
 import LogOut from './components/pages/LogOut/LogOut';
 import CreateAccount from './components/pages/CreateAccount/CreateAccount';
 import { loadOrdersRequest } from './redux/orderRedux';
-import { fetchUserData } from './redux/usersRedux';
+import { loadBagItemsRequest } from './redux/bagRedux';
 
 
 const App = () => {
@@ -28,7 +28,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all([ dispatch(loadProductsRequest()), dispatch(loadOrdersRequest())])
+    Promise.all([ dispatch(loadProductsRequest()), dispatch(loadOrdersRequest()), dispatch(loadBagItemsRequest())])
       .then(() => {
         setTimeout(() => {
           setLoading(false); 

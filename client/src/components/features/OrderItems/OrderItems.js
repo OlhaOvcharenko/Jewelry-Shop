@@ -10,11 +10,11 @@ const OrderItems = ({item}) => {
       <Card.Body>
         <Row className="align-items-center">
           <Col lg={2}>
-            <Image src={`${IMAGES_URL}/${item.photo}`} alt={item.name} rounded style={{ width: '50px' }} />
+            <Image src={`${IMAGES_URL}/${item.product.photo}`} alt={item.name} rounded style={{ width: '50px' }} />
           </Col>
           <Col >
             <div>
-              <h5>{item.name}</h5>
+              <h5>{item.product.name}</h5>
             </div>
           <Col className="mx-2" >
             <p>{item.comment}</p>

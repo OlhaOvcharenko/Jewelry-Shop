@@ -2,6 +2,7 @@
 
 const initialState = {
   products: [],
+  bagItems: [],
   orders: [],
   requests: {},
   users: [],

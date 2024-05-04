@@ -4,7 +4,7 @@ import { Card,Row, Col, Button } from "react-bootstrap";
 import ButtonsGroup from "../../common/ButtonsGroup/ButtonsGroup";
 import { useDispatch, useSelector } from "react-redux";
 import { IMAGES_URL } from "../../../config";
-import { addToBag, getAllBagProducts } from "../../../redux/bagRedux";
+import { addToBag, addToBagRequest, getAllBagProducts } from "../../../redux/bagRedux";
 import { useState } from "react";
 import { updateBag } from "../../../redux/bagRedux";
 import styles from '../SingleProduct/SingleProduct.module.scss';
@@ -19,8 +19,10 @@ const SingleProduct = () => {
   const { id } = useParams(); 
   const dispatch = useDispatch();
   const productData = useSelector(state => getProductById(state, id));
+  console.log(productData, 'product');
 
   const bag = useSelector(state => getAllBagProducts(state));
+  console.log(bag)
   const galleryImages = productData.gallery.split(',');
   const size = productData.size.split(',');
 
@@ -44,24 +46,25 @@ const SingleProduct = () => {
 
   const handleAddProductToBag = () => {
     const subtotal = productData.price * quantity;
-    const existingProductIndex = bag.findIndex(item => item.id === id);
+    const existingProduct = bag.findIndex(item => item.id === id);
   
-    if (existingProductIndex !== -1) {
+    if (existingProduct !== -1) {
       const updatedBag = [...bag];
-      updatedBag[existingProductIndex].quantity += quantity;
-      updatedBag[existingProductIndex].subTotal += subtotal;
-      updatedBag[existingProductIndex].size += size[chosenSize];
-      dispatch(updateBag(updatedBag));
+      updatedBag[existingProduct].quantity += quantity;
+      updatedBag[existingProduct].subTotal += subtotal;
+      updatedBag[existingProduct].size += size[chosenSize];
+      dispatch(addToBagRequest(updatedBag));
 
     } else {
       const product = {
-        ...productData,
+        id: productData.id,
+        quantity: quantity,
         subTotal: subtotal,
         size: size[chosenSize]
       };
-      dispatch(addToBag(product)); 
+      dispatch(addToBagRequest(product)); 
     }
-  };
+};
 
 
   return (
