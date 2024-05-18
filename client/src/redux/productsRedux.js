@@ -60,11 +60,11 @@ export const loadProductsRequest = () => {
 };
 
 /* REDUCER */
-export default function productsReducer(statePart = initialState, action = {}) {
+export default function productsReducer(state = initialState, action = {}) {
   switch (action.type) {
     case DATA_PRODUCTS:
       return action.payload;
     default:
-      return statePart;
+      return state;
   }
 }

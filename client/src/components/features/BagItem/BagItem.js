@@ -9,14 +9,15 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateBag } from "../../../redux/bagRedux";
 import styles from '../BagItem/BagItem.module.scss';
+import { useEffect } from "react";
+import { loadBagItemsRequest } from "../../../redux/bagRedux";
 
 const BagItem = ({ bagProduct, onRemove }) => {
   const dispatch = useDispatch();
   const [productState, setProductState] = useState(bagProduct);
-
+  
   const handleRemoveProductFromBag = () => {
     onRemove(productState.id); 
-    console.log(productState.id)
   };
 
   const handleQuantityChange = (change) => {

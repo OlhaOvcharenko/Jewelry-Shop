@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import { loadProductsRequest } from './redux/productsRedux';
 import { useDispatch } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
 import { useState } from 'react';
@@ -18,8 +17,9 @@ import About from './components/pages/About/About';
 import LogIn from './components/pages/LogIn/LogIn';
 import LogOut from './components/pages/LogOut/LogOut';
 import CreateAccount from './components/pages/CreateAccount/CreateAccount';
-import { loadOrdersRequest } from './redux/orderRedux';
+import { loadProductsRequest } from './redux/productsRedux';
 import { loadBagItemsRequest } from './redux/bagRedux';
+import { loadOrdersRequest } from './redux/orderRedux';
 
 
 const App = () => {
@@ -28,13 +28,16 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all([ dispatch(loadProductsRequest()), dispatch(loadOrdersRequest()), dispatch(loadBagItemsRequest())])
+    Promise.all([dispatch(loadProductsRequest()), dispatch(loadOrdersRequest()), dispatch(loadBagItemsRequest())])
       .then(() => {
         setTimeout(() => {
-          setLoading(false); 
-        }, 1000); 
-  
+          setLoading(false);
+        }, 1000);
       })
+      .catch((error) => {
+        console.error('Error loading data:', error);
+        setLoading(false);
+      });
   }, [dispatch]);
 
   return (

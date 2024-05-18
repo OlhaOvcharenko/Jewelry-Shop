@@ -4,8 +4,8 @@ import { API_URL } from "../config";
 
 
 
-export const getAllBagProducts = (state) => state.bag;
-
+export const getAllBagProducts = (state) => state.bag.bagItems;
+export const getRequest = (state) => state.bag.requests;
 
 // action types
 
@@ -50,8 +50,10 @@ export const loadBagItemsRequest = () => {
 };
 
 export const addToBagRequest = (item) => {
+
   return async (dispatch) => {
     dispatch(startRequest({ name: ADD_TO_BAG }));
+    console.log(item, 'item')
     try {
       const res = await axios.post(
         `${API_URL}/products/${item.id}`,
@@ -61,10 +63,10 @@ export const addToBagRequest = (item) => {
         }
       );
 
-      dispatch(addToBag(res.data));
+      dispatch(addToBag(item));
       
       dispatch(endRequest({ name: ADD_TO_BAG }));
-      dispatch(clearBag());
+   
     } catch (e) {
       dispatch(errorRequest({ name: ADD_TO_BAG, error: e.message }));
     }
@@ -89,21 +91,28 @@ export const removeFromBagRequest = (id) => {
 };
 
 // reducer
-const bagReducer = (statePart = initialState, action = {}) => {
+const bagReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case LOAD_ALL_ITEMS:
-      return action.payload;
-
+      return {
+        bagItems: action.payload,
+      };
     case ADD_TO_BAG:
-      return [
-        ...statePart,
-        action.payload
-      ];
+      return {
+        bagItems: [...state.bagItems, action.payload]
+      };
     case REMOVE_FROM_BAG:
-      const updatedBagItemsAfterRemoval = statePart.filter(item => item.id !== action.payload);
-      return updatedBagItemsAfterRemoval;
+      return {
+        bagItems: state.bagItems.filter(item => item.id !== action.payload),
+      };
+    case START_REQUEST:
+      return { ...state, requests: {...state.requests, [action.payload.name]: { pending: true, error: null, success: false }} };
+    case END_REQUEST:
+      return { ...state, requests: { ...state.requests, [action.payload.name]: { pending: false, error: null, success: true }} };
+    case ERROR_REQUEST:
+      return { ...state, requests: { ...state.requests, [action.payload.name]: { pending: false, error: action.payload.error, success: false }} };
     default:
-      return statePart;
+      return state;
   }
 };
 
