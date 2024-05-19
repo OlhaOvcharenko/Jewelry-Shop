@@ -14,6 +14,7 @@ const createActionName = name => `app/${reducerName}/${name}`;
 
 const LOAD_ALL_ITEMS = 'app/bag/LOAD_ALL_ITEMS';
 const ADD_TO_BAG = 'app/bag/ADD_TO_BAG';
+const UPDATE_ITEM = 'app/bag/UPDATE_ITEM';
 const UPDATE_BAG = 'app/bag/UPDATE_BAG';
 const CLEAR_BAG = 'app/bag/CLEAR_BAG';
 const REMOVE_FROM_BAG = 'app/bag/REMOVE_FROM_BAG';
@@ -25,6 +26,7 @@ const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 // action creators
 export const loadAllItems = (payload) =>  ({ type: LOAD_ALL_ITEMS, payload });
 export const addToBag = (payload) => ({ type: ADD_TO_BAG, payload });
+export const updateItem = (payload) => ({ type: UPDATE_ITEM, payload });
 export const updateBag = (payload) => ({ type: UPDATE_BAG, payload });
 export const removeFromBag = (payload) => ({ type: REMOVE_FROM_BAG, payload });
 export const clearBag = () => ({ type: CLEAR_BAG });
@@ -73,6 +75,41 @@ export const addToBagRequest = (item) => {
   };
 };
 
+export const updateItemRequest = (item) => {
+  return async (dispatch, getState) => {
+      dispatch(startRequest({ name: UPDATE_ITEM }));
+      try {
+          await axios.post(`${API_URL}/products/${item.id}`, {
+              productId: item.productId,
+              quantity: item.quantity
+          });
+
+          const { bagItems } = getState().bag;
+          const updatedBagItems = bagItems.map(product =>
+              product.id === item.id ? { ...product, ...item } : product
+          );
+
+          dispatch(updateBag(updatedBagItems));
+          dispatch(endRequest({ name: UPDATE_BAG }));
+      } catch (e) {
+          dispatch(errorRequest({ name: UPDATE_BAG, error: e.message }));
+      }
+  };
+};
+
+export const updateBagItemRequest = (existingItem) => {
+  return async (dispatch) => {
+    dispatch(startRequest({ name: UPDATE_BAG }));
+
+    try {
+      const res = await axios.post(`${API_URL}/bag`, existingItem);
+      dispatch(updateBag(res.data));
+      dispatch(endRequest({ name: UPDATE_BAG }));
+    } catch (e) {
+      dispatch(errorRequest({ name: UPDATE_BAG, error: e.message }));
+    }
+  };
+};
 
 export const removeFromBagRequest = (id) => {
   return async (dispatch) => {
@@ -100,6 +137,11 @@ const bagReducer = (state = initialState, action = {}) => {
     case ADD_TO_BAG:
       return {
         bagItems: [...state.bagItems, action.payload]
+      };
+    case UPDATE_BAG:
+      return {
+        ...state,
+        bagItems: state.bagItems.map(item=> (item.productId === action.payload.id ? { ...item, ...action.payload } : item))
       };
     case REMOVE_FROM_BAG:
       return {

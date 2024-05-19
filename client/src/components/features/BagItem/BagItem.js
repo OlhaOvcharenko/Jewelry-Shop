@@ -1,21 +1,19 @@
-import { Card } from "react-bootstrap";
 import { IMAGES_URL } from "../../../config";
-import { Image } from "react-bootstrap";
-import { Row, Col, Form } from "react-bootstrap";
+import { Row, Col, Form, Image, Card} from "react-bootstrap";
 import ButtonsGroup from "../../common/ButtonsGroup/ButtonsGroup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateBag } from "../../../redux/bagRedux";
+import { updateBagItemRequest } from "../../../redux/bagRedux";
 import styles from '../BagItem/BagItem.module.scss';
-import { useEffect } from "react";
-import { loadBagItemsRequest } from "../../../redux/bagRedux";
+
 
 const BagItem = ({ bagProduct, onRemove }) => {
   const dispatch = useDispatch();
   const [productState, setProductState] = useState(bagProduct);
-  
+  console.log(productState);
+
   const handleRemoveProductFromBag = () => {
     onRemove(productState.id); 
   };
@@ -25,14 +23,14 @@ const BagItem = ({ bagProduct, onRemove }) => {
     const newSubTotal = newQuantity * productState.price;
     const newProductState = { ...productState, quantity: newQuantity, subTotal: newSubTotal };
     setProductState(newProductState);
-    dispatch(updateBag(newProductState)); 
+    dispatch(updateBagItemRequest(newProductState)); 
   };
 
   const handleCommentChange = (event) => {
     const newComment = event.target.value;
     const newProductState = { ...productState, comment: newComment };
     setProductState(newProductState);
-    dispatch(updateBag(newProductState)); 
+    dispatch(updateBagItemRequest(newProductState)); 
   };
 
   return (

@@ -59,13 +59,13 @@ export class BagService {
       const newQuantity = existingBagItem.quantity + quantity;
       const newSubTotal = product.price * newQuantity;
 
-    return this.prismaService.bagItem.update({
-      where: { id: existingBagItem.id },
-      data: {
-        quantity: newQuantity,
-        subTotal: newSubTotal,
-      },
-    });
+      return this.prismaService.bagItem.update({
+        where: { id: existingBagItem.id },
+        data: {
+          quantity: newQuantity,
+          subTotal: newSubTotal,
+        },
+     });
   }
   
   }
