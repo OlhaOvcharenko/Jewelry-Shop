@@ -18,14 +18,20 @@ const NavBar = () => {
   const [isMobileView, setIsMobileView] = useState(false);
   
   useEffect(() => {
-    setNumberOfBagItems(bagItems.length);
+    
+    const totalQuantity = bagItems.reduce((sum, item) => sum + item.quantity, 0);
+    setNumberOfBagItems(totalQuantity);
+
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768); 
     };
+    
     handleResize(); 
     window.addEventListener('resize', handleResize);
+
     return () => window.removeEventListener('resize', handleResize); 
   }, [bagItems]);
+
 
   return (
     <Navbar bg="light" data-bs-theme="light" className="pb-0" fixed="top" expand="md">
