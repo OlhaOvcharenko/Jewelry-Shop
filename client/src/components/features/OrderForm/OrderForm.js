@@ -39,7 +39,7 @@ const OrderForm = () => {
         phone: data.phone,
         address: data.address,
         finalAmount,
-        productIds: orderItems.map((item) => item.id),
+        productIds: orderItems.map((item) => item.productId),
       };
       
       try {

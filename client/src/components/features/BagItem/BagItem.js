@@ -8,29 +8,37 @@ import { useDispatch } from "react-redux";
 import { updateBagItemRequest } from "../../../redux/bagRedux";
 import styles from '../BagItem/BagItem.module.scss';
 
-
 const BagItem = ({ bagProduct, onRemove }) => {
   const dispatch = useDispatch();
   const [productState, setProductState] = useState(bagProduct);
-  console.log(productState);
+  
 
-  const handleRemoveProductFromBag = () => {
-    onRemove(productState.id); 
+  const handleDecrement = () => {
+    const newQuantity = Math.max(productState.quantity - 1, 1);
+    updateQuantity(newQuantity);
   };
 
-  /*const handleQuantityChange = (change) => {
-    //const newQuantity = Math.max(productState.quantity + change, 1);
-    //const newSubTotal = newQuantity * productState.price;
-    //const newProductState = { ...productState, quantity: newQuantity, subTotal: newSubTotal };
+  const handleIncrement = () => {
+    const newQuantity = productState.quantity + 1;
+    updateQuantity(newQuantity);
+  };
+
+  const updateQuantity = (newQuantity) => {
+    const newSubtotal = newQuantity * productState.product.price;
+    const newProductState = { ...productState, quantity: newQuantity, subTotal: newSubtotal };
     setProductState(newProductState);
     dispatch(updateBagItemRequest(newProductState)); 
-  };*/
+  };
+
+  const handleRemoveProductFromBag = () => {
+    onRemove(productState.id);
+  };
 
   const handleCommentChange = (event) => {
     const newComment = event.target.value;
     const newProductState = { ...productState, comment: newComment };
     setProductState(newProductState);
-    dispatch(updateBagItemRequest(newProductState)); 
+    dispatch(updateBagItemRequest(newProductState));
   };
 
   return (
@@ -52,7 +60,7 @@ const BagItem = ({ bagProduct, onRemove }) => {
           </Col>
 
           <Col>  
-            <ButtonsGroup quantity={productState.quantity}  /> 
+            <ButtonsGroup quantity={productState.quantity} handleDecrement={handleDecrement} handleIncrement={handleIncrement} /> 
           </Col>
 
           <Col onClick={handleRemoveProductFromBag} lg={2} >

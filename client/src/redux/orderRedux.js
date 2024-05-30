@@ -2,7 +2,6 @@ import { API_URL } from "../config";
 import { clearBag } from "./bagRedux";
 import initialState from "./initialState";
 import axios from "axios";
-
 export const getRequest = (state) => state.orders.requests;
 
 /* ACTIONS */
@@ -40,6 +39,7 @@ export const loadOrdersRequest = () => {
 };
 
 export const createOrderRequest = (newOrder) => {
+  console.log(newOrder,'order')
   return async (dispatch) => {
     dispatch(startRequest({ name: CREATE_ORDER }));
     try {

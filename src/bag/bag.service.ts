@@ -83,18 +83,16 @@ export class BagService {
   public async submitItemsInBag(submitItemsDto: EditBagItem): Promise<void> {
     const { bagItemId, quantity, comment } = submitItemsDto;
 
-    // Fetch the cart item
     const cartItem = await this.prismaService.bagItem.findUnique({
       where: { id: bagItemId },
       include: { product: true },
     });
 
-    // Throw error if cart item not found
+  
     if (!cartItem) {
       throw new BadRequestException(`Cart item with ID ${bagItemId} not found`);
     }
 
-    // Update the cart item
     await this.prismaService.bagItem.update({
       where: { id: bagItemId },
       data: {
@@ -104,7 +102,15 @@ export class BagService {
       },
     });
   }
-  
+   
+  async clearBag(sessionId: string): Promise<void> {
+    // Use Prisma to delete all bag items associated with the given sessionId
+    await this.prismaService.bagItem.deleteMany({
+      where: {
+        sessionId: sessionId,
+      },
+    });
+  }
 }
 
 

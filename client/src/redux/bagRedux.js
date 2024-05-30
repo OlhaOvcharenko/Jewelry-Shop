@@ -90,7 +90,13 @@ export const updateBagItemRequest = (existingItem) => {
     dispatch(startRequest({ name: UPDATE_BAG }));
 
     try {
-      const res = await axios.post(`${API_URL}/bag`, existingItem);
+      const res = await axios.put(`${API_URL}/bag`, {
+        bagItemId: existingItem.id,
+        productId: existingItem.productId,
+        quantity: existingItem.quantity,
+        size: existingItem.size,
+        comment: existingItem.comment
+      });
       dispatch(updateBag(res.data));
       dispatch(endRequest({ name: UPDATE_BAG }));
     } catch (e) {
@@ -127,11 +133,16 @@ const bagReducer = (state = initialState, action = {}) => {
         bagItems: [...state.bagItems, action.payload]
       };
     case UPDATE_BAG:
-      return { ...state, bagItems: action.payload};
+      return { bagItems: [...state.bagItems]};
     case REMOVE_FROM_BAG:
       return {
         bagItems: state.bagItems.filter(item => item.id !== action.payload),
       };
+
+    case CLEAR_BAG:
+      return{
+        bagItems: []
+      }
     case START_REQUEST:
       return { ...state, requests: {...state.requests, [action.payload.name]: { pending: true, error: null, success: false }} };
     case END_REQUEST:

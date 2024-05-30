@@ -15,7 +15,6 @@ const BagList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
   const bagItems = useSelector(state => getAllBagProducts(state));
-  console.log(bagItems)
   const [totalAmount, setTotalAmount] = useState(0); 
   const [loading, setLoading] = useState(true);
 

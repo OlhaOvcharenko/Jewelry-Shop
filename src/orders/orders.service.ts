@@ -3,10 +3,14 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { Order } from '@prisma/client';
 import { BadRequestException } from '@nestjs/common';
 import { CreateOrderDTO } from './dto/createOrder.dto';
+import { BagService } from 'src/bag/bag.service';
 
 @Injectable()
 export class OrdersService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    private bagService: BagService
+  ) {}
   
   public getAll(): Promise<Order[]> {
     return this.prismaService.order.findMany({
@@ -22,7 +26,7 @@ export class OrdersService {
     });
   }
   
-  async createOrder(orderData: CreateOrderDTO): Promise<Order> {
+  async createOrder(orderData: CreateOrderDTO, sessionId: string): Promise<Order> {
     const { productIds, ...orderDetails } = orderData;
     console.log(orderData)
     try {
@@ -30,10 +34,10 @@ export class OrdersService {
       const createdOrder = await this.prismaService.order.create({
         data: {
           ...orderDetails,
-          products: { connect: productIds.map(id => ({ id })) }, // Connect products by their IDs
+          products: { connect: productIds.map(id => ({ id })) }, 
         },
       });
-
+      await this.bagService.clearBag(sessionId);
       return createdOrder;
     } catch (error) {
       if (error.code === 'P2025') {
