@@ -21,7 +21,6 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   
   const productData = useSelector(state => getProductById(state, id));
-  const bag = useSelector(state => getAllBagProducts(state));
   const request = useSelector(getRequest);
   
   const galleryImages = productData.gallery.split(',');
@@ -70,22 +69,22 @@ const SingleProduct = () => {
   return (
     <>
       {(request['app/bag/ADD_TO_BAG']?.success) && (
-        <ModalBag show={showModal} onHide={handleCloseModal} product={productData} />
+        <ModalBag show={showModal} onHide={handleCloseModal} product={productData} qty={quantity} />
       )}
 
       <div className={styles.box}>
         <Card style={{ width: '75rem', border: 'none' }}>
           <Row>
               <Col className="m-3">
-                  <div className="d-flex justify-content-center align-items-center">
-                      <Zoom>
-                          <Card.Img
-                              src={`${IMAGES_URL}/${productData.photo}`}
-                              style={{ width: '30rem', height: '30rem', margin: '1rem', objectFit: 'cover' }}
-                          />
-                      </Zoom>
-                  </div>
-                  <Gallery galleryImages={galleryImages} />
+                <div className="d-flex justify-content-center align-items-center">
+                  <Zoom>
+                    <Card.Img
+                      src={`${IMAGES_URL}/${productData.photo}`}
+                      style={{ width: '30rem', height: '30rem', margin: '1rem', objectFit: 'cover' }}
+                    />
+                  </Zoom>
+                </div>
+                <Gallery galleryImages={galleryImages} />
               </Col>
 
               <Col>
@@ -117,10 +116,10 @@ const SingleProduct = () => {
                       </div>
                   </Card.Body>
                   <Button variant="dark" size="lg" className="px-5 my-2 mx-3 mb-4" onClick={handleAddProductToBag}>
-                      Add to bag
+                    Add to bag
                   </Button>
                   <p className="py-4">
-                      <i>We can deliver your order at any place or you can buy the product in our local department.</i>
+                    <i>We can deliver your order at any place or you can buy the product in our local department.</i>
                   </p>
               </Col>
           </Row>
