@@ -20,6 +20,7 @@ export class BagService {
               name: true,
               price: true,
               photo: true,
+              size: true,
             },
           },
         },
@@ -28,7 +29,7 @@ export class BagService {
 
 
   public async addItemToBag(bagProduct: AddItemToBagDTO): Promise<BagItem> {
-    const { productId, quantity, ...otherData } = bagProduct;
+    const { productId, quantity, size, ...otherData } = bagProduct;
 
     const product = await this.prismaService.product.findUnique({
       where: { id: productId },
@@ -41,21 +42,25 @@ export class BagService {
     let existingBagItem = await this.prismaService.bagItem.findFirst({
       where: {
         productId: productId,
+        size: size, // Check for existing item with the same size
       },
     });
 
     if (!existingBagItem) {
+      // New bag item
       const subTotal = product.price * quantity;
 
       return this.prismaService.bagItem.create({
         data: {
           ...otherData,
           quantity,
+          size,
           subTotal,
           product: { connect: { id: productId } },
         },
       });
     } else {
+      // Existing bag item with the same size, update quantity and subtotal
       const newQuantity = existingBagItem.quantity + quantity;
       const newSubTotal = product.price * newQuantity;
 
@@ -65,10 +70,9 @@ export class BagService {
           quantity: newQuantity,
           subTotal: newSubTotal,
         },
-     });
-  }
-  
-  }
+      });
+    }
+ }
 
   public deleteById(id: BagItem['id']): Promise<BagItem> {
     return this.prismaService.bagItem.delete({

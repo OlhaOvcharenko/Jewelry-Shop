@@ -29,4 +29,10 @@ export class EditBagItem {
     @IsOptional()
     @IsString()
     comment?: string;
+
+
+    @IsNotEmpty()
+    @IsString()
+    size: string;
+
 }

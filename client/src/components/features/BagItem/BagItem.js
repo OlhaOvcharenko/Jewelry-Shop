@@ -18,13 +18,13 @@ const BagItem = ({ bagProduct, onRemove }) => {
     onRemove(productState.id); 
   };
 
-  const handleQuantityChange = (change) => {
-    const newQuantity = Math.max(productState.quantity + change, 1);
-    const newSubTotal = newQuantity * productState.price;
-    const newProductState = { ...productState, quantity: newQuantity, subTotal: newSubTotal };
+  /*const handleQuantityChange = (change) => {
+    //const newQuantity = Math.max(productState.quantity + change, 1);
+    //const newSubTotal = newQuantity * productState.price;
+    //const newProductState = { ...productState, quantity: newQuantity, subTotal: newSubTotal };
     setProductState(newProductState);
     dispatch(updateBagItemRequest(newProductState)); 
-  };
+  };*/
 
   const handleCommentChange = (event) => {
     const newComment = event.target.value;
@@ -52,7 +52,7 @@ const BagItem = ({ bagProduct, onRemove }) => {
           </Col>
 
           <Col>  
-            <ButtonsGroup quantity={productState.quantity} handleDecrement={() => handleQuantityChange(-1)} handleIncrement={() => handleQuantityChange(1)} /> 
+            <ButtonsGroup quantity={productState.quantity}  /> 
           </Col>
 
           <Col onClick={handleRemoveProductFromBag} lg={2} >

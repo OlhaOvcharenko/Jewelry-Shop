@@ -20,6 +20,7 @@ const NavBar = () => {
   useEffect(() => {
     
     const totalQuantity = bagItems.reduce((sum, item) => sum + item.quantity, 0);
+    console.log(totalQuantity);
     setNumberOfBagItems(totalQuantity);
 
     const handleResize = () => {

@@ -3,7 +3,8 @@ import {
     IsString,
     IsUUID,
     IsInt,
-    Min
+    Min,
+    isInt
 } from 'class-validator';
   
 export class AddItemToBagDTO {
@@ -16,5 +17,9 @@ export class AddItemToBagDTO {
     @IsInt()
     @Min(0)
     quantity: number;
+
+    @IsNotEmpty()
+    @IsString()
+    size: string;
 
 }
