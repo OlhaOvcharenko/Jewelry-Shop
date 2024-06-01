@@ -41,12 +41,13 @@ export class BagService {
 
     let existingBagItem = await this.prismaService.bagItem.findFirst({
       where: {
-        productId: productId, 
+        productId: productId,
+        size: size 
       },
     });
 
     if (!existingBagItem) {
-      // New bag item
+  
       const subTotal = product.price * quantity;
 
       return this.prismaService.bagItem.create({
@@ -60,7 +61,7 @@ export class BagService {
         },
       });
     } else {
-      // Existing bag item with the same size, update quantity and subtotal
+      
       const newQuantity = existingBagItem.quantity + quantity;
       const newSubTotal = product.price * newQuantity;
 
