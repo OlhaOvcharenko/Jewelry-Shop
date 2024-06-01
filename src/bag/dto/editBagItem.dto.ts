@@ -31,7 +31,7 @@ export class EditBagItem {
     comment?: string;
 
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     size: string;
 

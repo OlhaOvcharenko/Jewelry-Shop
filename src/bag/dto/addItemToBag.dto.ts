@@ -18,7 +18,7 @@ export class AddItemToBagDTO {
     @Min(0)
     quantity: number;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     size: string;
 
