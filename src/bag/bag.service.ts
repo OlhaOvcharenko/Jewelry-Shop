@@ -42,6 +42,7 @@ export class BagService {
     let existingBagItem = await this.prismaService.bagItem.findFirst({
       where: {
         productId: productId,
+        size:size,
       },
     });
 
@@ -54,6 +55,7 @@ export class BagService {
           ...otherData,
           quantity,
           subTotal,
+          size,
           product: { connect: { id: productId } },
         },
       });
