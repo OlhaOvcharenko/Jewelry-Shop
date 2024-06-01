@@ -29,7 +29,7 @@ export class BagService {
 
 
   public async addItemToBag(bagProduct: AddItemToBagDTO): Promise<BagItem> {
-    const { productId, quantity, size, ...otherData } = bagProduct;
+    const { productId, quantity, size, sessionId, ...otherData } = bagProduct;
 
     const product = await this.prismaService.product.findUnique({
       where: { id: productId },
@@ -55,6 +55,7 @@ export class BagService {
           quantity,
           size,
           subTotal,
+          sessionId,
           product: { connect: { id: productId } },
         },
       });
@@ -103,7 +104,6 @@ export class BagService {
   }
    
   async clearBag(sessionId: string): Promise<void> {
-  
     await this.prismaService.bagItem.deleteMany({
       where: {
         sessionId: sessionId,

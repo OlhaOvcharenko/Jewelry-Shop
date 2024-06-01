@@ -22,4 +22,8 @@ export class AddItemToBagDTO {
     @IsString()
     size: string;
 
+    @IsNotEmpty()
+    @IsString()
+    sessionId: string;
+
 }
