@@ -42,7 +42,7 @@ export class BagService {
     let existingBagItem = await this.prismaService.bagItem.findFirst({
       where: {
         productId: productId,
-        size: size 
+        size: product.size 
       },
     });
 
@@ -107,7 +107,7 @@ export class BagService {
   async clearBag(sessionId: string): Promise<void> {
     await this.prismaService.bagItem.deleteMany({
       where: {
-        sessionId: sessionId,
+        id: sessionId,
       },
     });
   }
