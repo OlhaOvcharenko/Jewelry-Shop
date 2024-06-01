@@ -4,7 +4,7 @@ import {
     IsUUID,
     IsInt,
     Min,
-    isInt
+    IsOptional
 } from 'class-validator';
   
 export class AddItemToBagDTO {
@@ -22,7 +22,8 @@ export class AddItemToBagDTO {
     @IsString()
     size: string;
 
-    @IsNotEmpty()
+    
+    @IsOptional()
     @IsString()
     sessionId?: string;
 
