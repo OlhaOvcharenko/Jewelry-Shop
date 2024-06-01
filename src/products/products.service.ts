@@ -15,4 +15,16 @@ export class ProductsService {
       where: { id },
     });
   }
+
+  public async getByPhrase(searchPhrase: string): Promise<Product | null> {
+    console.log(searchPhrase)
+    return this.prismaService.product.findFirst({
+      where: {
+        OR: [
+          { name: { contains: searchPhrase } },
+          { category: { contains: searchPhrase } },
+        ],
+      },
+    });
+  }
 }

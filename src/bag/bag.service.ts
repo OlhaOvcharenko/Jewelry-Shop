@@ -42,7 +42,7 @@ export class BagService {
     let existingBagItem = await this.prismaService.bagItem.findFirst({
       where: {
         productId: productId,
-        size: size, // Check for existing item with the same size
+        size: size, 
       },
     });
 
@@ -104,7 +104,7 @@ export class BagService {
   }
    
   async clearBag(sessionId: string): Promise<void> {
-    // Use Prisma to delete all bag items associated with the given sessionId
+  
     await this.prismaService.bagItem.deleteMany({
       where: {
         sessionId: sessionId,

@@ -30,5 +30,12 @@ export class ProductsController {
     await this.bagService.addItemToBag(addedProductData);
   }
 
+  @Get('/:searchPhrase')
+  async getByPhrase(@Param('searchPhrase') searchPhrase: string) {
+    const prod = await this.productsService.getByPhrase(searchPhrase);
+    if (!prod) throw new NotFoundException('Product not found');
+    return prod;
+  }
+
 
 }
