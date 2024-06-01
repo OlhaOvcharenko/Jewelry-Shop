@@ -20,7 +20,7 @@ export class AddItemToBagDTO {
 
     @IsOptional()
     @IsString()
-    size: string;
+    size?: string;
 
     
     @IsOptional()

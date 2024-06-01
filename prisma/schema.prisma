@@ -43,10 +43,10 @@ model BagItem {
   id        String   @id @default(uuid())
   quantity  Int
   comment   String?
-  size      String
+  size      String?
   subTotal  Int
   sessionId String?
-  
+
   product   Product  @relation(fields: [productId], references: [id])
   productId String  
 }

@@ -33,6 +33,6 @@ export class EditBagItem {
 
     @IsOptional()
     @IsString()
-    size: string;
+    size?: string;
 
 }
