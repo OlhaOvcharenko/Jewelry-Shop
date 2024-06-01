@@ -52,7 +52,7 @@ export const loadBagItemsRequest = () => {
 export const addToBagRequest = (item) => {
   return async (dispatch, getState) => {
     dispatch(startRequest({ name: ADD_TO_BAG }));
-
+    console.log(item, 'item')
     try {
       await axios.post(`${API_URL}/products/${item.id}`, {
         productId: item.id,
