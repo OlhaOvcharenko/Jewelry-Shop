@@ -6,8 +6,8 @@ import { Param } from '@nestjs/common';
 import { ParseUUIDPipe } from '@nestjs/common';
 import { BagService } from 'src/bag/bag.service';
 import { AddItemToBagDTO } from 'src/bag/dto/addItemToBag.dto';
-
-
+import { Query } from '@nestjs/common';
+import { Product } from '@prisma/client';
 
 @Controller('products')
 export class ProductsController {
@@ -18,6 +18,12 @@ export class ProductsController {
   async getAll() {
     return this.productsService.getAll();
   }
+
+  @Get('/search/:query')
+  search(@Param('query') query: string): Promise<Product[]> {
+    return this.productsService.search(query);
+  }
+
   @Get('/:id')
   async getById(@Param('id', new ParseUUIDPipe()) id: string) {
     const prod = await this.productsService.getById(id);
@@ -25,17 +31,13 @@ export class ProductsController {
     return prod;
   }
 
+
   @Post('/:id')
   async addToBag(@Body() addedProductData: AddItemToBagDTO) {
     await this.bagService.addItemToBag(addedProductData);
   }
 
-  @Get('/:searchPhrase')
-  async getByPhrase(@Param('searchPhrase') searchPhrase: string) {
-    const prod = await this.productsService.getByPhrase(searchPhrase);
-    if (!prod) throw new NotFoundException('Product not found');
-    return prod;
-  }
-
 
 }
+
+

@@ -16,15 +16,18 @@ export class ProductsService {
     });
   }
 
-  public async getByPhrase(searchPhrase: string): Promise<Product | null> {
-    console.log(searchPhrase)
-    return this.prismaService.product.findFirst({
+  async search(query: string): Promise<Product[]> {
+    const lowerCaseQuery = query.toLowerCase();
+    const products = await this.prismaService.product.findMany({
       where: {
         OR: [
-          { name: { contains: searchPhrase } },
-          { category: { contains: searchPhrase } },
+          { name: { contains: lowerCaseQuery } },
+          { category: { contains: lowerCaseQuery } },
+      
         ],
       },
     });
+    return products;
   }
+
 }
