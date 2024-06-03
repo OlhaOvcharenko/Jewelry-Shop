@@ -5,6 +5,8 @@ import { API_URL } from "../config";
 /*SELECTORS*/
 export const getAllProducts = (state) => state.products;
 
+export const getSearchedProducts = (state) => state.products.searchedProducts;
+
 export const getProductById = (state, productId) => { 
   return state.products.find((product) => product.id === productId);
 }
@@ -33,7 +35,7 @@ const END_REQUEST = createActionName('END_REQUEST');
 const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 
 export const DATA_PRODUCTS = createActionName('DATA_PRODUCTS');
-
+export const SEARCH_PRODUCTS = createActionName('SEARCH_PRODUCTS');
 
 
 /* ACTIONS CREATORS */
@@ -43,6 +45,8 @@ export const errorRequest = payload => ({ payload, type: ERROR_REQUEST });
 
 
 export const fetchDataProducts = payload => ({type: DATA_PRODUCTS, payload});
+
+export const fetchSearchedProducts = payload => ({type: SEARCH_PRODUCTS, payload});
 
 export const loadProductsRequest = () => {
   return async (dispatch) => {
@@ -59,11 +63,31 @@ export const loadProductsRequest = () => {
   };
 };
 
+export const loadSearchRequest = (searchPhrase) => {
+  return async (dispatch) => {
+    const requestName = SEARCH_PRODUCTS;
+    dispatch(startRequest({ name: requestName }));
+
+    try {
+      let res = await axios.get(`${API_URL}/products/search/${searchPhrase}`);
+      dispatch(fetchSearchedProducts(res.data));
+      dispatch(endRequest({ name: requestName }));
+    } catch (e) {
+      dispatch(errorRequest({ name: requestName, error: e.message }));
+    }
+  };
+};
+
 /* REDUCER */
 export default function productsReducer(state = initialState, action = {}) {
   switch (action.type) {
     case DATA_PRODUCTS:
       return action.payload;
+    case SEARCH_PRODUCTS:
+      return {
+        ...state,
+        searchedProducts: action.payload,
+      };
     default:
       return state;
   }

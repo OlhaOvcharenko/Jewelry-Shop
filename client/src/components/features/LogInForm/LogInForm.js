@@ -1,6 +1,6 @@
 import { Col, Container } from "react-bootstrap";
 import styles from "../LogInForm/LogInForm.module.scss"
-import { Form, Alert, Spinner} from "react-bootstrap";
+import { Form, Alert} from "react-bootstrap";
 import Button from "../../common/Button/Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
