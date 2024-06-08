@@ -7,6 +7,10 @@ import { API_URL } from "../config";
 export const getAllBagProducts = (state) => state.bag.bagItems;
 export const getRequest = (state) => state.bag.requests;
 
+export const getItemById = (state, itemId) => { 
+  return state.bag.bagItems.find((product) => product.id === itemId);
+}
+
 // action types
 
 const reducerName = 'bag';

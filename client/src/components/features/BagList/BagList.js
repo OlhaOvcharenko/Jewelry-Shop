@@ -33,6 +33,7 @@ const BagList = () => {
 
   useEffect(() => {
     const amount = bagItems.reduce((total, item) => total + item.subTotal, 0);
+    console.log(bagItems)
     setTotalAmount(amount);
   }, [bagItems]);
 
