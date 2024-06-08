@@ -11,13 +11,13 @@ import styles from '../BagItem/BagItem.module.scss';
 const BagItem = ({ bagProduct, onRemove }) => {
   const dispatch = useDispatch();
   const [productState, setProductState] = useState(bagProduct);
-  
 
+  
   const handleDecrement = () => {
     const newQuantity = Math.max(productState.quantity - 1, 1);
     updateQuantity(newQuantity);
   };
-
+  
   const handleIncrement = () => {
     const newQuantity = productState.quantity + 1;
     updateQuantity(newQuantity);

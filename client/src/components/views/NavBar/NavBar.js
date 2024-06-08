@@ -1,17 +1,16 @@
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faBagShopping, faSearch, faCrown, faSignIn, faSignOut} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faBagShopping, faSearch, faCrown, faSignIn} from '@fortawesome/free-solid-svg-icons';
 import { Navbar, Nav, Row, Col } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllBagProducts } from '../../../redux/bagRedux';
 import styles from '../NavBar/NavBar.module.scss';
-import { getUser, getUserById } from '../../../redux/usersRedux';
+import { getUser } from '../../../redux/usersRedux';
 
 const NavBar = () => {
 
   const bagItems = useSelector(state => getAllBagProducts(state));
-  console.log(bagItems,'items')
   const user = useSelector(state => getUser(state));
  
   const [numberOfBagItems, setNumberOfBagItems] = useState(0);
@@ -20,7 +19,6 @@ const NavBar = () => {
   useEffect(() => {
     
     const totalQuantity = bagItems.reduce((sum, item) => sum + item.quantity, 0);
-    console.log(totalQuantity);
     setNumberOfBagItems(totalQuantity);
 
     const handleResize = () => {
@@ -32,7 +30,6 @@ const NavBar = () => {
 
     return () => window.removeEventListener('resize', handleResize); 
   }, [bagItems]);
-
 
   return (
     <Navbar bg="light" data-bs-theme="light" className="pb-0" fixed="top" expand="md">

@@ -38,11 +38,11 @@ const BagList = () => {
 
   const handleRemoveItem = (id) => {
     dispatch(removeFromBagRequest(id));
-    console.log(id, 'id')
   };
 
   const handleOrderSubmit = () => {
     navigate('/order', { state: { totalAmount } });
+    window.location.reload();
   };
 
 

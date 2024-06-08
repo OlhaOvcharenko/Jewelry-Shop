@@ -39,7 +39,6 @@ export const loadOrdersRequest = () => {
 };
 
 export const createOrderRequest = (newOrder) => {
-  console.log(newOrder,'order')
   return async (dispatch) => {
     dispatch(startRequest({ name: CREATE_ORDER }));
     try {

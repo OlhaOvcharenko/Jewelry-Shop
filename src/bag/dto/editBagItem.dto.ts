@@ -24,7 +24,6 @@ export class EditBagItem {
     @IsInt()
     @Min(0)
     quantity: number;
-
     
     @IsOptional()
     @IsString()

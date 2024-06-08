@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Row, Container } from "react-bootstrap";
 import PageContainer from "../../common/PageContainer/PageContainer";
 import { getAllProducts } from "../../../redux/productsRedux";
-import CardProduct from "../../features/CardProduct/CardProduct";
+import CardProduct from "../../../components/views/CardProduct/CardProduct";
 
 const Catalogue = () => {
   const allProducts = useSelector(state=>getAllProducts(state));

@@ -1,4 +1,4 @@
-import OrderItems from "../OrderItems/OrderItems";
+import OrderItems from "../../../components/views/OrderItems/OrderItems";
 import PageContainer from "../../common/PageContainer/PageContainer";
 import OrderFormComponent from "../OrderFormComponent/OrderFormComponent";
 import { Alert, Card, Col, Row} from "react-bootstrap";

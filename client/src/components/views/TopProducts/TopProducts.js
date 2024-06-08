@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { getTopProducts } from "../../../redux/productsRedux";
 import { Row} from "react-bootstrap";
 import styles from './TopProducts.module.scss'
-import CardProduct from "../../features/CardProduct/CardProduct";
+import CardProduct from "../../../components/views/CardProduct/CardProduct";
 
 const TopProducts = () => {
 

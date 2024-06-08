@@ -3,7 +3,7 @@ import { Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { IMAGES_URL } from "../../../config";
 import Button from '../../common/Button/Button';
-import styles from '../CardProduct/CardProduct.module.scss';
+import styles from './CardProduct.module.scss';
 
 const CardProduct = ({ product }) => {
   return (

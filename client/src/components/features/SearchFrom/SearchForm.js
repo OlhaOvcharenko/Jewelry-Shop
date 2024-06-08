@@ -6,7 +6,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchedProducts, loadSearchRequest } from "../../../redux/productsRedux";
-import CardProduct from "../../features/CardProduct/CardProduct";
+import CardProduct from "../../views/CardProduct/CardProduct";
 
 
 const SearchForm = () => {

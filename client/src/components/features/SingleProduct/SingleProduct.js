@@ -1,10 +1,11 @@
+import ModalBag from "../../../components/views/ModalBag/ModalBag";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../../redux/productsRedux";
 import { Card,Row, Col, Button } from "react-bootstrap";
 import ButtonsGroup from "../../common/ButtonsGroup/ButtonsGroup";
 import { useDispatch, useSelector } from "react-redux";
 import { IMAGES_URL } from "../../../config";
-import { addToBagRequest, getAllBagProducts} from "../../../redux/bagRedux";
+import { addToBagRequest} from "../../../redux/bagRedux";
 import { useState } from "react";
 import styles from '../SingleProduct/SingleProduct.module.scss';
 import Tabs from "../../common/Tabs/Tabs";
@@ -13,7 +14,6 @@ import  Zoom  from 'react-medium-image-zoom';
 import { clsx } from "clsx";
 import 'react-medium-image-zoom/dist/styles.css';
 import { getRequest } from "../../../redux/bagRedux";
-import ModalBag from "../ModalBag/ModalBag";
 import { useEffect } from "react";
 
 const SingleProduct = () => {

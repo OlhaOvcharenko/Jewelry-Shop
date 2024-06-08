@@ -18,9 +18,7 @@ const RegistrationForm = () => {
 
   const [status, setStatus] = useState(null);
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); 
-    
+  const handleSubmit = () => {
     const registrationData = {
       name, surname, email, phone, city, country, password, passwordRepeat: repeatedPassword
     }
