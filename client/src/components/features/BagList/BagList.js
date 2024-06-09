@@ -44,7 +44,6 @@ const BagList = () => {
 
   const handleOrderSubmit = () => {
     navigate('/order', { state: { totalAmount } });
-    window.location.reload();
   };
 
 
