@@ -75,7 +75,7 @@ const BagList = () => {
                 </ul>
               </div>
               {bagItems.map((product) => (
-                <BagItem key={product.id} bagProduct={product} onRemove={handleRemoveItem} />
+                <BagItem key={product.id} bagProduct={product} onRemove={handleRemoveItem} setTotalAmount={setTotalAmount} bagItems={bagItems}/>
               ))}
             </>
           )}

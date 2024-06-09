@@ -103,8 +103,8 @@ export const updateBagItemRequest = (existingItem) => {
         size: existingItem.size,
         comment: existingItem.comment
       });
-      dispatch(updateBag(res.data));
-      console.log(res.data)
+      dispatch(updateBag(existingItem));
+     
       dispatch(endRequest({ name: UPDATE_BAG }));
     } catch (e) {
       dispatch(errorRequest({ name: UPDATE_BAG, error: e.message }));
@@ -140,7 +140,10 @@ const bagReducer = (state = initialState, action = {}) => {
         bagItems: [...state.bagItems, action.payload]
       };
     case UPDATE_BAG:
-      return { bagItems: [...state.bagItems]};
+      const updatedItems = state.bagItems.map(item =>
+        item.id === action.payload.id ? action.payload : item
+      );
+      return { ...state, bagItems: updatedItems};
     case REMOVE_FROM_BAG:
       return {
         bagItems: state.bagItems.filter(item => item.id !== action.payload),

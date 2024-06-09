@@ -7,12 +7,12 @@ import { useDispatch } from "react-redux";
 import { updateBagItemRequest } from "../../../redux/bagRedux";
 import styles from '../BagItem/BagItem.module.scss';
 import { useState } from "react";
+import { useEffect } from "react";
 
 const BagItem = ({ bagProduct, onRemove }) => {
   const dispatch = useDispatch();
   const [productState, setProductState] = useState(bagProduct);
   
-
   const handleDecrement = () => {
     const newQuantity = Math.max(productState.quantity - 1, 1);
     updateQuantity(newQuantity);
