@@ -89,10 +89,12 @@ export const addToBagRequest = (item) => {
 };
 
 
+
+
 export const updateBagItemRequest = (existingItem) => {
   return async (dispatch) => {
     dispatch(startRequest({ name: UPDATE_BAG }));
-
+    console.log(existingItem, 'existing item');
     try {
       const res = await axios.put(`${API_URL}/bag`, {
         bagItemId: existingItem.id,
@@ -102,6 +104,7 @@ export const updateBagItemRequest = (existingItem) => {
         comment: existingItem.comment
       });
       dispatch(updateBag(res.data));
+      console.log(res.data)
       dispatch(endRequest({ name: UPDATE_BAG }));
     } catch (e) {
       dispatch(errorRequest({ name: UPDATE_BAG, error: e.message }));
