@@ -1,0 +1,26 @@
+@import '../../../styles/settings.scss';
+@import '../../../styles/typography.scss';
+
+.header {
+    margin: 0;
+    padding: 0;
+    height: 25vh;
+    background-color: $color-text-light;
+    color: $color-text-bright;
+    text-align: center;
+}
+  
+.headerLink {
+    color: $color-text-bright;
+    text-decoration: none;
+}
+  
+.headerLink:hover {
+    color: $color-secondary;
+}
+.title {
+    margin-top: 2rem;
+    margin-bottom: 0;
+    padding-top: 7rem;
+    font-size: 35px;
+}

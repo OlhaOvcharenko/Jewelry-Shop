@@ -7,6 +7,7 @@ import { useState } from "react";
 import { getRequests, loginRequest } from "../../../redux/usersRedux";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import BreadCrambSection from "../../common/Breadcramb/Breadcramb";
 
 const LogInForm = () => {
 
@@ -24,11 +25,7 @@ const LogInForm = () => {
 
   return (
     <div>
-      <div className={styles.accountHeader}>
-        <h1 className={styles.accountTitle}>ACCOUNT</h1>
-        <Link to="/"  className={styles.headerLink}><b>Home</b></Link> /
-        <Link to="/account" className={styles.headerLink}><b>Account</b></Link>
-      </div>
+      <BreadCrambSection title='ACCOUNT' link='Home'/>
       <Container>
         <div className={styles.loginBox}>
           {(requests && requests['app/user/LOGIN_REQUEST']?.success) ? (
