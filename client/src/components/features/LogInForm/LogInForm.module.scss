@@ -1,29 +1,7 @@
 @import '../../../styles/settings.scss';
 @import '../../../styles/typography.scss';
 
-.accountHeader {
-  margin: 0;
-  padding: 0;
-  height: 30vh;
-  background-color: $color-text-light;
-  color: $color-text-bright;
-  text-align: center;
-}
 
-.headerLink {
-  color: $color-text-bright;
-  text-decoration: none;
-}
-
-.headerLink:hover {
-  color: $color-secondary;
-}
-.accountTitle {
-  margin-top: 2rem;
-  margin-bottom: 0;
-  padding-top: 7rem;
-  font-size: 35px;
-}
 
 .loginBox {
   display: flex;
