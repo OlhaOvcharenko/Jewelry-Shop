@@ -10,7 +10,7 @@ export class OrdersController {
     @Get('/')
     async getAll() {
       return this.ordersService.getAll();
-    }
+    }     
 
     @Post('/')
     create(@Body() orderData: CreateOrderDTO, sessionId: string) {
